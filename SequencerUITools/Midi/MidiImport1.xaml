@@ -1,0 +1,155 @@
+﻿<Window x:Class="MidiImport1"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SequencerUITools"        
+        xmlns:duc="clr-namespace:DailyUserControls;assembly=DailyUserControls"
+        mc:Ignorable="d"
+        Title="Midi-File Import 1" Height="450" Width="800" Loaded="Window_Loaded" Closing="Window_Closing" WindowStyle="ToolWindow" KeyDown="Window_KeyDown">
+    <Window.Resources>
+        <Style x:Key="HeaderCenterAlign" TargetType="DataGridColumnHeader">
+            <Setter Property="HorizontalContentAlignment" Value="Center" />
+        </Style>
+        <Style x:Key="HeaderRightAlign" TargetType="DataGridColumnHeader">
+            <Setter Property="HorizontalContentAlignment" Value="Right" />
+        </Style>
+
+        <Style x:Key="DgCellStyle" TargetType="DataGridCell">
+            <!-- Brushes when Cell Style is not explicit set with CellAlign(DataGridCellStyle -> DgCellStyle) -->
+            <Style.Triggers>
+                <Trigger Property="IsSelected" Value="True">
+                    <Setter Property="Background" Value="LightBlue"/>
+                    <Setter Property="Foreground" Value="Black"/>
+                </Trigger>
+                <Trigger Property="IsFocused" Value="True">
+                    <Setter Property="Background" Value="#FFDEF7FF"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="DgCellRightAlign" TargetType="DataGridCell">
+            <Setter Property="TextBox.TextAlignment" Value="Right" />
+            <!-- need also set IsSelected/IsFocused -->
+            <Style.Triggers>
+                <Trigger Property="IsSelected" Value="True">
+                    <Setter Property="Background" Value="LightBlue"/>
+                    <Setter Property="Foreground" Value="Black"/>
+                </Trigger>
+                <Trigger Property="IsFocused" Value="True">
+                    <Setter Property="Background" Value="#FFDEF7FF"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+
+
+    </Window.Resources>
+    <Grid>
+        <DockPanel>
+            <Grid Height="90" VerticalAlignment="Top" DockPanel.Dock="Top">
+                <TextBlock Text="This is a first test for Midi-File import. " FontSize="14" FontStyle="Italic" Margin="501,10,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Background="#FFFFF1FF"/>
+                <duc:ImageButton x:Name="btnLoad" Margin="20,20,0,0" Text="Load" Image="/SequencerUITools;component/Resources/Images/Load_x16.png" HorizontalAlignment="Left" VerticalAlignment="Top" Height="27" Width="90" Background="#FFEDF2FD" BorderThickness="1,1,1,1" BorderBrush="#FF7798FF"/>
+                <duc:ImageButton x:Name="btnSplit" Margin="135,20,0,0" Text="Split" HorizontalAlignment="Left" VerticalAlignment="Top" Height="27" Width="90" Background="#FFEDF2FD" BorderThickness="1,1,1,1" BorderBrush="#FF7798FF" Image="/SequencerUITools;component/Resources/Images/Split_x32.png" IsEnabled="False" ToolTip="Split multichannel tracks to singlechannel tracks"/>
+                <duc:ImageButton x:Name="btnImport" Margin="255,20,0,0" Text="Import" Image="/SequencerUITools;component/Resources/Images/OK_x32.png" HorizontalAlignment="Left" VerticalAlignment="Top" Width="90" Height="27" BorderThickness="1,1,1,1" BorderBrush="#FF7798FF" Background="#FFEDF2FD" IsEnabled="False"/>
+                <duc:ImageButton x:Name="btnCancel" Margin="385,20,0,0" Text="Cancel" Image="/SequencerUITools;component/Resources/Images/Cancel_x16.png" BorderBrush="#FF7798FF" BorderThickness="1,1,1,1" Background="#FFEDF2FD" Height="27" Width="90" HorizontalAlignment="Left" VerticalAlignment="Top" />
+            </Grid>
+            <Grid  Background="#FFF3FAFF">
+                <TextBox x:Name="tbFullname" Margin="38,10,20,0" TextWrapping="Wrap" Text="Fullname" VerticalAlignment="Top" IsReadOnly="True"/>
+                <TextBox x:Name="tbFilename" HorizontalAlignment="Left" Margin="10,33,0,0" TextWrapping="Wrap" Text="Name" VerticalAlignment="Top" Width="140" IsReadOnly="True"/>
+                <TextBox x:Name="tbProperties" Margin="160,33,20,0" TextWrapping="Wrap" Text="Properties: ... ... ... ..." VerticalAlignment="Top" IsReadOnly="True"/>
+                <Label Width="20" Height="20" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,8,0,0" BorderBrush="#FFC3C3C3" BorderThickness="1,1,1,1"/>
+                <Image x:Name="imgLoadOk" Source="/SequencerUITools;component/Resources/Images/OK_x32.png" Width="20" Height="20" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,8,0,0" Visibility="Hidden"/>
+                <Image x:Name="imgLoadFail" Source="/SequencerUITools;component/Resources/Images/process_stop_x32.png" Width="20" Height="20" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,8,0,0" Visibility="Hidden"/>
+                <DataGrid x:Name="dgvTracklist" Margin="10,72,100,10" ItemsSource="{Binding}" DataContext="{Binding TrackTable, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:MidiImport1}}}" CanUserAddRows="False" CanUserDeleteRows="False" CanUserResizeRows="False" SelectionMode="Single" SelectionUnit="Cell" AutoGenerateColumns="False" ColumnHeaderStyle="{DynamicResource HeaderCenterAlign}" CellStyle="{DynamicResource DgCellStyle}">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Binding="{Binding TrackNumber}" IsReadOnly="True" CellStyle="{StaticResource DgCellRightAlign}">
+                            <DataGridTextColumn.Header>
+                                <TextBlock Text="Trk" ToolTip="TrackNumber"/>
+                            </DataGridTextColumn.Header>
+                        </DataGridTextColumn>
+                        <DataGridCheckBoxColumn Binding="{Binding IsSelected}" Width="40">
+                            <DataGridCheckBoxColumn.Header>
+                                <TextBlock Text="Sel" ToolTip="Is Selected"/>
+                            </DataGridCheckBoxColumn.Header>
+                        </DataGridCheckBoxColumn>
+                        <DataGridTextColumn Binding="{Binding TrackName}" IsReadOnly="True">
+                            <DataGridTextColumn.Header>
+                                <TextBlock Text="Track Name" ToolTip="TrackName"/>
+                            </DataGridTextColumn.Header>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn  Binding="{Binding NumberOfEvents}" IsReadOnly="True" CellStyle="{StaticResource DgCellRightAlign}" >
+                            <DataGridTextColumn.Header>
+                                <TextBlock Text="Events" ToolTip="Number of Events" />
+                            </DataGridTextColumn.Header>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn  Binding="{Binding NoteOnEvents}" IsReadOnly="True" CellStyle="{StaticResource DgCellRightAlign}" >
+                            <DataGridTextColumn.Header>
+                                <TextBlock Text="N On" ToolTip="NoteOnEvents" />
+                            </DataGridTextColumn.Header>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn  Binding="{Binding NoteOffEvents}" IsReadOnly="True" CellStyle="{StaticResource DgCellRightAlign}" >
+                            <DataGridTextColumn.Header>
+                                <TextBlock Text="N Off" ToolTip="NoteOffEvents" />
+                            </DataGridTextColumn.Header>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn  Binding="{Binding ControlChangeEvents}" IsReadOnly="True" CellStyle="{StaticResource DgCellRightAlign}" >
+                            <DataGridTextColumn.Header>
+                                <TextBlock Text="CC" ToolTip="Control Change Events" />
+                            </DataGridTextColumn.Header>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn  Binding="{Binding ProgramChangeEvents}" IsReadOnly="True" CellStyle="{StaticResource DgCellRightAlign}" >
+                            <DataGridTextColumn.Header>
+                                <TextBlock Text="Prg" ToolTip="Program Change Events" />
+                            </DataGridTextColumn.Header>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn  Binding="{Binding PitchBendingEvents}" IsReadOnly="True" CellStyle="{StaticResource DgCellRightAlign}" >
+                            <DataGridTextColumn.Header>
+                                <TextBlock Text="PB" ToolTip="Pitch Bending Events" />
+                            </DataGridTextColumn.Header>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn  Binding="{Binding MetaEvents}" IsReadOnly="True" CellStyle="{StaticResource DgCellRightAlign}" >
+                            <DataGridTextColumn.Header>
+                                <TextBlock Text="M Ev" ToolTip="Meta Events" />
+                            </DataGridTextColumn.Header>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn  Binding="{Binding PoyphonicAftertouchEvents}" IsReadOnly="True" CellStyle="{StaticResource DgCellRightAlign}" >
+                            <DataGridTextColumn.Header>
+                                <TextBlock Text="pAT" ToolTip="Polyphonic Aftertouch Events" />
+                            </DataGridTextColumn.Header>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn  Binding="{Binding MonophonicAftertouchEvents}" IsReadOnly="True" CellStyle="{StaticResource DgCellRightAlign}" >
+                            <DataGridTextColumn.Header>
+                                <TextBlock Text="mAT" ToolTip="Monophonic (Channel) Aftertouch Events" />
+                            </DataGridTextColumn.Header>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn  Binding="{Binding F0SysxEvents}" IsReadOnly="True" CellStyle="{StaticResource DgCellRightAlign}" >
+                            <DataGridTextColumn.Header>
+                                <TextBlock Text="F0" ToolTip="F0 Sysx Events" />
+                            </DataGridTextColumn.Header>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn  Binding="{Binding F7SysxEvents}" IsReadOnly="True" CellStyle="{StaticResource DgCellRightAlign}" >
+                            <DataGridTextColumn.Header>
+                                <TextBlock Text="F7" ToolTip="F7 Sysx Events" />
+                            </DataGridTextColumn.Header>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn  Binding="{Binding UnknownEvents}" IsReadOnly="True" CellStyle="{StaticResource DgCellRightAlign}" >
+                            <DataGridTextColumn.Header>
+                                <TextBlock Text="unk" ToolTip="Unknown Events" />
+                            </DataGridTextColumn.Header>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn  Binding="{Binding NumberOfUsedChannels}" IsReadOnly="True" CellStyle="{StaticResource DgCellRightAlign}" >
+                            <DataGridTextColumn.Header>
+                                <TextBlock Text="nCh" ToolTip="Number of used channels" />
+                            </DataGridTextColumn.Header>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn  Binding="{Binding ChannelNumber}" IsReadOnly="True" CellStyle="{StaticResource DgCellRightAlign}" >
+                            <DataGridTextColumn.Header>
+                                <TextBlock Text="Ch" ToolTip="Channel number if NumberOfUsedChannels=1" />
+                            </DataGridTextColumn.Header>
+                        </DataGridTextColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Grid>
+        </DockPanel>
+    </Grid>
+</Window>

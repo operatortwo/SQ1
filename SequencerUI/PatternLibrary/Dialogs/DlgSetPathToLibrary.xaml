@@ -1,0 +1,27 @@
+﻿<Window x:Class="DlgSetPathToLibrary"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SequencerUI"
+        mc:Ignorable="d"
+        Title="Set Path To Pattern-Library" Height="400" Width="450" WindowStyle="ToolWindow" ResizeMode="NoResize" Loaded="Window_Loaded" Closing="Window_Closing">
+    <Grid>
+        <Button x:Name="BtnOk" Content="OK" HorizontalAlignment="Left" Margin="155,0,0,24" Width="55" Height="20" VerticalAlignment="Bottom"/>
+        <Button x:Name="BtnCancel" Content="Cancel" HorizontalAlignment="Left" Margin="257,0,0,24" IsCancel="True" Width="56" Height="20" VerticalAlignment="Bottom"/>
+        <TextBox x:Name="TbMessage" Margin="20,10,20,0" TextWrapping="Wrap" Text="Message" VerticalAlignment="Top" Height="67" FontSize="14" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Background="#FF9BDCFB" IsReadOnly="True"/>
+        <Label Content="Pattern Library Filename:" HorizontalAlignment="Left" Margin="20,90,0,0" VerticalAlignment="Top" Padding="0,0,0,0"/>
+        <TextBox x:Name="TbPatLibFilename" HorizontalAlignment="Left" Margin="160,89,0,0" TextWrapping="Wrap" Text="Name" VerticalAlignment="Top" Width="142" IsReadOnly="True" Background="#FFE6E6E6"/>
+        <Label Content="Pattern Library Path:" HorizontalAlignment="Left" Margin="20,244,0,0" VerticalAlignment="Top" Padding="0,0,0,0"/>
+        <TextBox x:Name="TbPatlibPath" TextWrapping="Wrap" Text="Path" Margin="20,270,20,0" Background="#FFE6E6E6" IsReadOnly="True" VerticalAlignment="Top" Height="36"/>
+        <GroupBox x:Name="GrpSetPath" Header="Select desired Location" Margin="20,125,20,0" VerticalAlignment="Top" Height="114">
+            <Grid>
+                <RadioButton x:Name="RbDefaultMusic" Content="Location %MyMusic%\SQ1__Data   ( default )" HorizontalAlignment="Left" Margin="10,9,0,0" VerticalAlignment="Top" IsChecked="True" />
+                <RadioButton x:Name="RbDefaultDocuments" Content="Location %MyDocuments%\SQ1__Data" HorizontalAlignment="Left" Margin="10,29,0,0" VerticalAlignment="Top" />
+                <RadioButton x:Name="RbUserDefined" Content="Location UserDefined Path" HorizontalAlignment="Left" Margin="10,49,0,0" VerticalAlignment="Top" />
+                <RadioButton x:Name="RbToExistingFile" Content="Location Path to existing File" HorizontalAlignment="Left" Margin="10,69,0,0" VerticalAlignment="Top" />
+            </Grid>
+        </GroupBox>
+
+    </Grid>
+</Window>

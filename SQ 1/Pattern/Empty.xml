@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<PatternX xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Name>Empty</Name>
+  <Category></Category>
+  <Category2></Category2>
+  <VoiceType></VoiceType>
+  <Source>XML edit</Source>
+  <BPM>120</BPM>
+  <TPQ>960</TPQ>
+  <StartTime>0</StartTime>
+  <StartOffset>0</StartOffset>
+  <Length>3840</Length>
+  <Duration>3840</Duration>
+  <Ended>false</Ended>
+  <EventListPtr>0</EventListPtr>
+  <EventList></EventList>
+</PatternX>

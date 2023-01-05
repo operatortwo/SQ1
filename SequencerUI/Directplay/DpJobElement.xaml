@@ -1,0 +1,31 @@
+﻿<UserControl x:Class="DpJobElement"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:SequencerUI"
+             xmlns:duc="clr-namespace:DailyUserControls;assembly=DailyUserControls"
+             mc:Ignorable="d" 
+             d:DesignHeight="22" d:DesignWidth="200" Focusable="True" GotFocus="UserControl_GotFocus" LostFocus="UserControl_LostFocus"  Background="#00000000" MouseLeftButtonDown="UserControl_MouseLeftButtonDown" Loaded="UserControl_Loaded" VerticalAlignment="Top">
+    <Grid x:Name="MainGrid">
+        <Border x:Name="MainBorder" BorderBrush="#FF00A2A2" BorderThickness="1,1,1,1" />
+        <Rectangle x:Name="FocusRectangle"/>
+        <Rectangle x:Name="IsRunningRectangle"/>
+        <StackPanel Orientation="Horizontal">
+            <Border x:Name="JobType" BorderThickness="0" Width="20">
+                <TextBlock x:Name="JobTypeText" Text="Tp" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </Border>
+            <Border x:Name="Separator1" BorderThickness="1,0,0,0" BorderBrush="#FFA2A2A2"/>
+            <Border x:Name="JobLabel" Width="100">
+                <TextBlock x:Name="JobLabelText" Text="Label" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="3,0,0,0"/>
+            </Border>
+            <Border x:Name="Separator2" BorderThickness="1,0,0,0" BorderBrush="#FFA2A2A2"/>
+            <Border x:Name="JobLength" Width="30">
+                <TextBlock x:Name="JobLengthText" Text="XX" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            </Border>
+            <Border x:Name="Separator3" BorderThickness="1,0,0,0" BorderBrush="#FFA2A2A2"/>
+            <duc:NumericUpDown x:Name="nudDuration" Width="46" Value="1" Height="20" MinimumValue="1" MaximumValue="32" Margin="0,1,0,0" ValueChanged="nudDuration_ValueChanged"/>
+        </StackPanel>
+        <Border/>
+    </Grid>
+</UserControl>

@@ -1,0 +1,44 @@
+﻿<UserControl x:Class="SequencerPanel"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:SequencerUI"             
+             xmlns:duc="clr-namespace:DailyUserControls;assembly=DailyUserControls"
+             mc:Ignorable="d" 
+             d:DesignHeight="400" d:DesignWidth="700">
+    <Grid>
+        <Grid Background="#FFF2FFEF">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="62"/>
+                <RowDefinition/>
+                <RowDefinition Height="50"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="270" MinWidth="20" MaxWidth="400"/>
+                <ColumnDefinition Width="5"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid Background="#FFD4D5FF" Margin="0,0,4,0">
+                <TextBlock HorizontalAlignment="Left" Margin="30,5,0,0" TextWrapping="NoWrap" Text="Voices" VerticalAlignment="Top" FontSize="20" FontWeight="Light" Foreground="#FF120090" FontStyle="Normal"/>
+                <duc:ToggleButton x:Name="btnCollapseExpandAll" Margin="2,37,0,0" TextChecked="" TextUnchecked="" HorizontalAlignment="Left" Width="20" VerticalAlignment="Top" ClickMode="Press" ImageChecked="/SequencerUI;component/Resources/Images/ChevronDownGroup_24x.png" ImageUnchecked="/SequencerUI;component/Resources/Images/ChevronUpGroup_24x.png" Height="20" BackgroundChecked="{x:Null}" BackgroundUnchecked="{x:Null}" Background="White" />
+                <duc:ToggleButton x:Name="btnMuteUnMuteAll" Width="30" Height="20" Margin="30,37,0,0" TextChecked="M" TextUnchecked="M" BorderBrush="#FF969697" BackgroundChecked="#FF9CEDFF" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                <Button x:Name="btnAddVoice" Content="Add Voice" HorizontalAlignment="Left" Margin="172,0,0,5" VerticalAlignment="Bottom" Width="80"/>
+            </Grid>
+            <ScrollViewer x:Name="VoicePanelStackScroll" Grid.Row="1" VerticalScrollBarVisibility="Auto" Focusable="False">
+                <StackPanel x:Name="VoicePanelStack" Grid.Row="1" Margin="0,0,0,5">
+                    <local:VoicePanel/>
+                </StackPanel>
+            </ScrollViewer>
+            <ScrollViewer x:Name="TrackPanelStackScroll" Grid.Column="2" Grid.Row="1" VerticalScrollBarVisibility="Hidden" Margin="4,0,0,0">
+                <StackPanel x:Name="TrackPanelStack" Grid.Row="1" Grid.Column="2">
+                    <local:TrackPanel Height="150" Width="Auto"/>
+                </StackPanel>
+            </ScrollViewer>
+            <local:TrackPanelStackHeader x:Name="TracksHeader" Grid.Column="2" Margin="4,0,0,0"/>
+            <local:TrackPanelStackFooter x:Name="TracksFooter" Grid.Row="3" Grid.Column="2" Margin="4,0,0,0"/>
+            <Rectangle Fill="#FFD4D5FF" Grid.Row="3" Margin="0,0,4,0"/>
+            <GridSplitter HorizontalAlignment="Stretch" Margin="0" Grid.Column="1" Grid.RowSpan="2" BorderBrush="#FFA0A0A0" BorderThickness="1,0"/>
+        </Grid>
+    </Grid>
+</UserControl>

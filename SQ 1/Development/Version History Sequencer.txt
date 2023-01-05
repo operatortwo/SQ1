@@ -1,0 +1,21 @@
+﻿Version History of SequencerBase, SequencerUI, SequencerUITools
+===============================================================
+
+Date			Version		Changes
+------------------------------------------------	
+2024 11 01		1.0.6.0		integrated DailyUserControls 1.0.8.0
+2023 11 16		1.0.5.1		little fixes around Patlib and Settings
+2023 11 10		1.0.5.0		Started with Pattern-Library
+2023 11 07		1.0.4.1		PatternX: SubCategory -> Category2
+2023 09 14		1.0.4.0		improved pattern structure, .Label -> .Name, removed .DoLoop
+2023 09 14		1.0.3.2		duc 1.0.2.1
+2023 08 11		1.0.3.1		started with pattern edit
+2023 07 31		1.0.3.0		squashed to V 1.0.3.0
+2023 07 31		1.0.2.3		run/stop for Directplay
+2023 07 28		1.0.2.2		slot-control for Directplay
+2023 06 08		1.0.2.0		started with Directplay
+2023 05 24		1.0.1.2		duc 1.0.1.0, Voice Pan: LeftRightLook
+2023 05 23		1.0.1.1		Midi Import: added 'Split to SingelChannelTracks'
+2023 05 12		1.0.1.0		replaced UserControls1 by DailyUserControls
+2023 04 24		1.0.0.0		initial release
+

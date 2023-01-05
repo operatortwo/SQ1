@@ -1,0 +1,13 @@
+﻿<Window x:Class="VoicePopup"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SequencerUI"
+        mc:Ignorable="d"
+        Title="VoicePopup" Height="300" Width="330" Loaded="Window_Loaded">
+    <Grid>
+        <local:VoiceElements x:Name="VoiceElements1" Margin="36,38,0,0" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <Button x:Name="btnOK" Content="OK" HorizontalAlignment="Center" VerticalAlignment="Top" Width="50" IsDefault="True"  Height="20" TabIndex="31" Margin="0,226,0,0" IsCancel="True"/>
+    </Grid>
+</Window>

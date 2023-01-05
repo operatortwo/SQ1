@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<Composition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <TimeSignature_BeatsPerBar>4</TimeSignature_BeatsPerBar>
+  <TimeSignature_NoteValuePerBeat>4</TimeSignature_NoteValuePerBeat>
+  <Tempo>120</Tempo>
+  <TicksPerQuarterNote>960</TicksPerQuarterNote>
+  <Length>15360</Length>
+  <RestartAtEnd>false</RestartAtEnd>
+  <LoopMode>false</LoopMode>
+  <LoopStart>0</LoopStart>
+  <LoopEnd>0</LoopEnd>
+  <LayoutVersionMajor>1</LayoutVersionMajor>
+  <LayoutVersionMinor>0</LayoutVersionMinor>
+  <Name />
+  <Comments />
+  <PatternStore />
+  <Voices>
+    <Voice>
+      <NoteOffList />
+      <Title />
+      <PortNumber>0</PortNumber>
+      <IsMultiChannel>false</IsMultiChannel>
+      <MidiChannel>0</MidiChannel>
+      <Solo>false</Solo>
+      <Mute>false</Mute>
+      <Volume>100</Volume>
+      <Pan>64</Pan>
+      <VoiceNumberGM>0</VoiceNumberGM>
+      <BankSelectMSB>0</BankSelectMSB>
+      <BankSelectLSB>0</BankSelectLSB>
+      <VoiceNumber>0</VoiceNumber>
+      <NoteTranspose>0</NoteTranspose>
+      <Tracks>
+        <Track>
+          <PatternListPtr>0</PatternListPtr>
+          <Title />
+          <PatternList />
+        </Track>
+      </Tracks>
+    </Voice>
+  </Voices>
+</Composition>

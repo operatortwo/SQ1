@@ -1,0 +1,22 @@
+﻿<UserControl x:Class="TrackPanelStackFooter"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"              
+             xmlns:duc="clr-namespace:DailyUserControls;assembly=DailyUserControls"
+             xmlns:local="clr-namespace:SequencerUI"
+             mc:Ignorable="d" 
+             d:DesignHeight="50" d:DesignWidth="400" Background="#FFE7EBFF" Loaded="UserControl_Loaded">
+    <DockPanel>
+        <Grid x:Name="LeftPart" Background="#FFE1E6FF" HorizontalAlignment="Left" Width="80"/>
+        <Rectangle Width="5"/>
+        <!-- Placeholder for vertical Scrollbar in TrackPanelStack -->
+        <ScrollBar DockPanel.Dock="Right" Visibility="Hidden"/>
+        <Grid Background="#FFE1E6FF" VerticalAlignment="Stretch">
+            <ScrollBar x:Name="TrackCanvasMasterScroll" Orientation="Horizontal" VerticalAlignment="Top"/>
+            <Label Content="Scale X" Margin="7,21,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" />
+            <duc:SmallSlider x:Name="sldScaleX" Margin="60,23,0,0" Width="120" DecimalPlaces="1" Value="1" StepValue="0.1" MinimumValue="0.1" MaximumValue="6" ValueChanged="SldScaleX_ValueChanged" HorizontalAlignment="Left" VerticalAlignment="Top" Height="22" SliderBrush="#FF405DFD" BorderBrush="#FF8F8F90" BorderThickness="1,1,1,1"/>
+            <Label x:Name="lblPositionOnTrack" Content="hello" Margin="187,23,0,0" Padding="5,2,5,0" Height="22" Background="#FFFFFBD0" Width="70" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        </Grid>
+    </DockPanel>
+</UserControl>

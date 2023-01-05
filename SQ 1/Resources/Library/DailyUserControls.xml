@@ -1,0 +1,727 @@
+﻿<?xml version="1.0"?>
+<doc>
+<assembly>
+<name>
+DailyUserControls
+</name>
+</assembly>
+<members>
+<member name="T:DailyUserControls.My.Resources.Resources">
+<summary>
+  A strongly-typed resource class, for looking up localized strings, etc.
+</summary>
+</member>
+<member name="P:DailyUserControls.My.Resources.Resources.ResourceManager">
+<summary>
+  Returns the cached ResourceManager instance used by this class.
+</summary>
+</member>
+<member name="P:DailyUserControls.My.Resources.Resources.Culture">
+<summary>
+  Overrides the current thread's CurrentUICulture property for all
+  resource lookups using this strongly typed resource class.
+</summary>
+</member>
+<member name="P:DailyUserControls.TabControlExpander.HeaderPanelBackground">
+ <summary>
+ Background brush when checked
+ </summary>    
+</member>
+<member name="P:DailyUserControls.TabControlExpander.HelpButtonVisibility">
+ <summary>
+ Background brush when checked
+ </summary>    
+</member>
+<member name="T:DailyUserControls.CheckboxFilterList">
+<summary>
+CheckboxFilterList
+</summary>
+</member>
+<member name="P:DailyUserControls.CheckboxFilterList.ButtonPressedBackground">
+ <summary>
+ Color when the Button is pressed
+ </summary>
+</member>
+<member name="P:DailyUserControls.CheckboxFilterList.ButtonPressedBorder">
+ <summary>
+ Border color when the button is pressed
+ </summary>
+</member>
+<member name="P:DailyUserControls.CheckboxFilterList.ListWindowWidth">
+ <summary>
+ Width of the FilterListWindow. (80 - 250)
+ </summary>
+</member>
+<member name="P:DailyUserControls.CheckboxFilterList.ListWindowHeight">
+ <summary>
+ Height of the FilterListWindow. (100 - 300)
+ </summary>
+</member>
+<member name="M:DailyUserControls.CheckboxFilterList.ItemListUpdate">
+ <summary>
+ Required when the existing item list object is used, but one or more items in the list have been added or removed. 
+ This has the same effect as consecutively detach and attach the ItemList object to the control.
+ </summary>
+</member>
+<member name="F:DailyUserControls.CheckboxFilterList.ItemListProperty">
+ <summary>
+ List of Items for Select List
+ </summary>
+</member>
+<member name="P:DailyUserControls.CheckboxFilterList.DoFilter">
+ <summary>
+ Determines which image is displayed on the button. True: IsFilteredImage, False: CanFilterImage
+ </summary>    
+</member>
+<member name="P:DailyUserControls.CheckboxFilterList.Image">
+ <summary>
+ The Image on the button
+ </summary>
+</member>
+<member name="P:DailyUserControls.CheckboxFilterList.ImageMargin">
+ <summary>
+ Margins of the Image
+ </summary>
+</member>
+<member name="P:DailyUserControls.CheckboxFilterList.Text">
+ <summary>
+ The Text on the button
+ </summary>
+</member>
+<member name="P:DailyUserControls.CheckboxFilterList.TextAlignment">
+ <summary>
+ Horizontal alignment of the text
+ </summary>
+</member>
+<member name="P:DailyUserControls.CheckboxFilterList.TextPadding">
+ <summary>
+ Padding of textblock
+ </summary>
+</member>
+<member name="M:DailyUserControls.CheckboxFilterList.ItemListChanged(DailyUserControls.CheckboxFilterList,System.Object)">
+ <summary>
+ The base list was attached or removed from the control
+ </summary>
+ <param name="NewValue"></param>
+</member>
+<member name="M:DailyUserControls.CheckboxFilterList.InitializeComponent">
+<summary>
+InitializeComponent
+</summary>
+</member>
+<member name="T:DailyUserControls.FilterListWindow">
+<summary>
+FilterListWindow
+</summary>
+</member>
+<member name="M:DailyUserControls.FilterListWindow.InitializeComponent">
+<summary>
+InitializeComponent
+</summary>
+</member>
+<member name="T:DailyUserControls.SidePanel">
+<summary>
+SidePanel
+</summary>
+</member>
+<member name="M:DailyUserControls.SidePanel.SidePanelButton_Function(DailyUserControls.SidePanelButton)">
+ <summary>
+ Close Associated Window if open, else: close all other Associated Windows, open this Associated Window.
+ </summary>
+ <param name="btn"></param>
+</member>
+<member name="M:DailyUserControls.SidePanel.OpenOrActivateWindow(System.String)">
+ <summary>
+ Use Button Content (Text on Button) to find the associated Window
+ </summary>
+ <param name="ButtonContent"></param>
+</member>
+<member name="M:DailyUserControls.SidePanel.CloseOpenWindow">
+ <summary>
+ Check associated Windows and close it if any of them is open
+ </summary>
+</member>
+<member name="M:DailyUserControls.SidePanel.InitializeComponent">
+<summary>
+InitializeComponent
+</summary>
+</member>
+<member name="T:DailyUserControls.SidePanelButton">
+<summary>
+SidePanelButton
+</summary>
+</member>
+<member name="P:DailyUserControls.SidePanelButton.AssociatedWindow">
+ <summary>
+ Name of the associated Window
+ </summary>
+</member>
+<member name="M:DailyUserControls.SidePanelButton.InitializeComponent">
+<summary>
+InitializeComponent
+</summary>
+</member>
+<member name="T:DailyUserControls.MessageWindow">
+<summary>
+MessageWindow
+</summary>
+</member>
+<member name="M:DailyUserControls.MessageWindow.Show(System.Windows.Window,System.String,System.String,DailyUserControls.MessageIcon,System.Windows.Media.Brush,System.Double)">
+ <summary>
+ Opens a dialog window and waits until the user presses ESC or ENTER or closes the window.
+ </summary>   
+ <param name="FontSize">Must be between 10 and 20</param>
+</member>
+<member name="M:DailyUserControls.MessageWindow.Show(System.Windows.Window,System.String,System.String,DailyUserControls.MessageIcon,System.Windows.Media.Brush)">
+ <summary>
+ Opens a dialog window and waits until the user presses ESC or ENTER or closes the window.
+ </summary>    
+</member>
+<member name="M:DailyUserControls.MessageWindow.Show(System.Windows.Window,System.String,System.String,DailyUserControls.MessageIcon,System.Double)">
+ <summary>
+ Opens a dialog window and waits until the user presses ESC or ENTER or closes the window.
+ </summary>   
+ <param name="FontSize">Must be between 10 and 20</param>
+</member>
+<member name="M:DailyUserControls.MessageWindow.Show(System.Windows.Window,System.String,System.String,DailyUserControls.MessageIcon)">
+ <summary>
+ Opens a dialog window and waits until the user presses ESC or ENTER or closes the window.
+ </summary>    
+</member>
+<member name="M:DailyUserControls.MessageWindow.Show(System.Windows.Window,System.String,DailyUserControls.MessageIcon)">
+ <summary>
+ Opens a dialog window and waits until the user presses ESC or ENTER or closes the window.
+ </summary>    
+</member>
+<member name="M:DailyUserControls.MessageWindow.Show(System.Windows.Window,System.String,System.String)">
+ <summary>
+ Opens a dialog window and waits until the user presses ESC or ENTER or closes the window.
+ </summary>    
+</member>
+<member name="M:DailyUserControls.MessageWindow.Show(System.Windows.Window,System.String)">
+ <summary>
+ Opens a dialog window and waits until the user presses ESC or ENTER or closes the window.
+ </summary>    
+</member>
+<member name="M:DailyUserControls.MessageWindow.Show(System.String,System.String)">
+ <summary>
+ Opens a dialog window and waits until the user presses ESC or ENTER or closes the window.
+ </summary>    
+</member>
+<member name="M:DailyUserControls.MessageWindow.Show(System.String)">
+ <summary>
+ Opens a dialog window and waits until the user presses ESC or ENTER or closes the window.
+ </summary>    
+</member>
+<member name="M:DailyUserControls.MessageWindow.Show">
+ <summary>
+ Inherited from Window. No meaningful use here.
+ </summary>
+</member>
+<member name="M:DailyUserControls.MessageWindow.SetFontSize(DailyUserControls.MessageWindow,System.Double)">
+ <summary>
+ 
+ </summary>
+ <param name="dlg"></param>
+ <param name="desiredSize">between 10 and 20, else the default size is set</param>
+</member>
+<member name="M:DailyUserControls.MessageWindow.InitializeComponent">
+<summary>
+InitializeComponent
+</summary>
+</member>
+<member name="T:DailyUserControls.QuestionWindow">
+<summary>
+QuestionWindow
+</summary>
+</member>
+<member name="M:DailyUserControls.QuestionWindow.Show(System.Windows.Window,System.String)">
+ <summary>
+ Simple question.
+ </summary>
+ <param name="owner"></param>
+ <param name="message"></param>
+ <returns></returns>
+</member>
+<member name="M:DailyUserControls.QuestionWindow.Show(System.Windows.Window,System.String,System.String)">
+ <summary>
+ Simple question with caption.
+ </summary>
+ <param name="owner"></param>
+ <param name="message"></param>
+ <param name="caption"></param>
+ <returns></returns>
+</member>
+<member name="M:DailyUserControls.QuestionWindow.Show(System.Windows.Window,System.String,System.String,DailyUserControls.QuestionWindowButton)">
+ <summary>
+ Question with caption and selectable buttons.
+ </summary>
+ <param name="owner"></param>
+ <param name="message"></param>
+ <param name="caption"></param>
+ <param name="buttons"></param>
+ <returns></returns>
+</member>
+<member name="M:DailyUserControls.QuestionWindow.Show(System.Windows.Window,System.String,System.String,DailyUserControls.QuestionWindowButton,System.Windows.Media.Brush)">
+ <summary>
+ Question with caption, selectable buttons and background brush.
+ </summary>
+ <param name="owner"></param>
+ <param name="message"></param>
+ <param name="caption"></param>
+ <param name="buttons"></param>
+ <returns></returns>
+</member>
+<member name="M:DailyUserControls.QuestionWindow.Show(System.Windows.Window,System.String,System.String,DailyUserControls.QuestionWindowButton,System.Windows.Media.Brush,System.Double)">
+ <summary>
+ Question with caption, selectable buttons, background brush and font size.
+ </summary>
+ <param name="owner"></param>
+ <param name="message"></param>
+ <param name="caption"></param>
+ <param name="buttons"></param>
+ <returns></returns>
+</member>
+<member name="M:DailyUserControls.QuestionWindow.SetFontSize(DailyUserControls.QuestionWindow,System.Double)">
+ <summary>
+ 
+ </summary>
+ <param name="dlg"></param>
+ <param name="desiredSize">between 10 and 20, else the default size is set</param>
+</member>
+<member name="M:DailyUserControls.QuestionWindow.InitializeComponent">
+<summary>
+InitializeComponent
+</summary>
+</member>
+<member name="T:DailyUserControls.ImageButton">
+<summary>
+ImageButton
+</summary>
+</member>
+<member name="P:DailyUserControls.ImageButton.ButtonPressedBackground">
+ <summary>
+ Color when the Button is pressed
+ </summary>
+</member>
+<member name="P:DailyUserControls.ImageButton.ButtonPressedBorder">
+ <summary>
+ Border color when the button is pressed
+ </summary>
+</member>
+<member name="P:DailyUserControls.ImageButton.IsCancel">
+ <summary>
+ Gets or sets a value that indicates whether a Button is a Cancel button. A user can activate the Cancel button by pressing the ESC key.
+ </summary>
+</member>
+<member name="P:DailyUserControls.ImageButton.IsDefault">
+ <summary>
+ Gets or sets a value that indicates whether a Button is the default button. A user invokes the default button by pressing the ENTER key.
+ </summary>
+</member>
+<member name="P:DailyUserControls.ImageButton.Image">
+ <summary>
+ The Image on the button
+ </summary>
+</member>
+<member name="P:DailyUserControls.ImageButton.ImageMargin">
+ <summary>
+ Margins of the Image
+ </summary>
+</member>
+<member name="P:DailyUserControls.ImageButton.Text">
+ <summary>
+ The Text on the button
+ </summary>
+</member>
+<member name="P:DailyUserControls.ImageButton.TextAlignment">
+ <summary>
+ Horizontal alignment of the text
+ </summary>
+</member>
+<member name="P:DailyUserControls.ImageButton.TextPadding">
+ <summary>
+ Padding of textblock
+ </summary>
+</member>
+<member name="M:DailyUserControls.ImageButton.InitializeComponent">
+<summary>
+InitializeComponent
+</summary>
+</member>
+<member name="T:DailyUserControls.Knob">
+<summary>
+Knob
+</summary>
+</member>
+<member name="P:DailyUserControls.Knob.Value">
+ <summary>
+ Gets or sets the value of Knob
+ </summary>
+</member>
+<member name="F:DailyUserControls.Knob.ValueChangedEvent">
+ <summary>
+ Identifies the ValueChanged routed event.
+ </summary>
+</member>
+<member name="E:DailyUserControls.Knob.ValueChanged">
+ <summary>
+ Occurs when the Value property changes
+ </summary>
+</member>
+<member name="M:DailyUserControls.Knob.OnValueChanged(System.Windows.RoutedPropertyChangedEventArgs{System.Double})">
+ <summary>
+ Raises the ValueChanged event.
+ </summary>
+ <param name="args">Arguments associated with the ValueChanged event.</param>
+</member>
+<member name="M:DailyUserControls.Knob.InitializeComponent">
+<summary>
+InitializeComponent
+</summary>
+</member>
+<member name="T:DailyUserControls.NumericUpDown">
+<summary>
+NumericUpDown
+</summary>
+</member>
+<member name="F:DailyUserControls.NumericUpDown.ValueProperty">
+ <summary>
+ Identifies the Value dependency property.
+ </summary>
+</member>
+<member name="P:DailyUserControls.NumericUpDown.Value">
+ <summary>
+ Gets or sets the value of Numeric Up Down
+ </summary>
+</member>
+<member name="F:DailyUserControls.NumericUpDown.ValueChangedEvent">
+ <summary>
+ Identifies the ValueChanged routed event.
+ </summary>
+</member>
+<member name="E:DailyUserControls.NumericUpDown.ValueChanged">
+ <summary>
+ Occurs when the Value property changes
+ </summary>
+</member>
+<member name="M:DailyUserControls.NumericUpDown.OnValueChanged(System.Windows.RoutedPropertyChangedEventArgs{System.Double})">
+ <summary>
+ Raises the ValueChanged event.
+ </summary>
+ <param name="args">Arguments associated with the ValueChanged event.</param>
+</member>
+<member name="M:DailyUserControls.NumericUpDown.SetValueSilent(System.Double)">
+ <summary>
+ Set the value without raising ValueChangedEvent. This can be useful for initializing the control, synchronizing
+  the UI with operations in code, and in other special situations.
+ </summary>
+ <param name="Value"></param>
+</member>
+<member name="P:DailyUserControls.NumericUpDown.TextBoxForeground">
+ <summary>
+ Background of the TextBox
+ </summary>
+</member>
+<member name="P:DailyUserControls.NumericUpDown.TextBoxBackground">
+ <summary>
+ Background of the TextBox
+ </summary>
+</member>
+<member name="P:DailyUserControls.NumericUpDown.FocusStrokeBrush">
+ <summary>
+ Stroke Brush of the focus rectangle
+ </summary>
+</member>
+<member name="P:DailyUserControls.NumericUpDown.FocusStrokeThickness">
+ <summary>
+ Stroke Thickness of the focus rectangle
+ </summary>
+</member>
+<member name="M:DailyUserControls.NumericUpDown.PushUpButton">
+ <summary>
+ Simulate UpButton_Click. This can be used for cascading controls.
+ </summary>
+</member>
+<member name="M:DailyUserControls.NumericUpDown.PushDownButton">
+ <summary>
+ Simulate DownButton_Click. This can be used for cascading controls.
+ </summary>
+</member>
+<member name="M:DailyUserControls.NumericUpDown.InitializeComponent">
+<summary>
+InitializeComponent
+</summary>
+</member>
+<member name="T:DailyUserControls.ProgressCircle">
+<summary>
+ProgressCircle
+</summary>
+</member>
+<member name="M:DailyUserControls.ProgressCircle.InitializeComponent">
+<summary>
+InitializeComponent
+</summary>
+</member>
+<member name="T:DailyUserControls.SelectorButton">
+<summary>
+SelectorButton
+</summary>
+</member>
+<member name="P:DailyUserControls.SelectorButton.InnerBorderBrush">
+ <summary>
+ Inner Border brush
+ </summary>    
+</member>
+<member name="P:DailyUserControls.SelectorButton.ButtonPressedBackground">
+ <summary>
+ Color when the Button is pressed
+ </summary>
+</member>
+<member name="P:DailyUserControls.SelectorButton.Text">
+ <summary>
+ The Text on the button
+ </summary>
+</member>
+<member name="P:DailyUserControls.SelectorButton.TextAlignment">
+ <summary>
+ Horizontal alignment of the text
+ </summary>
+</member>
+<member name="P:DailyUserControls.SelectorButton.TextPadding">
+ <summary>
+ Padding of textblock
+ </summary>
+</member>
+<member name="F:DailyUserControls.SelectorButton.ValueProperty">
+ <summary>
+ Identifies the Value dependency property.
+ </summary>
+</member>
+<member name="P:DailyUserControls.SelectorButton.Value">
+ <summary>
+ Gets or sets the value of Numeric Up Down
+ </summary>
+</member>
+<member name="F:DailyUserControls.SelectorButton.ValueChangedEvent">
+ <summary>
+ Identifies the ValueChanged routed event.
+ </summary>
+</member>
+<member name="E:DailyUserControls.SelectorButton.ValueChanged">
+ <summary>
+ Occurs when the Value property changes
+ </summary>
+</member>
+<member name="M:DailyUserControls.SelectorButton.OnValueChanged(System.Windows.RoutedPropertyChangedEventArgs{System.Int32})">
+ <summary>
+ Raises the ValueChanged event.
+ </summary>
+ <param name="args">Arguments associated with the ValueChanged event.</param>
+</member>
+<member name="M:DailyUserControls.SelectorButton.InitializeComponent">
+<summary>
+InitializeComponent
+</summary>
+</member>
+<member name="T:DailyUserControls.SmallSlider">
+<summary>
+SmallSlider
+</summary>
+</member>
+<member name="P:DailyUserControls.SmallSlider.SliderBrush">
+ <summary>
+ Brush of the slider rectangle
+ </summary>
+ <returns></returns>
+</member>
+<member name="F:DailyUserControls.SmallSlider.LeftRightLookProperty">
+ <summary>
+ 
+ </summary>
+</member>
+<member name="F:DailyUserControls.SmallSlider.LRLookdesc">
+ <summary>
+ TRUE sets the origin of the value bar to the center, as needed for balance/pan audio control.
+ </summary>      
+</member>
+<member name="F:DailyUserControls.SmallSlider.ValueProperty">
+ <summary>
+ Identifies the Value dependency property.
+ </summary>
+</member>
+<member name="P:DailyUserControls.SmallSlider.Value">
+ <summary>
+ Gets or sets the value of Small Slider
+ </summary>
+</member>
+<member name="F:DailyUserControls.SmallSlider.ValueChangedEvent">
+ <summary>
+ Identifies the ValueChanged routed event.
+ </summary>
+</member>
+<member name="E:DailyUserControls.SmallSlider.ValueChanged">
+ <summary>
+ Occurs when the Value property changes
+ </summary>
+</member>
+<member name="M:DailyUserControls.SmallSlider.OnValueChanged(System.Windows.RoutedPropertyChangedEventArgs{System.Double})">
+ <summary>
+ Raises the ValueChanged event.
+ </summary>
+ <param name="args">Arguments associated with the ValueChanged event.</param>
+</member>
+<member name="M:DailyUserControls.SmallSlider.SetValueSilent(System.Double)">
+ <summary>
+ Set the value without raising ValueChangedEvent. This can be useful for initializing the control, synchronizing
+  the UI with operations in code, and in other special situations.
+ </summary>
+ <param name="Value"></param>
+</member>
+<member name="M:DailyUserControls.SmallSlider.InitializeComponent">
+<summary>
+InitializeComponent
+</summary>
+</member>
+<member name="T:DailyUserControls.ToggleButton">
+<summary>
+ToggleButton
+</summary>
+</member>
+<member name="P:DailyUserControls.ToggleButton.BackgroundChecked">
+ <summary>
+ Background brush when checked
+ </summary>    
+</member>
+<member name="P:DailyUserControls.ToggleButton.BackgroundUnchecked">
+ <summary>
+ Background brush when unchecked
+ </summary>    
+</member>
+<member name="P:DailyUserControls.ToggleButton.BackgroundDisabled">
+ <summary>
+ Background brush when disabled, IsEnabled = FALSE
+ </summary>    
+</member>
+<member name="P:DailyUserControls.ToggleButton.ButtonPressedBackground">
+ <summary>
+ Color when the Button is pressed
+ </summary>
+</member>
+<member name="P:DailyUserControls.ToggleButton.Image">
+ <summary>
+ The Text on the button when checked
+ </summary>
+</member>
+<member name="P:DailyUserControls.ToggleButton.ImageChecked">
+ <summary>
+ The Image on the button when checked
+ </summary>
+</member>
+<member name="P:DailyUserControls.ToggleButton.ImageUnchecked">
+ <summary>
+ The Image on the button when unchecked
+ </summary>
+</member>
+<member name="P:DailyUserControls.ToggleButton.ImageMargin">
+ <summary>
+ Margins of the Image
+ </summary>
+</member>
+<member name="P:DailyUserControls.ToggleButton.Text">
+ <summary>
+ The Text on the button when checked
+ </summary>
+</member>
+<member name="P:DailyUserControls.ToggleButton.TextChecked">
+ <summary>
+ The Text on the button when checked
+ </summary>
+</member>
+<member name="P:DailyUserControls.ToggleButton.TextUnchecked">
+ <summary>
+ The Text on the button when unchecked
+ </summary>
+</member>
+<member name="P:DailyUserControls.ToggleButton.TextAlignmentHorizontal">
+ <summary>
+ Horizontal alignment of the text
+ </summary>
+</member>
+<member name="P:DailyUserControls.ToggleButton.TextAlignmentVertical">
+ <summary>
+ Vertical alignment of the text
+ </summary>
+</member>
+<member name="P:DailyUserControls.ToggleButton.TextPadding">
+ <summary>
+ Padding of textblock
+ </summary>
+</member>
+<member name="P:DailyUserControls.ToggleButton.IsChecked">
+ <summary>
+ IsChecked, is state ON or OFF
+ </summary>
+</member>
+<member name="E:DailyUserControls.ToggleButton.Checked">
+ <summary>
+ Identifies the Checked routed event
+ </summary>
+</member>
+<member name="E:DailyUserControls.ToggleButton.Unchecked">
+ <summary>
+ Identifies the Checked routed event
+ </summary>
+</member>
+<member name="P:DailyUserControls.ToggleButton.ClickMode">
+ <summary>
+ Horizontal alignment of the text
+ </summary>
+</member>
+<member name="M:DailyUserControls.ToggleButton.InitializeComponent">
+<summary>
+InitializeComponent
+</summary>
+</member>
+<member name="T:DailyUserControls.VU_Bar">
+<summary>
+VU_Bar
+</summary>
+</member>
+<member name="M:DailyUserControls.VU_Bar.InitializeComponent">
+<summary>
+InitializeComponent
+</summary>
+</member>
+<member name="T:DailyUserControls.XamlGeneratedNamespace.GeneratedInternalTypeHelper">
+<summary>
+GeneratedInternalTypeHelper
+</summary>
+</member>
+<member name="M:DailyUserControls.XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateInstance(System.Type,System.Globalization.CultureInfo)">
+<summary>
+CreateInstance
+</summary>
+</member>
+<member name="M:DailyUserControls.XamlGeneratedNamespace.GeneratedInternalTypeHelper.GetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Globalization.CultureInfo)">
+<summary>
+GetPropertyValue
+</summary>
+</member>
+<member name="M:DailyUserControls.XamlGeneratedNamespace.GeneratedInternalTypeHelper.SetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Object,System.Globalization.CultureInfo)">
+<summary>
+SetPropertyValue
+</summary>
+</member>
+<member name="M:DailyUserControls.XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateDelegate(System.Type,System.Object,System.String)">
+<summary>
+CreateDelegate
+</summary>
+</member>
+<member name="M:DailyUserControls.XamlGeneratedNamespace.GeneratedInternalTypeHelper.AddEventHandler(System.Reflection.EventInfo,System.Object,System.Delegate)">
+<summary>
+AddEventHandler
+</summary>
+</member>
+</members>
+</doc>

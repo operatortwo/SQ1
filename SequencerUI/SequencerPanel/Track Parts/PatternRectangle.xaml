@@ -1,0 +1,46 @@
+﻿<UserControl x:Class="PatternRectangle"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:SequencerUI"
+             mc:Ignorable="d" 
+             d:DesignHeight="30" d:DesignWidth="100" Background="#7F6BB543" BorderBrush="Black" BorderThickness="1,1,1,1" ContextMenuOpening="UserControl_ContextMenuOpening">
+    <UserControl.ContextMenu>
+        <ContextMenu>
+            <MenuItem x:Name="Mi_Info" Header="Info">
+                <MenuItem.Icon>
+                    <Image Source="/SequencerUI;component/Resources/Images/Information_x16.png"/>
+                </MenuItem.Icon>
+            </MenuItem>
+            <MenuItem x:Name="Mi_Play" Header="Play">
+                <MenuItem.Icon>
+                    <Image Source="/SequencerUI;component/Resources/Images/StatusRun_x16.png"/>
+                </MenuItem.Icon>
+            </MenuItem>
+            <MenuItem x:Name="Mi_Copy" Header="Copy">
+                <MenuItem.Icon>
+                    <Image Source="/SequencerUI;component/Resources/Images/EditCopy.png"/>
+                </MenuItem.Icon>
+            </MenuItem>
+            <MenuItem x:Name="Mi_MoveAndSize" Header="Move and Size">
+                <MenuItem.Icon>
+                    <Image Source="/SequencerUI;component/Resources/Images/Dynamic_x16.png"/>
+                </MenuItem.Icon>
+                </MenuItem>
+            <MenuItem x:Name="Mi_Edit" Header="Edit Pattern" IsEnabled="False">
+                <MenuItem.Icon>
+                    <Image Source="/SequencerUI;component/Resources/Images/Edit_x16.png"/>
+                </MenuItem.Icon>
+            </MenuItem>
+            <MenuItem x:Name="Mi_Delete" Header="Delete Pattern">
+                <MenuItem.Icon>
+                    <Image Source="/SequencerUI;component/Resources/Images/Delete_x16.png"/>
+                </MenuItem.Icon>  
+            </MenuItem>
+        </ContextMenu>
+    </UserControl.ContextMenu>
+    <Grid>
+        <TextBlock x:Name="TextBlock1" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="2,2,0,0" TextTrimming="CharacterEllipsis" IsHitTestVisible="False" Text="{Binding Text, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:PatternRectangle}}}"/>
+    </Grid>
+</UserControl>

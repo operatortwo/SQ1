@@ -1,0 +1,37 @@
+﻿<UserControl x:Class="TrackPanelStackHeader"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:SequencerUI"
+             mc:Ignorable="d" 
+             d:DesignHeight="50" d:DesignWidth="300" Loaded="UserControl_Loaded">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="120" MaxWidth="250" MinWidth="16"/>
+            <ColumnDefinition Width="5"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid x:Name="RowHeader" Background="#FFE1E6FF">
+            <TextBlock HorizontalAlignment="Left" Margin="10,0,0,0" TextWrapping="NoWrap" Text="Tracks" VerticalAlignment="Center" FontSize="20" FontWeight="Light" Foreground="#FF120090" FontStyle="Normal"/>
+        </Grid>
+        <DockPanel Grid.Column="2" >
+            <!-- Placeholder for vertical Scrollbar in TrackPanelStack -->
+            <ScrollBar DockPanel.Dock="Right" Visibility="Hidden"/>
+            <ScrollViewer x:Name="MeasureCanvasScroll" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Disabled">
+                <DockPanel x:Name="MeasurePanel">
+                    <Border DockPanel.Dock="Top" BorderThickness="0,0.3,0,0" BorderBrush="Black" HorizontalAlignment="Left" >
+                        <Canvas x:Name="SectionCanvas" Width="120" Background="#FFF3F3F3" Height="14" VerticalAlignment="Top" DockPanel.Dock="Top" HorizontalAlignment="Left"/>
+                    </Border>
+                    <Border DockPanel.Dock="Top"  HorizontalAlignment="Left" BorderThickness="0,0.3,0,0" BorderBrush="Black">
+                        <Canvas x:Name="LoopCanvas" Width="120" DockPanel.Dock="Top" Height="14" HorizontalAlignment="Left" Background="#FFF1F9FF" Visibility="Hidden"/>
+                    </Border>
+                    <Border DockPanel.Dock="Top"  HorizontalAlignment="Left" BorderThickness="0,0.3,0,0" BorderBrush="Black">
+                        <Canvas x:Name="MeasureCanvas" Width="120" HorizontalAlignment="Left" Background="#FFFFFBD0"/>
+                    </Border>
+                </DockPanel>
+            </ScrollViewer>
+        </DockPanel>
+        <GridSplitter x:Name="GridSplitter1" Grid.Row="0"  BorderBrush="#FFA0A0A0" Grid.Column="1" HorizontalAlignment="Stretch" BorderThickness="1,0,1,0"/>
+    </Grid>
+</UserControl>
