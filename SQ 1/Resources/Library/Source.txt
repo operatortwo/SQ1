@@ -1,0 +1,9 @@
+﻿SQ 1\Resources\Library\Source.txt
+
+The sources for this libraries can be found at:
+
+https://github.com/operatortwo/Midi_IO
+
+https://github.com/operatortwo/Midi_Keyboard
+
+---

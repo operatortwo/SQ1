@@ -1,0 +1,338 @@
+﻿To do:
+
+
+fix DoubleNote on in GetDurations
+Import: count number of Channels -> if 0,1 then Voice Channel = Channel
+-------------------------
+
+Mid as New Midi_File.CMidiFile
+
+
+If Mid.ReadMidiFile(MidiFullname)=TRUE Then
+
+BPM
+DisablePlayer 	' while PlayerMoveTo
+ErrorCode
+ErrorText
+FileLoaded	TRUE
+FileSize
+LastTick
+MidiFullname
+MidiName		(incl.Extension)
+NumberOfTracks
+SmfFormat
+TPQ
+TimeSignature_Num
+TimeSignature_Denom
+
+TrackList(.Count)
+	TrackChunk
+	TrackChunk
+	TrackChunk
+		EventList(.Count)
+			TrackEvent
+			TrackEvent
+			TrackEvent
+
+
+===============================
+
+In SequencerPanel MeasureCanvas and PlayPositionAdorner
+Need to specify whether 'SequencerTime' or 'AuditionTime' must be used
+
+------------------
+
+TrackViewRangeFrom	0 - 127
+TrackViewRangeTo	0 - 127
+
+TrackViewRangeStart	0 - 127
+TrackViewRangeEnd	0 - 127
+
+btnTrackViewType
+btnNextTrackViewType
+
+Range or Reduced view
+UsedNotesMode
+
+TrackViewNoteList	as List(Of Byte)
+TrackView_HideUnusedNotes
+
+NoteView
+	Range Mode
+		RangeStart
+		RangeEnd
+	UsedNotesMode
+		NoteList
+
+
+==========================================
+SequencerPanel:
+
+Grid
+	VoicePanelStack
+		VoicePanel
+		VoicePanel
+		VoicePanel
+		...
+	VoicePanelStack
+	-----------------------
+	TrackPanelStack
+		TrackPanel
+		TrackPanel
+		...
+	TrackPanelStack
+
+	TrackPanel
+		ContextMenu
+			AddTrack
+		ContextMenu
+
+		TrackElementsStack
+			TrackElement
+				TrackRowHeader
+				TrackCanvas
+			TrackElement
+		TrackElementsStack
+	TrackPanel
+
+	TrackPanelStackHeader
+		RowHeader
+		MeasurePanel
+			SectionCanvas
+			LoopCanvas
+			MeasureCanvas
+		MeasurePanel
+	TrackPanelStackHeader
+
+	TrackPanelStackFooter
+		LeftPart
+		Grid
+			TrackCanvasMasterScroll
+			sldScaleX
+			lblPositionOnTrack
+		Grid
+	TrackPanelStackFooter
+Grid
+=========================================
+
+SequencerPanel.UpdateScaleX
+	TracksFooter.UpdateScaleX
+		UpdateTrackCanvasScaleX(sldScaleX.Value)
+			If SeqPanel IsNot Nothing Then
+            For Each panel As TrackPanel In SeqPanel.TrackPanelStack.Children
+                For Each element As TrackElements In panel.TrackElementsStack.Children
+                    element.TrackCanvas.ScaleX = newValue
+                Next
+            Next
+            SeqPanel.TracksHeader.ScaleX = newValue
+        End If
+
+        UpdateMasterScrollValues()
+			CanvasLength = Sequencer.Composition.Length * TicksToPixelFactor * sldScaleX.Value
+			TrackCanvasMasterScroll.[Values]		(Calculate Values For ScrollBar)
+			SeqPanel.TracksHeader.MeasureCanvas.Width = CanvasLength
+            SeqPanel.TracksHeader.LoopCanvas.Width = CanvasLength
+            SeqPanel.TracksHeader.SectionCanvas.Width = CanvasLength
+		UpdateMasterScrollValues()
+
+
+=========================================
+
+- importing Midi Loops (read Midi, convert)
+- MultiChannel option for voice (for MultiChannel Midi-Loops)
+- TimedEvents  Beat-aligned Events (f.e. Transpose)
+
+
+--- ScrollBar (MasterScroll) example ---
+
+Factor:		0.03125 (32)
+Scale:		1
+
+				Pixel:	*32 =	Ticks:
+
+Canvas Length	2520			80640
+Viewport Size	 572			18304
+Scroll Maximum	1948			62336	
+
+Scroll Value	1948			62336
+
+--------------
+
+PatternStore
+
+
+Composition  (Partiture / Score)
+Name
+Tempo Track (?)
+Parts(?) Intro, Part1, Part2, Break, Refrain, Ending,... (with repeat counter)
+
+Pattern-Collection				all Pattern used in the composition
+
+List(Of Voice)
+
+	Voice:
+	Midi-Device (Output)
+	Midi-Channel
+	VoiceNumber or Drumbank (Bank-Select / Program-Change)
+	List(Of Track)
+	[NoteOff-List]
+
+
+		Track:
+		List(Of Pattern)		List to play
+
+		StartTime				(in Track)
+		Offset					Time (for repeated pattern)
+		Length					of 1 Pattern
+		Duration				Play Time (while)
+		
+
+			Pattern:
+			List(Of TrackEvent)
+			EventListPtr
+
+				TrackEvent:
+				Time
+				Type (Midi-Event, Sysx-Event, Meta-Event)
+				NoteNumber
+				Velocity
+				Duration
+
+
+-----
+Immediate Play
+(Audition)
+
+List(Of Voice)
+
+	Voice:
+	Midi-Device (Output)
+	Midi-Channel
+	VoiceNumber or Drumbank (Bank-Select / Program-Change)
+	List(Of Track)
+	[NoteOff-List]
+
+
+		Track:
+		List(Of Pattern)		List to play
+
+		StartTime				(in Track)
+		Offset					Time (for repeated pattern)
+		Length					of 1 Pattern
+		Duration				Play Time (while)
+		
+
+			Pattern:
+			List(Of TrackEvent)
+			EventListPtr
+
+				TrackEvent:
+				Time
+				Type (Midi-Event, Sysx-Event, Meta-Event)
+				NoteNumber
+				Velocity
+				Duration
+
+
+========================
+------------------------
+
+OutputPort
+	Name
+	MidiOutHandle
+
+
+PlayPattern
+PlayNote
+
+------------------------
+
+Pattern
+	Length:		1 to UInt max.
+	Duration:	1 to UInt max. Play Duration, if > Length pattern is looped
+	ended:		was played until duration end
+
+
+At Start:
+	horse gallop
+		3x (4x16, Pause)
+
+------------------------
+
+Pad (Button without repeat)
+Velocity-Pad (button to top, increasing Velocity)
+
+
+Sequential play
+Parallel Play
+
+----------------------
+Midi IN / OUT
+----------------------
+Midi Input Ports
+
+Port	Name	IsOpen	HMI		no.
+
+Port 0	MORES	1		xx		0
+Port 1	none	0		0		1
+Port 2	none	0		0		2
+Port 3	none	0		0		3
+
+
+Midi Output Ports
+
+Port	Name	IsOpen	HMO		no.
+
+Port 0	MS GS	1		xx		0
+Port 1	MORES	1		xx		1
+Port 2	none	0		0		2
+Port 3	none	0		0		3
+
+
+Voice
+		Desired Port: MORES
+		Available: yes / no
+
+
+hMidiOut0
+hMidiOut1
+hMidiOut2
+hMidiOut3
+hMidiOut4
+hMidiOut5
+
+
+hMidiOut	UInteger
+Name		String
+IsOpen		Boolean
+
+---------------------
+
+Ctrl
+
+7		Channel Volume MSB
+10		Pan MSB
+
+120		All Sounds Off
+123		All Notes Off
+
+
+
+
+---------------------
+
+Composition
+
+			Desired port	Selected port
+Port 0		Mores			MS GS
+Port 1		MS GS			MS GS
+Port 2		none			none
+Port 3		none			none
+
+when Composition is loaded:
+	- check if desired Ports are available
+	- open desired Ports if available
+	- select available Port if desired is not available
+
+
+

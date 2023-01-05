@@ -1,0 +1,78 @@
+﻿<?xml version="1.0"?>
+<doc>
+<assembly>
+<name>
+UcSidePanel
+</name>
+</assembly>
+<members>
+<member name="T:UcSidePanel.My.Resources.Resources">
+<summary>
+  A strongly-typed resource class, for looking up localized strings, etc.
+</summary>
+</member>
+<member name="P:UcSidePanel.My.Resources.Resources.ResourceManager">
+<summary>
+  Returns the cached ResourceManager instance used by this class.
+</summary>
+</member>
+<member name="P:UcSidePanel.My.Resources.Resources.Culture">
+<summary>
+  Overrides the current thread's CurrentUICulture property for all
+  resource lookups using this strongly typed resource class.
+</summary>
+</member>
+<member name="T:UcSidePanel.SidePanel">
+<summary>
+SidePanel
+</summary>
+</member>
+<member name="M:UcSidePanel.SidePanel.SidePanelButton_Function(UcSidePanel.SidePanelButton)">
+ <summary>
+ Close Associated Window if open, else: close all other Associated Windows, open this Associated Window.
+ </summary>
+ <param name="btn"></param>
+</member>
+<member name="M:UcSidePanel.SidePanel.OpenOrActivateWindow(System.String)">
+ <summary>
+ Use Button Content (Text on Button) to find the associated Window
+ </summary>
+ <param name="ButtonContent"></param>
+</member>
+<member name="M:UcSidePanel.SidePanel.CloseOpenWindow">
+ <summary>
+ Check associated Windows and close it if any of them is open
+ </summary>
+</member>
+<member name="M:UcSidePanel.SidePanel.InitializeComponent">
+<summary>
+InitializeComponent
+</summary>
+</member>
+<member name="T:UcSidePanel.SidePanelButton">
+<summary>
+SidePanelButton
+</summary>
+</member>
+<member name="P:UcSidePanel.SidePanelButton.AssociatedWindow">
+ <summary>
+ Name of the associated Window
+ </summary>
+</member>
+<member name="M:UcSidePanel.SidePanelButton.InitializeComponent">
+<summary>
+InitializeComponent
+</summary>
+</member>
+<member name="T:UcSidePanel.UserControl1">
+<summary>
+UserControl1
+</summary>
+</member>
+<member name="M:UcSidePanel.UserControl1.InitializeComponent">
+<summary>
+InitializeComponent
+</summary>
+</member>
+</members>
+</doc>

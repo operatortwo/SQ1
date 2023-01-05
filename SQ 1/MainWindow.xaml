@@ -1,0 +1,165 @@
+﻿<Window x:Class="MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:SequencerUI="clr-namespace:SequencerUI;assembly=SequencerUI"
+        xmlns:SidePanel="clr-namespace:UcSidePanel;assembly=UcSidePanel"
+        xmlns:local="clr-namespace:SQ_1"
+        xmlns:uc1="clr-namespace:UserControls1;assembly=UserControls1"
+        mc:Ignorable="d"
+        Title="   SQ 1" Height="580" Width="900" Loaded="Window_Loaded" Closing="Window_Closing">
+    <Grid>
+        <DockPanel>
+            <Menu Height="22" VerticalAlignment="Top" DockPanel.Dock="Top">
+                <MenuItem Header="File" TabIndex="2">
+                    <MenuItem x:Name="Mi_File_New_Composition" Header="New Composition">
+                        <MenuItem.Icon>
+                            <Image Source="/Resources/Images/NewFile_x16.png"/>
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <MenuItem x:Name="Mi_File_Load_Composition" Header="Load Composition">
+                        <MenuItem.Icon>
+                            <Image Source="/Resources/Images/Load_x16.png"/>
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <MenuItem x:Name="Mi_File_Save_Composition" Header="Save Composition">
+                        <MenuItem.Icon>
+                            <Image Source="/Resources/Images/Save_x16.png"/>
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <Separator/>
+                    <MenuItem x:Name="Mi_File_Import_MidiFile" Header="Import from Midi File (Test)">
+                        <MenuItem.Icon>
+                            <Image Source="/Resources/Images/FileDestination_16x.png"/>
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <Separator/>
+                    <MenuItem x:Name="Mi_File_Exit" Header="Exit">
+                        <MenuItem.Icon>
+                            <Image Source="/Resources/Images/CloseApp_x16.png"/>
+                        </MenuItem.Icon>
+                    </MenuItem>
+                </MenuItem>
+                <MenuItem Header="Setup" TabIndex="2">
+                    <MenuItem x:Name="Mi_MidiPorts" Header="Midi Ports">
+                        <MenuItem.Icon>
+                            <Image Source="/Resources/Images/Settings_x16.png"/>
+                        </MenuItem.Icon>
+                    </MenuItem>
+                </MenuItem>
+                <MenuItem Header="Info" TabIndex="3">
+                    <MenuItem x:Name="Mi_About" Header="About">
+                        <MenuItem.Icon>
+                            <Image Source="/Resources/Images/Information_x16.png"/>
+                        </MenuItem.Icon>
+                    </MenuItem>
+                </MenuItem>
+            </Menu>
+            <ToolBarTray Height="29" VerticalAlignment="Top" DockPanel.Dock="Top" Background="#FFF3F5F7">
+                <ToolBar  VerticalAlignment="Top"  Margin="0" TabIndex="200" KeyboardNavigation.TabNavigation="Continue" Height="31">
+                    <uc1:ImageButton2 x:Name="btnKeyboard" Width="26" Height="26" Image="/Resources/Images/Keyboard_x32.png" Margin="0" Background="{x:Null}" ImageMargin="0" ToolTip="Keyboard" IsTabStop="True" TabIndex="10" Text="" IsEnabled="False"/>
+                    <uc1:ImageButton2 x:Name="btnRestart" Width="26" Height="26" Image="/Resources/Images/PreviousTrack_x22.png" Margin="0" Background="{x:Null}" ImageMargin="0" ToolTip="Return To Zero" IsTabStop="True" TabIndex="12" Text=""/>
+                    <uc1:ImageButton2 x:Name="btnStop" Width="26" Height="26" Image="/Resources/Images/Stop_x22.png" Margin="1,0,0,0" ButtonPressedBackground="#FFFAFF9A" ImageMargin="0" ToolTip="Stop" IsTabStop="True" TabIndex="30" Background="#FFE6E6E6"/>
+                    <uc1:ImageButton2 x:Name="btnPlay" Width="26" Height="26" Margin="1,0,0,0" ImageMargin="0" ToolTip="Play" IsTabStop="True" TabIndex="40" Image="/Resources/Images/Play_x22.png" Background="#FFE8E8E8"/>
+                    <uc1:ImageButton2 x:Name="btnRemoteControl" Width="26" Height="26" Margin="1,0,0,0" Image="/Resources/Images/Control_x22.png" ImageMargin="0,0,0,0" Background="#FFE6E6E6" IsTabStop="True" TabIndex="50" ToolTip="Remote Control" Focusable="True"/>
+                    <Label Content="Position:" Height="26" VerticalAlignment="Top" />
+                    <Label x:Name="lblSequencerPosition" Height="26" Width="100" TabIndex="50"/>
+                    <uc1:ToggleButton Name="tgbtnLoopMode" Height="24" Text="" Margin="1,1,0,0" ClickMode="Press" ImageUnchecked="/Resources/Images/Play_Loop_transp_x22.png" TextUnchecked="" TextChecked="" ImageChecked="/Resources/Images/Play_Loop_transp_x22.png" Width="24" VerticalAlignment="Top" HorizontalAlignment="Left" BackgroundChecked="#FF75CE75" ToolTip="Loop Mode" TabIndex="60" IsTabStop="True"/>
+                    <uc1:ToggleButton Name="tgbtnRestartAtEnd" Height="24" Width="24" Margin="2,1,0,0" TextChecked="" TextUnchecked="" ImageChecked="/Resources/Images/Play_Restart_transp_x22.png" ImageUnchecked="/Resources/Images/Play_Restart_transp_x22.png" ClickMode="Press" Focusable="True" BackgroundChecked="#FF75CE75" ToolTip="Restart at end" TabIndex="70" IsTabStop="True"/>
+                    <Label Content="BPM:" Height="26" VerticalAlignment="Top" />
+                    <uc1:SmallSlider x:Name="BpmSlider" Margin="0" Height="23" MinimumValue="10" MaximumValue="300" Value="120" Width="120" SliderBrush="#FF00B400" TabIndex="80"/>
+                    <Label Content="Volume:" Height="26" Margin="5,0,0,0" VerticalAlignment="Top"/>
+                    <uc1:SmallSlider x:Name="MainVolumeSlider" Height="23" Width="100" MaximumValue="127" Value="127" SliderBrush="#FF2F2FFD" ValueChanged="MainVolumeSlider_ValueChanged" Margin="0" TabIndex="85"/>
+                </ToolBar>
+            </ToolBarTray>
+
+            <TabControl x:Name="TabControl1">
+                <TabItem x:Name="tiSequencer" Header="Composition">
+                    <Grid>
+                        <SidePanel:SidePanel x:Name="SidePanel1" Margin="1,2,0,1" Background="#FF4F6FA6">
+                            <SidePanel:SidePanelButton Content="Composition" Margin="5,0,0,0" Padding="10,0,10,0" BackgroundActive="#FFFBE187" AssociatedWindow="{Binding WindowComposition, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:MainWindow}}}"/>
+                            <SidePanel:SidePanelButton Content="Pattern Store" Margin="5,0,0,0" Padding="10,0,10,0" BackgroundActive="#FFFBE187" AssociatedWindow="{Binding WindowPatternStore, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:MainWindow}}}"/>
+                            <SidePanel:SidePanelButton Content="Sections" Margin="5,0,0,0" Padding="10,0,10,0" BackgroundActive="#FFFBE187" AssociatedWindow="{Binding WindowSections, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:MainWindow}}}"/>
+                            <SidePanel:SidePanelButton Content="Arrange" Margin="5,0,0,0" Padding="10,0,10,0" BackgroundActive="#FFFBE187" AssociatedWindow="{Binding WindowArrange, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:MainWindow}}}"/>
+                        </SidePanel:SidePanel>
+                        <SequencerUI:SequencerPanel x:Name="CompositionPanel" Margin="38,7,10,10"/>
+                    </Grid>
+                </TabItem>
+                <TabItem x:Name="tiAudition" Header="Audition Test">
+                    <Grid>
+                        <Label x:Name="lblAuditionTime" Content="xxx" HorizontalAlignment="Left" Margin="234,0,0,34" VerticalAlignment="Bottom" Width="83"/>
+                        <Label Content="Audition Time:" HorizontalAlignment="Left" Margin="142,0,0,33" VerticalAlignment="Bottom"/>
+                        <Label Content="Audition:" HorizontalAlignment="Left" Margin="23,0,0,182" VerticalAlignment="Bottom"/>
+                        <Button x:Name="btnStartAudition" Content="Start Audition" HorizontalAlignment="Left" Margin="474,0,0,89" VerticalAlignment="Bottom" Width="91"/>
+                        <Button x:Name="btnStopAudition" Content="Stop Audition" HorizontalAlignment="Left" Margin="347,0,0,89" VerticalAlignment="Bottom" Width="101"/>
+                        <Button x:Name="btnPlayNote" Content="Play Note" HorizontalAlignment="Left" Margin="213,0,0,166" VerticalAlignment="Bottom" Width="76"/>
+                        <Button x:Name="btnPlayPattern" Content="Play Pattern" HorizontalAlignment="Left" Margin="347,0,0,166" VerticalAlignment="Bottom" Width="84"/>
+                        <Button x:Name="btnMoresGM" Content="MORES GM" HorizontalAlignment="Left" Margin="33,23,0,0" VerticalAlignment="Top" Width="75"/>
+                        <Button x:Name="btnAllNotesOff" Content="All Notes Off" HorizontalAlignment="Left" Margin="33,63,0,0" VerticalAlignment="Top" Width="74"/>
+                        <Label x:Name="lblAuditionTime2" Content="xxx" HorizontalAlignment="Left" Margin="331,0,0,35" VerticalAlignment="Bottom"/>
+                        <Button x:Name="btnPlayPattern2" Content="Play Pattern 2" HorizontalAlignment="Left" Margin="347,0,0,136" VerticalAlignment="Bottom" Width="84"/>
+                        <Button x:Name="btnSavePattern" Content="Save Pattern" HorizontalAlignment="Left" Margin="588,0,0,136" VerticalAlignment="Bottom" Width="106" IsEnabled="False"/>
+                        <Button x:Name="btnSavePatternAsXML" Content="Save Pattern XML " HorizontalAlignment="Left" Margin="602,0,0,46" VerticalAlignment="Bottom" Width="106" IsEnabled="False"/>
+                        <Button x:Name="btnLoadPattern" Content="Load Pattern" HorizontalAlignment="Left" Margin="588,0,0,166" VerticalAlignment="Bottom" Width="106" IsEnabled="False"/>
+                        <Button x:Name="btnLoadPatternXML" Content="Load Pattern XML" HorizontalAlignment="Left" Margin="459,0,0,166" VerticalAlignment="Bottom" Width="106"/>
+                        <CheckBox x:Name="cbPatternDoLoop" Content="Do Loop" HorizontalAlignment="Left" Margin="347,0,0,196" VerticalAlignment="Bottom" IsChecked="True"/>
+                        <Label Content="Voice 0" HorizontalAlignment="Left" Margin="33,0,0,160" VerticalAlignment="Bottom"/>
+                        <Label Content="Midi Channel" HorizontalAlignment="Left" Margin="10,0,0,133" VerticalAlignment="Bottom"/>
+                        <Label Content="Transpose" HorizontalAlignment="Left" Margin="18,0,0,102" VerticalAlignment="Bottom"/>
+                        <Label Content="Voice num." HorizontalAlignment="Left" Margin="10,0,0,68" VerticalAlignment="Bottom"/>
+                        <uc1:NumericUpDown x:Name="nudVc0MidiChannel" Margin="93,0,0,136" Width="52" Height="22" MaximumValue="15" VerticalAlignment="Bottom" Value="9"/>
+                        <uc1:NumericUpDown x:Name="nudVc0Transpose" Margin="93,0,0,102" Width="52" Height="22" MaximumValue="40" MinimumValue="-40" VerticalAlignment="Bottom"/>
+                        <uc1:NumericUpDown x:Name="nudVc0VoiceNum" Margin="93,0,0,68" Width="52" Height="22" MaximumValue="127" VerticalAlignment="Bottom"/>
+                        <Label x:Name="lblAuTestVoiceName" Content="xx" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="160,0,0,64" Width="130"/>
+                        <Button x:Name="btnSetVc0" Content="Set Vc 0" HorizontalAlignment="Left" Margin="18,0,0,33" VerticalAlignment="Bottom" Width="75"/>
+                        <uc1:ImageButton2 x:Name="btnKeyboard2" Width="26" Height="26" Image="/Resources/Images/Keyboard_x32.png" Margin="160,0,0,98" Background="{x:Null}" ImageMargin="0" ToolTip="Keyboard" IsTabStop="True" TabIndex="10" Text="" VerticalAlignment="Bottom"/>
+                        <Label Content="9=Drums" HorizontalAlignment="Left" Margin="153,0,0,134" VerticalAlignment="Bottom"/>
+                        <Button x:Name="btnTestTimedEvent" Content="TimedEvent" HorizontalAlignment="Left" Margin="160,63,0,0" VerticalAlignment="Top" Width="75"/>
+                        <GroupBox Header="Audition PatternStore" HorizontalAlignment="Left" Margin="285,20,0,243" Width="335">
+                            <Grid>
+                                <ListBox x:Name="lbxPatternStore" HorizontalAlignment="Left" Margin="10,10,0,10" Width="123"/>
+                                <Button x:Name="btnLoadToPatternStore" Content="Add" HorizontalAlignment="Left" Margin="148,10,0,0" VerticalAlignment="Top" Width="37"/>
+                                <Button x:Name="btnRemoveFromPatternStore" Content="Del" HorizontalAlignment="Left" Margin="148,54,0,0" VerticalAlignment="Top" Width="37"/>
+                                <Button x:Name="btnAuditionPatternStoreToVc1" Content="To Voice 1" HorizontalAlignment="Left" Margin="228,39,0,0" VerticalAlignment="Top" Width="65"/>
+                            </Grid>
+                        </GroupBox>
+                        <StatusBar Height="28" VerticalAlignment="Bottom" DockPanel.Dock="Bottom">
+                            <StatusBarItem>
+                                <TextBlock Text="Audition Errors:" Margin="5,0,0,0"/>
+                            </StatusBarItem>
+                            <StatusBarItem>
+                                <TextBlock x:Name="Status_AuditionErrorCount" Text="0"/>
+                            </StatusBarItem>
+                            <Separator/>
+                            <StatusBarItem>
+                                <TextBlock  Text="TimedEvents: " Margin="5,0,0,0"/>
+                            </StatusBarItem>
+                            <StatusBarItem>
+                                <TextBlock x:Name="Status_NumberOfTimedEvents" Text="0"/>
+                            </StatusBarItem>
+                            <Separator/>
+                            <StatusBarItem>
+                                <TextBlock Text="NoteOffListCount:" Margin="5,0,0,0"/>
+                            </StatusBarItem>
+                            <StatusBarItem>
+                                <TextBlock x:Name="Status_NoteOffListCount" Text="0"/>
+                            </StatusBarItem>
+                        </StatusBar>
+                    </Grid>
+                </TabItem>
+                <TabItem x:Name="tiDebug" Header="Debug">
+                    <Grid>
+                        <Button x:Name="btnShowPointers" Content="Show Pointers" HorizontalAlignment="Left" Margin="46,30,0,0" VerticalAlignment="Top"/>
+                        <Button x:Name="btnDebug" Content="Debug Window" HorizontalAlignment="Left" Margin="329,30,0,0" VerticalAlignment="Top" Width="102"/>
+                        <Button Content="Clear" Height="20" Width="60" Margin="10,0,0,299" HorizontalAlignment="Left" VerticalAlignment="Bottom" Click="Button_Click"/>
+                        <TextBox x:Name="tbDebugOut" HorizontalAlignment="Left" Margin="10,0,0,20" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="261" Height="274" Background="WhiteSmoke" VerticalScrollBarVisibility="Auto"/>
+                        <Label Content="MidiOutShortMsg Count:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="311,191,0,0"/>
+                        <Label x:Name="lblMidiOutShortMsg_Count" Content="xxx" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="460,191,0,0"/>
+                        <Button x:Name="btnResetMidiOutShortMsgCounter" HorizontalAlignment="Left" VerticalAlignment="Top" Height="20" Width="40" Content="Reset" Margin="519,194,0,0"/>
+                    </Grid>
+                </TabItem>
+            </TabControl>
+        </DockPanel>
+    </Grid>
+</Window>
