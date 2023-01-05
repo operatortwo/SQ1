@@ -1,0 +1,182 @@
+﻿<?xml version="1.0"?>
+<doc>
+<assembly>
+<name>
+Midi_File
+</name>
+</assembly>
+<members>
+<member name="T:Midi_File.My.Resources.Resources">
+<summary>
+  A strongly-typed resource class, for looking up localized strings, etc.
+</summary>
+</member>
+<member name="P:Midi_File.My.Resources.Resources.ResourceManager">
+<summary>
+  Returns the cached ResourceManager instance used by this class.
+</summary>
+</member>
+<member name="P:Midi_File.My.Resources.Resources.Culture">
+<summary>
+  Overrides the current thread's CurrentUICulture property for all
+  resource lookups using this strongly typed resource class.
+</summary>
+</member>
+<member name="P:Midi_File.CMidiFile.FileLoaded">
+ <summary>
+ TRUE if Midi-File loaded without errors and Tracks in Tracklist are filled with Track-Events
+ </summary>
+ <returns></returns>
+</member>
+<member name="F:Midi_File.CMidiFile.TrackChunk.DataPosition">
+ <summary>
+ Position of Datablock in SourceStream
+ </summary>
+</member>
+<member name="F:Midi_File.CMidiFile.TrackChunk.DataLength">
+ <summary>
+ Number of bytes in Datablock
+ </summary>
+</member>
+<member name="F:Midi_File.CMidiFile.TrackChunk.EventList">
+ <summary>
+ List of TrackEvents
+ </summary>
+</member>
+<member name="F:Midi_File.CMidiFile.TrackChunk.EventPtr">
+ <summary>
+ for Player (current Event)
+ </summary>
+</member>
+<member name="F:Midi_File.CMidiFile.TrackChunk.EndOfTrack">
+ <summary>
+ for Player (True if end reached)
+ </summary>
+</member>
+<member name="F:Midi_File.CMidiFile.TrackChunk.Mute">
+ <summary>
+ If True: skip NoteOn-Events in Player
+ </summary>
+</member>
+<member name="F:Midi_File.CMidiFile.TrackChunk.XSelect">
+ <summary>
+ Track Filter for Aux-Operations
+ </summary>
+</member>
+<member name="P:Midi_File.CMidiFile.TrackEvent.Time">
+ <summary>
+ [Ticks] for all Events
+ </summary>        
+</member>
+<member name="P:Midi_File.CMidiFile.TrackEvent.Data1">
+ <summary>
+ If MidiEvent: Data-Byte 1 / If MetaEvent: MetaEventType
+ </summary>
+</member>
+<member name="P:Midi_File.CMidiFile.TrackEvent.Data2">
+ <summary>
+ for MidiEvents
+ </summary>
+</member>
+<member name="P:Midi_File.CMidiFile.TrackEvent.DataX">
+ <summary>
+ Data Array for MetaEvents and SysxEvents
+ </summary>
+</member>
+<member name="P:Midi_File.CMidiFile.TrackEvent.Duration">
+ <summary>
+ Aux for Note-On Events. Calcualted from Time until Note-off. 0 if no Note-Off.
+ Can be used for Graphical User Interface.
+ </summary>
+</member>
+<member name="P:Midi_File.CMidiFile.TrackEvent.TrackNumber">
+ <summary>
+ For filtering, muting, ... / TrackNumbers > 255 will be set to 255 / First Track = 0
+ </summary>
+</member>
+<member name="T:Midi_File.CMidiFile.CPattern">
+ <summary>
+ For Pattern Export
+ </summary>
+</member>
+<member name="T:Midi_File.CMidiFile.CVoiceMap">
+ <summary>
+ For Pattern Export. Map for 16 Midi-Channels (0-15) Voice from ProgramChange
+  and BankMSB / BankLSB from ControlChange. Reflects State at current PlayerPosition
+ </summary>
+</member>
+<member name="M:Midi_File.CMidiFile.CVoiceMap.Reset">
+ <summary>
+ Set all Entries to 80h (not set)
+ </summary>
+</member>
+<member name="M:Midi_File.CMidiFile.BeToUInt(System.UInt32)">
+ <summary>
+ Conversion from Big-Endian to Little-Endian Format. 4 Bytes to UInteger
+ </summary>
+ <param name="BigEndian"></param>
+ <returns></returns>
+</member>
+<member name="P:Midi_File.CMidiFile.TimerInterval">
+ <summary>
+ Between 1 and 10 Milliseconds. Default = 3
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:Midi_File.CMidiFile.TimerResolution">
+ <summary>
+ Between 0 and 10 , 0 = most accurate. Default = 3
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:Midi_File.CMidiFile.StartPlayer">
+ <summary>
+ Begin Midi-Playback
+ </summary>
+</member>
+<member name="M:Midi_File.CMidiFile.PlayerPause">
+ <summary>
+ pause player
+ </summary>
+</member>
+<member name="M:Midi_File.CMidiFile.PlayerContinue">
+ <summary>
+ continue after pause
+ </summary>
+</member>
+<member name="M:Midi_File.CMidiFile.PlayerPause_toggle">
+ <summary>
+ Toggles PlayerPaused
+ </summary>
+</member>
+<member name="M:Midi_File.CMidiFile.StopPlayer">
+ <summary>
+ Stop Midi-Playback
+ </summary>
+</member>
+<member name="M:Midi_File.MConstatnts.GetVoiceName(System.Byte)">
+ <summary>
+ Returns the GM VoiceName from GM VoiceNumber
+ </summary>
+ <param name="VoiceNum"></param>
+ <returns></returns>
+</member>
+<member name="F:Midi_File.MConstatnts.GM_VoiceNames">
+ <summary>
+ GemeralMidi VoiceNames sorted by VoiceNumber
+ </summary>
+</member>
+<member name="F:Midi_File.MConstatnts.ControllerNames">
+ <summary>
+ Midi ControllerNames sorted by ContollerNumber
+ </summary>
+</member>
+<member name="M:Midi_File.MDecode.NoteNr_to_NoteName(System.Int32)">
+ <summary>
+ Note-number to Note Name (f.e. 60 to 'C 4')
+ </summary>
+ <param name="NoteNr"></param>
+ <returns></returns>
+</member>
+</members>
+</doc>

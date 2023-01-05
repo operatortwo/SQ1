@@ -1,0 +1,14 @@
+﻿<Window x:Class="Pattern_Info"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SequencerUI"
+        mc:Ignorable="d"
+        Title="Pattern_Info" Height="400" Width="350" WindowStyle="ToolWindow" ResizeMode="NoResize" WindowStartupLocation="CenterOwner" Loaded="Window_Loaded">
+    <Grid Background="#FFF6F8FB">
+        <Button x:Name="btnOK" Content="OK" HorizontalAlignment="Center" VerticalAlignment="Bottom" Width="100" Margin="0,0,0,20"/>
+        <TextBox x:Name="tbInfo" Margin="10,30,10,50" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" IsReadOnly="True" Background="#FFF1F1F1"/>
+        <TextBox x:Name="tbPatternName" HorizontalAlignment="Left" Margin="10,3,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="161" IsReadOnly="True" Background="#FFF1F1F1"/>
+    </Grid>
+</Window>

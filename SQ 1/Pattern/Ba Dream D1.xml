@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<PatternX xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Name />
+  <Category />
+  <Group />
+  <Source />
+  <BPM>136</BPM>
+  <TPQ>960</TPQ>
+  <StartTime>0</StartTime>
+  <StartOffset>0</StartOffset>
+  <Length>3840</Length>
+  <Duration>3840</Duration>
+  <DoLoop>false</DoLoop>
+  <Ended>false</Ended>
+  <EventListPtr>0</EventListPtr>
+  <EventList>
+    <TrackEvent>
+      <Time>7</Time>
+      <Type>MidiEvent</Type>
+      <Status>144</Status>
+      <Data1>38</Data1>
+      <Data2>118</Data2>
+      <Duration>263</Duration>
+    </TrackEvent>
+    <TrackEvent>
+      <Time>483</Time>
+      <Type>MidiEvent</Type>
+      <Status>144</Status>
+      <Data1>38</Data1>
+      <Data2>118</Data2>
+      <Duration>266</Duration>
+    </TrackEvent>
+    <TrackEvent>
+      <Time>964</Time>
+      <Type>MidiEvent</Type>
+      <Status>144</Status>
+      <Data1>38</Data1>
+      <Data2>118</Data2>
+      <Duration>261</Duration>
+    </TrackEvent>
+    <TrackEvent>
+      <Time>1445</Time>
+      <Type>MidiEvent</Type>
+      <Status>144</Status>
+      <Data1>38</Data1>
+      <Data2>118</Data2>
+      <Duration>257</Duration>
+    </TrackEvent>
+    <TrackEvent>
+      <Time>1926</Time>
+      <Type>MidiEvent</Type>
+      <Status>144</Status>
+      <Data1>38</Data1>
+      <Data2>118</Data2>
+      <Duration>261</Duration>
+    </TrackEvent>
+    <TrackEvent>
+      <Time>2407</Time>
+      <Type>MidiEvent</Type>
+      <Status>144</Status>
+      <Data1>38</Data1>
+      <Data2>118</Data2>
+      <Duration>261</Duration>
+    </TrackEvent>
+    <TrackEvent>
+      <Time>2883</Time>
+      <Type>MidiEvent</Type>
+      <Status>144</Status>
+      <Data1>38</Data1>
+      <Data2>118</Data2>
+      <Duration>257</Duration>
+    </TrackEvent>
+    <TrackEvent>
+      <Time>3364</Time>
+      <Type>MidiEvent</Type>
+      <Status>144</Status>
+      <Data1>38</Data1>
+      <Data2>118</Data2>
+      <Duration>263</Duration>
+    </TrackEvent>
+  </EventList>
+</PatternX>

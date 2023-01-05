@@ -1,0 +1,7 @@
+﻿SequencerUITools\Resources\Library\Source.txt
+
+The source for this library can be found at:
+
+https://github.com/operatortwo/Midi_File
+
+---

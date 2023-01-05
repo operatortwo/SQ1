@@ -1,0 +1,51 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32630.192
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "SQ 1", "SQ 1\SQ 1.vbproj", "{CE9F855C-5AAB-41F0-A608-D718FEE98D7F}"
+	ProjectSection(ProjectDependencies) = postProject
+		{54357322-EE38-4C7C-ADD6-A6A08A1A4BB0} = {54357322-EE38-4C7C-ADD6-A6A08A1A4BB0}
+		{8BC34B23-1CF3-4EA1-9345-071176295CBA} = {8BC34B23-1CF3-4EA1-9345-071176295CBA}
+	EndProjectSection
+EndProject
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "SequencerBase", "SequencerBase\SequencerBase.vbproj", "{0411264D-319E-4EE9-B08A-8D5E2F4C3A31}"
+EndProject
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "SequencerUI", "SequencerUI\SequencerUI.vbproj", "{8BC34B23-1CF3-4EA1-9345-071176295CBA}"
+EndProject
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "SequencerUITools", "SequencerUITools\SequencerUITools.vbproj", "{54357322-EE38-4C7C-ADD6-A6A08A1A4BB0}"
+	ProjectSection(ProjectDependencies) = postProject
+		{0411264D-319E-4EE9-B08A-8D5E2F4C3A31} = {0411264D-319E-4EE9-B08A-8D5E2F4C3A31}
+		{8BC34B23-1CF3-4EA1-9345-071176295CBA} = {8BC34B23-1CF3-4EA1-9345-071176295CBA}
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CE9F855C-5AAB-41F0-A608-D718FEE98D7F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CE9F855C-5AAB-41F0-A608-D718FEE98D7F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CE9F855C-5AAB-41F0-A608-D718FEE98D7F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CE9F855C-5AAB-41F0-A608-D718FEE98D7F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0411264D-319E-4EE9-B08A-8D5E2F4C3A31}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0411264D-319E-4EE9-B08A-8D5E2F4C3A31}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0411264D-319E-4EE9-B08A-8D5E2F4C3A31}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0411264D-319E-4EE9-B08A-8D5E2F4C3A31}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8BC34B23-1CF3-4EA1-9345-071176295CBA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8BC34B23-1CF3-4EA1-9345-071176295CBA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8BC34B23-1CF3-4EA1-9345-071176295CBA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8BC34B23-1CF3-4EA1-9345-071176295CBA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{54357322-EE38-4C7C-ADD6-A6A08A1A4BB0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{54357322-EE38-4C7C-ADD6-A6A08A1A4BB0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{54357322-EE38-4C7C-ADD6-A6A08A1A4BB0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{54357322-EE38-4C7C-ADD6-A6A08A1A4BB0}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {843DE5B7-7C1C-463D-953D-2AC6FB63E683}
+	EndGlobalSection
+EndGlobal

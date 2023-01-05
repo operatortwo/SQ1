@@ -1,0 +1,38 @@
+﻿<Window x:Class="DebugMidiOutList"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+         xmlns:sys="clr-namespace:System;assembly=mscorlib" 
+        xmlns:local="clr-namespace:SQ_1" 
+        xmlns:local1="clr-namespace:SequencerBase;assembly=SequencerBase"
+         xmlns:mifi="clr-namespace:SequencerBase;assembly=SequencerBase"
+        mc:Ignorable="d"
+        Title="DebugMidiOutList" Height="354.688" Width="477.609" Loaded="Window_Loaded" WindowStartupLocation="CenterOwner">
+    <Window.Resources>
+        <local:HexToString_Converter x:Key="HexToString_Converter"/>
+        <ObjectDataProvider x:Key="odpEvType" MethodName="GetValues" ObjectType="{x:Type sys:Enum}">
+            <ObjectDataProvider.MethodParameters>
+                <x:Type TypeName="mifi:EventType"/>
+            </ObjectDataProvider.MethodParameters>
+        </ObjectDataProvider>
+    </Window.Resources>
+    <Grid>
+        <DataGrid x:Name="DataGrid1" Margin="20,27,20,82" ItemsSource="{Binding}" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn x:Name="PortColumn" Binding="{Binding PortNumber}" Header="Port" Width="30"/>
+                <DataGridTextColumn x:Name="TimeColumn" Binding="{Binding Time}" Header="Time" Width="60"/>
+                <DataGridComboBoxColumn Header="Event Type" SelectedItemBinding="{Binding Type}" ItemsSource="{Binding Source={StaticResource odpEvType}}" Width="100" />
+                <DataGridTextColumn x:Name="StatusColumn" Binding="{Binding Status, Converter={StaticResource HexToString_Converter}}" Header="hStatus" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="Data1Column" Binding="{Binding Data1}" Header="Data1" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="Data2Column" Binding="{Binding Data2}" Header="Data2" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="DataXColumn" Binding="{Binding DataX}" Header="DataX" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="DurationColumn" Binding="{Binding Duration}" Header="Duration" Width="SizeToHeader"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <Button x:Name="btnOK" Content="OK" HorizontalAlignment="Left" Margin="193,0,0,23" VerticalAlignment="Bottom" Width="75"/>
+        <CheckBox x:Name="cbPlayEvents" Content="Play Events" HorizontalAlignment="Left" Margin="20,0,0,25" VerticalAlignment="Bottom"/>
+        <Button x:Name="btnSaveData" Content="Save Data" HorizontalAlignment="Left" Margin="390,0,0,38" VerticalAlignment="Bottom" Width="68"/>
+    </Grid>
+</Window>
