@@ -3,8 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:SequencerUI"
-        xmlns:uc1="clr-namespace:UserControls1;assembly=UserControls1"
+        xmlns:local="clr-namespace:SequencerUI"        
         mc:Ignorable="d"
         Title="PatternRectangle Move and Size" Height="300" Width="400" WindowStyle="ToolWindow" Loaded="Window_Loaded" ResizeMode="NoResize">
     <Grid Margin="10,0,10,0" Background="#FFF9F9F9">

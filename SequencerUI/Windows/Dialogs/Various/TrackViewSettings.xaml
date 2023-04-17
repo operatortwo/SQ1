@@ -3,8 +3,8 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:SequencerUI"
-        xmlns:uc1="clr-namespace:UserControls1;assembly=UserControls1"
+        xmlns:local="clr-namespace:SequencerUI"        
+        xmlns:duc="clr-namespace:DailyUserControls;assembly=DailyUserControls"
         mc:Ignorable="d"
         Title="TrackViewSettings" Height="350" Width="600" WindowStartupLocation="CenterOwner" WindowStyle="ToolWindow" Loaded="Window_Loaded">
     <Window.Resources>
@@ -93,19 +93,15 @@
         <GroupBox x:Name="GroupBoxNoteRange" HorizontalAlignment="Left" VerticalAlignment="Top" Height="68" Margin="176,159,0,0" Width="228">
             <Grid>
                 <Label Content="Note Range End" HorizontalAlignment="Left" VerticalAlignment="Top" Padding="0,0,0,0" Margin="10,6,0,0"/>
-                <uc1:NumericUpDown x:Name="nudNoteRangeEnd" Margin="108,3,0,0" Width="60" Height="22" HorizontalAlignment="Left" VerticalAlignment="Top" MaximumValue="127" ValueChanged="nudNoteRangeEnd_ValueChanged" />
+                <duc:NumericUpDown x:Name="nudNoteRangeEnd" Margin="108,3,0,0" Width="60" Height="22" HorizontalAlignment="Left" VerticalAlignment="Top" MaximumValue="127" ValueChanged="nudNoteRangeEnd_ValueChanged" />
                 <Label x:Name="lblNoteRangeEnd" Content="###" HorizontalAlignment="Left" Margin="185,6,0,0" VerticalAlignment="Top" Padding="0,0,0,0"/>
                 <Label Content="Note Range Start" HorizontalAlignment="Left" Margin="10,35,0,0" VerticalAlignment="Top" Padding="0,0,0,0"/>
-                <uc1:NumericUpDown x:Name="nudNoteRangeStart"  Width="60" Height="22" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="108,35,0,0" MaximumValue="127" ValueChanged="nudNoteRangeStart_ValueChanged"/>
+                <duc:NumericUpDown x:Name="nudNoteRangeStart"  Width="60" Height="22" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="108,35,0,0" MaximumValue="127" ValueChanged="nudNoteRangeStart_ValueChanged"/>
                 <Label x:Name="lblNoteRangeStart" Content="###" HorizontalAlignment="Left" Margin="185,35,0,0" VerticalAlignment="Top" Padding="0,0,0,0"/>
             </Grid>
         </GroupBox>
 
         <ListBox ItemContainerStyle="{DynamicResource ListBoxItemContainerStyle1}"  x:Name="lbSelectedNotes"  Margin="428,159,41,37" SelectionMode="Multiple" />
-
-
-
-
 
 
     </Grid>

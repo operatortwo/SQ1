@@ -1,0 +1,10 @@
+﻿Version History of SequencerBase, SequencerUI, SequencerUITools
+===============================================================
+
+Date			Version		Changes
+------------------------------------------------	
+2023 05 24		1.0.1.2		duc 1.0.1.0, Voice Pan: LeftRightLook
+2023 05 23		1.0.1.1		Midi Import: added 'Split to SingelChannelTracks'
+2023 05 12		1.0.1.0		replaced UserControls1 by DailyUserControls
+2023 04 24		1.0.0.0		initial release
+

@@ -48,12 +48,10 @@ Public Class MidiImport1
 
     ' ev CollectionViewSource in XAML
 
-    Public Property TrackList As New ObservableCollection(Of TrackRow)
+    Public Property TrackTable As New ObservableCollection(Of TrackRow)
     'Public Property TrackList As New List(Of TrackRow)
 
     Private Sub Window_Loaded(sender As Object, e As RoutedEventArgs)
-
-        'dgvTracklist.ItemsSource = TrackList
 
     End Sub
 
@@ -81,15 +79,10 @@ Public Class MidiImport1
 
         If Mid.ReadMidiFile(MidiFullname) = True Then
 
-            ShowLoadState(True)
-            btnImport.IsEnabled = True
+            ShowLoadState(True)                                 ' was loaded without any error
+            btnImport.IsEnabled = True                          ' Import is now possible
 
             Dim str As String = ""
-
-            'MsgOut("Name: " & Mid.MidiName)
-            'MsgOut("SMF Format: " & CStr(Mid.SmfFormat))
-            'MsgOut("Nr of Tracks: " & CStr(Mid.NumberOfTracks))
-            'MsgOut("Ticks per Quarter Note: " & CStr(Mid.TPQ))
 
             str &= "SMF Format: " & Mid.SmfFormat
             str &= "   NumOfTracks: " & Mid.NumberOfTracks
@@ -103,19 +96,37 @@ Public Class MidiImport1
             ShowLoadState(False)
             btnImport.IsEnabled = False
             tbProperties.Text = "Error: " & Mid.ErrorText
-            'MsgOut("Fehler beim Lesen der Datei")
         End If
 
-        TrackList.Clear()
+        FillTrackTable(Mid)
 
-        For i = 1 To Mid.TrackList.Count
+        '--- when there are multichannel tracks, enable button to split multichannel tracks to singelchannel tracks
+
+        btnSplit.IsEnabled = False
+
+        For Each track In TrackTable
+            If track.NumberOfUsedChannels > 1 Then
+                btnSplit.IsEnabled = True
+                Exit For
+            End If
+        Next
+
+        '---
+
+    End Sub
+
+    Private Sub FillTrackTable(mid As CMidiFile)
+
+        TrackTable.Clear()
+
+        For i = 1 To mid.TrackList.Count
             Dim row As New TrackRow
 
             row.TrackNumber = i
-            row.TrackName = Mid.GetTrackName(i - 1)
-            row.NumberOfEvents = Mid.TrackList(i - 1).EventList.Count
+            row.TrackName = mid.GetTrackName(i - 1)
+            row.NumberOfEvents = mid.TrackList(i - 1).EventList.Count
 
-            For Each trev In Mid.TrackList(i - 1).EventList
+            For Each trev In mid.TrackList(i - 1).EventList
                 If IsNoteOnEvent(trev) Then
                     row.NoteOnEvents += 1
                 ElseIf IsNoteOffEvent(trev) Then
@@ -142,16 +153,72 @@ Public Class MidiImport1
             Next
 
             Dim channel As Byte
-            Dim cnt As Byte = GetNumberOfUsedChannels(Mid.TrackList(i - 1).EventList, channel)
+            Dim cnt As Byte = GetNumberOfUsedChannels(mid.TrackList(i - 1).EventList, channel)
             row.NumberOfUsedChannels = cnt
             If cnt = 1 Then
                 row.ChannelNumber = channel
             End If
 
-            TrackList.Add(row)
+            TrackTable.Add(row)
         Next
 
     End Sub
+
+    Private Sub btnSplit_Click(sender As Object, e As RoutedEventArgs) Handles btnSplit.Click
+
+        If SplitMultichannelTracks(Mid) = True Then
+            FillTrackTable(Mid)
+            btnSplit.IsEnabled = False
+        Else
+            MessageBox.Show("Split to Singlechannel tracks failed", "Split")
+        End If
+
+    End Sub
+
+    Private Function SplitMultichannelTracks(ByRef mid As CMidiFile) As Boolean
+        Dim tl2 As New List(Of CMidiFile.TrackChunk)
+        Try
+            For i = 1 To TrackTable.Count
+                If TrackTable(i - 1).NumberOfUsedChannels <= 1 Then
+                    tl2.Add(mid.TrackList(TrackTable(i - 1).TrackNumber - 1))            ' copy unchanged
+                Else
+                    '--- split 
+                    Dim src As CMidiFile.TrackChunk
+                    src = mid.TrackList(TrackTable(i - 1).TrackNumber - 1)
+                    Dim dst As New List(Of CMidiFile.TrackChunk)
+                    For di = 1 To 16                                                ' all 16 midi channels
+                        dst.Add(New CMidiFile.TrackChunk)
+                    Next
+
+                    Dim chn As Byte
+                    For Each srcev In src.EventList
+                        chn = GetChannelNumberOfEvent(srcev)
+                        dst(chn).EventList.Add(srcev)
+                    Next
+
+                    '- remove unused TracksChunks
+                    For t = 15 To 0 Step -1
+                        If dst(t).EventList.Count = 0 Then
+                            dst.RemoveAt(t)
+                        End If
+                    Next
+
+                    '- add each track to tl2
+                    For Each tc In dst
+                        tl2.Add(tc)
+                    Next
+
+
+                End If
+            Next
+
+        Catch ex As Exception
+            Return False                ' mid is unchanged
+        End Try
+
+        mid.TrackList = tl2
+        Return True
+    End Function
 
     Private Sub btnImport_Click(sender As Object, e As RoutedEventArgs) Handles btnImport.Click
 
@@ -238,21 +305,21 @@ Public Class MidiImport1
 
         comp.Voices.Clear()
 
-        For i = 1 To TrackList.Count
-            If TrackList(i - 1).IsSelected = False Then Continue For
+        For i = 1 To TrackTable.Count
+            If TrackTable(i - 1).IsSelected = False Then Continue For
 
             Dim vc As New SequencerBase.Voice
             Dim trk As New SequencerBase.Track
 
             vc.Tracks.Add(trk)
 
-            If TrackList(i - 1).NumberOfUsedChannels = 1 Then
-                vc.MidiChannel = TrackList(i - 1).ChannelNumber
+            If TrackTable(i - 1).NumberOfUsedChannels = 1 Then
+                vc.MidiChannel = TrackTable(i - 1).ChannelNumber
             Else
                 vc.IsMultiChannel = True
             End If
 
-            vc.Title = TrackList(i - 1).TrackName
+            vc.Title = TrackTable(i - 1).TrackName
             'trk.Title = TrackList(i - 1).TrackName
             trk.Title = i - 1
 
@@ -260,7 +327,7 @@ Public Class MidiImport1
 
             Dim pat As New Pattern
 
-            pat.Label = TrackList(i - 1).TrackName
+            pat.Label = TrackTable(i - 1).TrackName
             pat.StartTime = 0
             pat.Length = comp.Length
             pat.Duration = comp.Length
@@ -382,7 +449,7 @@ Public Class MidiImport1
     End Function
 
     Private Function IsAtLeast1TrackSelected() As Boolean
-        For Each row In TrackList
+        For Each row In TrackTable
             If row.IsSelected = True Then Return True
         Next
         Return False
@@ -415,6 +482,18 @@ Public Class MidiImport1
         End If
 
         Return chlist.Count
+    End Function
+
+    Private Function GetChannelNumberOfEvent(trev As CMidiFile.TrackEvent) As Byte
+        Dim stat As Byte
+        Dim channel As Byte
+
+        stat = trev.Status And &HF0
+        If stat >= &H80 And stat < &HF0 Then        ' exclude F0, F7    (choose channel 0)
+            channel = trev.Status And &HF
+        End If
+
+        Return channel
     End Function
 
 

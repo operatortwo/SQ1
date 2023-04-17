@@ -1,7 +1,6 @@
 ﻿Imports System.ComponentModel
 Imports SequencerBase
 Imports SequencerUI.TrackPanelStackHeader
-Imports UserControls1
 
 Public Class SequencerPanel
 
@@ -264,6 +263,10 @@ Public Class SequencerPanel
 
     End Sub
 
+    Public Sub CollapseAllVoicePanels()
+        btnCollapseExpandAll.IsChecked = True
+    End Sub
+
     Private Sub btnCollapseExpandAll_Checked(sender As Object, e As RoutedEventArgs) Handles btnCollapseExpandAll.Checked
         For Each el In VoicePanelStack.Children
             Dim vp As VoicePanel = TryCast(el, VoicePanel)
@@ -271,6 +274,10 @@ Public Class SequencerPanel
                 vp.Expander.IsExpanded = False
             End If
         Next
+    End Sub
+
+    Public Sub ExpandAllVoicePanels()
+        btnCollapseExpandAll.IsChecked = False
     End Sub
 
     Private Sub btnCollapseExpandAll_Unchecked(sender As Object, e As RoutedEventArgs) Handles btnCollapseExpandAll.Unchecked

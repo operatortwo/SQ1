@@ -46,6 +46,9 @@
     <OptionInfer>On</OptionInfer>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DailyUserControls">
+      <HintPath>..\SequencerUI\Resources\Library\DailyUserControls.dll</HintPath>
+    </Reference>
     <Reference Include="Midi_File, Version=1.0.3.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Resources\Library\Midi_File.dll</HintPath>
@@ -58,10 +61,6 @@
     <Reference Include="System.Xml" />
     <Reference Include="System.Xaml">
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
-    </Reference>
-    <Reference Include="UserControls1, Version=1.3.1.1, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\SequencerUI\Resources\Library\UserControls1.dll</HintPath>
     </Reference>
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
@@ -133,6 +132,7 @@
     <Resource Include="Resources\Images\Unchecked_x32.png" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Resources\Images\Split_x32.png" />
     <Content Include="Resources\Library\Midi_File.dll" />
     <Resource Include="Resources\Library\Midi_File.xml" />
   </ItemGroup>

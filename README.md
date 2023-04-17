@@ -3,7 +3,7 @@
 
 I started this project to try some ideas about midi processing and to get some practice in WPF programming.
 
-This early version is currently more useful for developers than musicans. It is not fully functional yet and most time it is not the lack of ideas, but the lack of time for programming that delays progress.  
+This early version is currently more useful for developers than musicans. 
 There is still a lot to do, but I think the basic structure is there and I see some potential for further development into a useful and interesting tool.
  
 <details><summary>Screenshot (click to enlage)</summary>
@@ -71,8 +71,8 @@ One reason is that I started with some ideas but without an exact plan or diagra
 
 #### Some important functions from the programmer's point of view
 
-High freq timer, timerTick, calculates with stopwatch and BPM the SequencerTime in Ticks. Then the player procs are called and the player checks if it is time to play any events.
-...
+An important resource for this application is a high frequency timer. At every tick it calculates together with a stopwatch and the current BPM value the Sequencer time. Then it calls the player procedure. If the sequencer is running, it checks if it is time to generate some Midi events. 
+To understand Note-off processing, it is important to know that the player proc also checks if it is time to generate some Note-off events. Also sequencer-stop and Loop-functions includes a call to 'TurnAllRunningNotes off'.  
 From previous projects i have learned that it's sometimes confusing to have Midi I/O inside the sequencer part.
 Therefore in this project the sequencer part can be seen as a generator for accurate timed Midi-Events.  
 It's then up to the Main Application to handle this events and send them to the Midi-Out.

@@ -58,6 +58,10 @@
     <ApplicationManifest>My Project\app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DailyUserControls, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Resources\Library\DailyUserControls.dll</HintPath>
+    </Reference>
     <Reference Include="Midi_IO">
       <HintPath>..\..\..\DLL\Midi_IO\Midi_IO\bin\Debug\Midi_IO.dll</HintPath>
     </Reference>
@@ -72,13 +76,6 @@
     <Reference Include="System.Xml" />
     <Reference Include="System.Xaml">
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
-    </Reference>
-    <Reference Include="UcSidePanel">
-      <HintPath>..\..\..\..\WPF\UcSidePanel\UcSidePanel\bin\Debug\UcSidePanel.dll</HintPath>
-    </Reference>
-    <Reference Include="UserControls1, Version=1.3.1.1, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\SequencerUI\Resources\Library\UserControls1.dll</HintPath>
     </Reference>
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
@@ -183,12 +180,17 @@
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
     </EmbeddedResource>
-    <None Include="Development\To Do.xlsx" />
+    <None Include="Development\Private\To Do.xlsx" />
     <None Include="My Project\app.manifest" />
     <None Include="My Project\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
     </None>
+    <Resource Include="Development\Version History SQ1.txt" />
+    <Resource Include="Development\Version History Sequencer.txt" />
+    <Content Include="Pattern\FngrBa10.pat">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -223,8 +225,111 @@
     <Resource Include="Resources\Images\PreviousTrack_x22.png" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Resources\Library\UcSidePanel.dll" />
-    <Resource Include="Resources\Library\UcSidePanel.xml" />
+    <Content Include="Pattern\70sRockB.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Pattern\Ba Dream B.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Pattern\Ba Dream B2.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Pattern\Ba Dream D1.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Pattern\Ba Trance G.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Pattern\Bass\Garage2B.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Pattern\Bass\Garage2C.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Pattern\Bass\Garage2D.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Pattern\Bass\Garage2E.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Pattern\Bass\Garage2F.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Pattern\Bass\GtrPop D.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Pattern\Bass\LatinHsG.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Pattern\BgBeat1A.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Pattern\BgBeat1B.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Pattern\BigBeat2.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Pattern\BigBeat3.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Pattern\DrumBa3A.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Pattern\Drum\Garage1.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Pattern\Drum\Garage2B.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Pattern\Drum\Garage2C.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Pattern\Drum\Garage2D.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Pattern\Drum\Garage2E.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Pattern\Drum\Garage2G.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Pattern\FngrBa10.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Pattern\FngrBas1.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Pattern\FngrBas4.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Pattern\GangstaC.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Pattern\HipHop4.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Pattern\MondoRkA.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Pattern\Roll 2.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Pattern\Trance G.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Compositions\01 Track edit.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Compositions\02 Composition 2.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Compositions\03 Gotrack.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Compositions\New Composition.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Resource Include="Resources\Images\Cancel_x16.png" />
     <Resource Include="Resources\Images\Information_x16.png" />
     <Resource Include="Resources\Images\process_stop x16.png" />
@@ -238,8 +343,12 @@
     <Resource Include="Resources\Images\Play_Restart_x22.png" />
     <Resource Include="Resources\Images\Play_Loop_transp_x22.png" />
     <Resource Include="Resources\Images\Play_Restart_transp_x22.png" />
-    <Resource Include="Development\Notes.txt" />
     <Resource Include="Resources\Images\FileDestination_16x.png" />
+    <Resource Include="Resources\Images\reset_sound_x32.png" />
+    <Resource Include="Resources\Images\warning_x32.png" />
+    <Resource Include="Resources\Images\Wrench_Icon_x32.png" />
+    <Content Include="Resources\Library\DailyUserControls.dll" />
+    <Resource Include="Resources\Library\DailyUserControls.xml" />
     <Content Include="Resources\Library\Midi_IO.dll" />
     <Resource Include="Resources\Library\Midi_IO.xml" />
     <Content Include="Resources\Library\Midi_Keyboard.dll" />

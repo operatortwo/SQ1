@@ -3,10 +3,9 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:SequencerUI="clr-namespace:SequencerUI;assembly=SequencerUI"
-        xmlns:SidePanel="clr-namespace:UcSidePanel;assembly=UcSidePanel"
-        xmlns:local="clr-namespace:SQ_1"
-        xmlns:uc1="clr-namespace:UserControls1;assembly=UserControls1"
+        xmlns:SequencerUI="clr-namespace:SequencerUI;assembly=SequencerUI"        
+        xmlns:local="clr-namespace:SQ_1"        
+        xmlns:duc="clr-namespace:DailyUserControls;assembly=DailyUserControls"
         mc:Ignorable="d"
         Title="   SQ 1" Height="580" Width="900" Loaded="Window_Loaded" Closing="Window_Closing">
     <Grid>
@@ -29,7 +28,7 @@
                         </MenuItem.Icon>
                     </MenuItem>
                     <Separator/>
-                    <MenuItem x:Name="Mi_File_Import_MidiFile" Header="Import from Midi File (Test)">
+                    <MenuItem x:Name="Mi_File_Import_MidiFile" Header="Import from Midi File">
                         <MenuItem.Icon>
                             <Image Source="/Resources/Images/FileDestination_16x.png"/>
                         </MenuItem.Icon>
@@ -58,31 +57,43 @@
             </Menu>
             <ToolBarTray Height="29" VerticalAlignment="Top" DockPanel.Dock="Top" Background="#FFF3F5F7">
                 <ToolBar  VerticalAlignment="Top"  Margin="0" TabIndex="200" KeyboardNavigation.TabNavigation="Continue" Height="31">
-                    <uc1:ImageButton2 x:Name="btnKeyboard" Width="26" Height="26" Image="/Resources/Images/Keyboard_x32.png" Margin="0" Background="{x:Null}" ImageMargin="0" ToolTip="Keyboard" IsTabStop="True" TabIndex="10" Text="" IsEnabled="False"/>
-                    <uc1:ImageButton2 x:Name="btnRestart" Width="26" Height="26" Image="/Resources/Images/PreviousTrack_x22.png" Margin="0" Background="{x:Null}" ImageMargin="0" ToolTip="Return To Zero" IsTabStop="True" TabIndex="12" Text=""/>
-                    <uc1:ImageButton2 x:Name="btnStop" Width="26" Height="26" Image="/Resources/Images/Stop_x22.png" Margin="1,0,0,0" ButtonPressedBackground="#FFFAFF9A" ImageMargin="0" ToolTip="Stop" IsTabStop="True" TabIndex="30" Background="#FFE6E6E6"/>
-                    <uc1:ImageButton2 x:Name="btnPlay" Width="26" Height="26" Margin="1,0,0,0" ImageMargin="0" ToolTip="Play" IsTabStop="True" TabIndex="40" Image="/Resources/Images/Play_x22.png" Background="#FFE8E8E8"/>
-                    <uc1:ImageButton2 x:Name="btnRemoteControl" Width="26" Height="26" Margin="1,0,0,0" Image="/Resources/Images/Control_x22.png" ImageMargin="0,0,0,0" Background="#FFE6E6E6" IsTabStop="True" TabIndex="50" ToolTip="Remote Control" Focusable="True"/>
+                    <duc:ImageButton x:Name="btnKeyboard" Width="26" Height="26" Image="/Resources/Images/Keyboard_x32.png" Margin="0" Background="{x:Null}" ImageMargin="0" ToolTip="Keyboard" IsTabStop="True" TabIndex="10" Text="" IsEnabled="False"/>
+                    <duc:ImageButton x:Name="btnRestart" Width="26" Height="26" Image="/Resources/Images/PreviousTrack_x22.png" Margin="0" Background="{x:Null}" ImageMargin="0" ToolTip="Return To Zero" IsTabStop="True" TabIndex="12" Text=""/>
+                    <duc:ImageButton x:Name="btnStop" Width="26" Height="26" Image="/Resources/Images/Stop_x22.png" Margin="1,0,0,0" ButtonPressedBackground="#FFFAFF9A" ImageMargin="0" ToolTip="Stop" IsTabStop="True" TabIndex="30" Background="#FFE6E6E6"/>
+                    <duc:ImageButton x:Name="btnPlay" Width="26" Height="26" Margin="1,0,0,0" ImageMargin="0" ToolTip="Play" IsTabStop="True" TabIndex="40" Image="/Resources/Images/Play_x22.png" Background="#FFE8E8E8"/>
+                    <duc:ImageButton x:Name="btnRemoteControl" Width="26" Height="26" Margin="1,0,0,0" Image="/Resources/Images/Control_x22.png" ImageMargin="0,0,0,0" Background="#FFE6E6E6" IsTabStop="True" TabIndex="50" ToolTip="Remote Control" Focusable="True"/>
                     <Label Content="Position:" Height="26" VerticalAlignment="Top" />
                     <Label x:Name="lblSequencerPosition" Height="26" Width="100" TabIndex="50"/>
-                    <uc1:ToggleButton Name="tgbtnLoopMode" Height="24" Text="" Margin="1,1,0,0" ClickMode="Press" ImageUnchecked="/Resources/Images/Play_Loop_transp_x22.png" TextUnchecked="" TextChecked="" ImageChecked="/Resources/Images/Play_Loop_transp_x22.png" Width="24" VerticalAlignment="Top" HorizontalAlignment="Left" BackgroundChecked="#FF75CE75" ToolTip="Loop Mode" TabIndex="60" IsTabStop="True"/>
-                    <uc1:ToggleButton Name="tgbtnRestartAtEnd" Height="24" Width="24" Margin="2,1,0,0" TextChecked="" TextUnchecked="" ImageChecked="/Resources/Images/Play_Restart_transp_x22.png" ImageUnchecked="/Resources/Images/Play_Restart_transp_x22.png" ClickMode="Press" Focusable="True" BackgroundChecked="#FF75CE75" ToolTip="Restart at end" TabIndex="70" IsTabStop="True"/>
+                    <duc:ToggleButton Name="tgbtnLoopMode" Height="24" Text="" Margin="1,1,0,0" ClickMode="Press" ImageUnchecked="/Resources/Images/Play_Loop_transp_x22.png" TextUnchecked="" TextChecked="" ImageChecked="/Resources/Images/Play_Loop_transp_x22.png" Width="24" VerticalAlignment="Top" HorizontalAlignment="Left" BackgroundChecked="#FF75CE75" ToolTip="Loop Mode" TabIndex="60" IsTabStop="True"/>
+                    <duc:ToggleButton Name="tgbtnRestartAtEnd" Height="24" Width="24" Margin="2,1,0,0" TextChecked="" TextUnchecked="" ImageChecked="/Resources/Images/Play_Restart_transp_x22.png" ImageUnchecked="/Resources/Images/Play_Restart_transp_x22.png" ClickMode="Press" Focusable="True" BackgroundChecked="#FF75CE75" ToolTip="Restart at end" TabIndex="70" IsTabStop="True"/>
                     <Label Content="BPM:" Height="26" VerticalAlignment="Top" />
-                    <uc1:SmallSlider x:Name="BpmSlider" Margin="0" Height="23" MinimumValue="10" MaximumValue="300" Value="120" Width="120" SliderBrush="#FF00B400" TabIndex="80"/>
+                    <duc:SmallSlider x:Name="BpmSlider" Margin="0" Height="23" MinimumValue="10" MaximumValue="300" Value="120" Width="120" SliderBrush="#FF00B400" TabIndex="80"/>
                     <Label Content="Volume:" Height="26" Margin="5,0,0,0" VerticalAlignment="Top"/>
-                    <uc1:SmallSlider x:Name="MainVolumeSlider" Height="23" Width="100" MaximumValue="127" Value="127" SliderBrush="#FF2F2FFD" ValueChanged="MainVolumeSlider_ValueChanged" Margin="0" TabIndex="85"/>
+                    <duc:SmallSlider x:Name="MainVolumeSlider" Height="23" Width="100" MaximumValue="127" Value="127" SliderBrush="#FF2F2FFD" ValueChanged="MainVolumeSlider_ValueChanged" Margin="0" TabIndex="85"/>
+                    <Menu Margin="10,0,0,0">
+                        <MenuItem Header="Sound Control" Margin="0,0,0,0">
+                            <MenuItem.Icon>
+                                <Image Source="/Resources/Images/Wrench_Icon_x32.png" Width="20"/>
+                            </MenuItem.Icon>
+                            <MenuItem x:Name="MiSoundReset" Header="All Notes Off, All Sound Off, Reset all Controllers" ToolTip="This function should not be used frequently but only in the case of hanging notes or when the output sounds strange.">
+                                <MenuItem.Icon>
+                                    <Image Source="/Resources/Images/warning_x32.png" Stretch="Fill" Height="16" Width="16"/>
+                                </MenuItem.Icon>
+                            </MenuItem>
+                        </MenuItem>
+                    </Menu>
                 </ToolBar>
             </ToolBarTray>
 
             <TabControl x:Name="TabControl1">
                 <TabItem x:Name="tiSequencer" Header="Composition">
                     <Grid>
-                        <SidePanel:SidePanel x:Name="SidePanel1" Margin="1,2,0,1" Background="#FF4F6FA6">
-                            <SidePanel:SidePanelButton Content="Composition" Margin="5,0,0,0" Padding="10,0,10,0" BackgroundActive="#FFFBE187" AssociatedWindow="{Binding WindowComposition, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:MainWindow}}}"/>
-                            <SidePanel:SidePanelButton Content="Pattern Store" Margin="5,0,0,0" Padding="10,0,10,0" BackgroundActive="#FFFBE187" AssociatedWindow="{Binding WindowPatternStore, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:MainWindow}}}"/>
-                            <SidePanel:SidePanelButton Content="Sections" Margin="5,0,0,0" Padding="10,0,10,0" BackgroundActive="#FFFBE187" AssociatedWindow="{Binding WindowSections, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:MainWindow}}}"/>
-                            <SidePanel:SidePanelButton Content="Arrange" Margin="5,0,0,0" Padding="10,0,10,0" BackgroundActive="#FFFBE187" AssociatedWindow="{Binding WindowArrange, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:MainWindow}}}"/>
-                        </SidePanel:SidePanel>
+                        <duc:SidePanel x:Name="SidePanel1" Margin="1,2,0,1" Background="#FF4F6FA6">
+                            <duc:SidePanelButton Content="Composition" Margin="5,0,0,0" Padding="10,0,10,0" BackgroundActive="#FFFBE187" AssociatedWindow="{Binding WindowComposition, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:MainWindow}}}"/>
+                            <duc:SidePanelButton Content="Pattern Store" Margin="5,0,0,0" Padding="10,0,10,0" BackgroundActive="#FFFBE187" AssociatedWindow="{Binding WindowPatternStore, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:MainWindow}}}"/>
+                            <duc:SidePanelButton Content="Sections" Margin="5,0,0,0" Padding="10,0,10,0" BackgroundActive="#FFFBE187" AssociatedWindow="{Binding WindowSections, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:MainWindow}}}"/>
+                            <duc:SidePanelButton Content="Arrange" Margin="5,0,0,0" Padding="10,0,10,0" BackgroundActive="#FFFBE187" AssociatedWindow="{Binding WindowArrange, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:MainWindow}}}"/>
+                        </duc:SidePanel>
                         <SequencerUI:SequencerPanel x:Name="CompositionPanel" Margin="38,7,10,10"/>
                     </Grid>
                 </TabItem>
@@ -108,12 +119,12 @@
                         <Label Content="Midi Channel" HorizontalAlignment="Left" Margin="10,0,0,133" VerticalAlignment="Bottom"/>
                         <Label Content="Transpose" HorizontalAlignment="Left" Margin="18,0,0,102" VerticalAlignment="Bottom"/>
                         <Label Content="Voice num." HorizontalAlignment="Left" Margin="10,0,0,68" VerticalAlignment="Bottom"/>
-                        <uc1:NumericUpDown x:Name="nudVc0MidiChannel" Margin="93,0,0,136" Width="52" Height="22" MaximumValue="15" VerticalAlignment="Bottom" Value="9"/>
-                        <uc1:NumericUpDown x:Name="nudVc0Transpose" Margin="93,0,0,102" Width="52" Height="22" MaximumValue="40" MinimumValue="-40" VerticalAlignment="Bottom"/>
-                        <uc1:NumericUpDown x:Name="nudVc0VoiceNum" Margin="93,0,0,68" Width="52" Height="22" MaximumValue="127" VerticalAlignment="Bottom"/>
+                        <duc:NumericUpDown x:Name="nudVc0MidiChannel" Margin="93,0,0,136" Width="52" Height="22" MaximumValue="15" VerticalAlignment="Bottom" Value="9"/>
+                        <duc:NumericUpDown x:Name="nudVc0Transpose" Margin="93,0,0,102" Width="52" Height="22" MaximumValue="40" MinimumValue="-40" VerticalAlignment="Bottom"/>
+                        <duc:NumericUpDown x:Name="nudVc0VoiceNum" Margin="93,0,0,68" Width="52" Height="22" MaximumValue="127" VerticalAlignment="Bottom"/>
                         <Label x:Name="lblAuTestVoiceName" Content="xx" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="160,0,0,64" Width="130"/>
                         <Button x:Name="btnSetVc0" Content="Set Vc 0" HorizontalAlignment="Left" Margin="18,0,0,33" VerticalAlignment="Bottom" Width="75"/>
-                        <uc1:ImageButton2 x:Name="btnKeyboard2" Width="26" Height="26" Image="/Resources/Images/Keyboard_x32.png" Margin="160,0,0,98" Background="{x:Null}" ImageMargin="0" ToolTip="Keyboard" IsTabStop="True" TabIndex="10" Text="" VerticalAlignment="Bottom"/>
+                        <duc:ImageButton x:Name="btnKeyboard2" Width="26" Height="26" Image="/Resources/Images/Keyboard_x32.png" Margin="160,0,0,98" Background="{x:Null}" ImageMargin="0" ToolTip="Keyboard" IsTabStop="True" TabIndex="10" Text="" VerticalAlignment="Bottom"/>
                         <Label Content="9=Drums" HorizontalAlignment="Left" Margin="153,0,0,134" VerticalAlignment="Bottom"/>
                         <Button x:Name="btnTestTimedEvent" Content="TimedEvent" HorizontalAlignment="Left" Margin="160,63,0,0" VerticalAlignment="Top" Width="75"/>
                         <GroupBox Header="Audition PatternStore" HorizontalAlignment="Left" Margin="285,20,0,243" Width="335">

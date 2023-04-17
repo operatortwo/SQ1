@@ -3,8 +3,8 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:SequencerUITools"
-        xmlns:uc1="clr-namespace:UserControls1;assembly=UserControls1"
+        xmlns:local="clr-namespace:SequencerUITools"        
+        xmlns:duc="clr-namespace:DailyUserControls;assembly=DailyUserControls"
         mc:Ignorable="d"
         Title="Midi-File Import 1" Height="450" Width="800" Loaded="Window_Loaded" Closing="Window_Closing" WindowStyle="ToolWindow" KeyDown="Window_KeyDown">
     <Window.Resources>
@@ -25,9 +25,10 @@
         <DockPanel>
             <Grid Height="90" VerticalAlignment="Top" DockPanel.Dock="Top">
                 <TextBlock Text="This is a first test for Midi-File import. " FontSize="14" FontStyle="Italic" Margin="501,10,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Background="#FFFFF1FF"/>
-                <uc1:ImageButton2 x:Name="btnLoad" Margin="20,35,0,0" Text="Load" Image="/SequencerUITools;component/Resources/Images/Load_x16.png" HorizontalAlignment="Left" VerticalAlignment="Top" Height="27" Width="90" Background="#FFEDF2FD" BorderThickness="1,1,1,1" BorderBrush="#FF7798FF"/>
-                <uc1:ImageButton2 x:Name="btnImport" Margin="180,35,0,0" Text="Import" Image="/SequencerUITools;component/Resources/Images/OK_x32.png" HorizontalAlignment="Left" VerticalAlignment="Top" Width="90" Height="27" BorderThickness="1,1,1,1" BorderBrush="#FF7798FF" Background="#FFEDF2FD" IsEnabled="False"/>
-                <uc1:ImageButton2 x:Name="btnCancel" Margin="340,35,0,0" Text="Cancel" Image="/SequencerUITools;component/Resources/Images/Cancel_x16.png" BorderBrush="#FF7798FF" BorderThickness="1,1,1,1" Background="#FFEDF2FD" Height="27" Width="90" />
+                <duc:ImageButton x:Name="btnLoad" Margin="20,20,0,0" Text="Load" Image="/SequencerUITools;component/Resources/Images/Load_x16.png" HorizontalAlignment="Left" VerticalAlignment="Top" Height="27" Width="90" Background="#FFEDF2FD" BorderThickness="1,1,1,1" BorderBrush="#FF7798FF"/>
+                <duc:ImageButton x:Name="btnSplit" Margin="135,20,0,0" Text="Split" HorizontalAlignment="Left" VerticalAlignment="Top" Height="27" Width="90" Background="#FFEDF2FD" BorderThickness="1,1,1,1" BorderBrush="#FF7798FF" Image="/SequencerUITools;component/Resources/Images/Split_x32.png" IsEnabled="False" ToolTip="Split multichannel tracks to singlechannel tracks"/>
+                <duc:ImageButton x:Name="btnImport" Margin="255,20,0,0" Text="Import" Image="/SequencerUITools;component/Resources/Images/OK_x32.png" HorizontalAlignment="Left" VerticalAlignment="Top" Width="90" Height="27" BorderThickness="1,1,1,1" BorderBrush="#FF7798FF" Background="#FFEDF2FD" IsEnabled="False"/>
+                <duc:ImageButton x:Name="btnCancel" Margin="385,20,0,0" Text="Cancel" Image="/SequencerUITools;component/Resources/Images/Cancel_x16.png" BorderBrush="#FF7798FF" BorderThickness="1,1,1,1" Background="#FFEDF2FD" Height="27" Width="90" />
             </Grid>
             <Grid  Background="#FFF3FAFF">
                 <TextBox x:Name="tbFullname" Margin="38,10,20,0" TextWrapping="Wrap" Text="Fullname" VerticalAlignment="Top" IsReadOnly="True"/>
@@ -36,7 +37,7 @@
                 <Label Width="20" Height="20" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,8,0,0" BorderBrush="#FFC3C3C3" BorderThickness="1,1,1,1"/>
                 <Image x:Name="imgLoadOk" Source="/SequencerUITools;component/Resources/Images/OK_x32.png" Width="20" Height="20" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,8,0,0" Visibility="Hidden"/>
                 <Image x:Name="imgLoadFail" Source="/SequencerUITools;component/Resources/Images/process_stop_x32.png" Width="20" Height="20" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,8,0,0" Visibility="Hidden"/>
-                <DataGrid x:Name="dgvTracklist" Margin="10,72,100,10" ItemsSource="{Binding}" DataContext="{Binding TrackList, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:MidiImport1}}}" CanUserAddRows="False" CanUserDeleteRows="False" CanUserResizeRows="False" SelectionMode="Single" SelectionUnit="Cell" AutoGenerateColumns="False" ColumnHeaderStyle="{DynamicResource HeaderCenterAlign}">
+                <DataGrid x:Name="dgvTracklist" Margin="10,72,100,10" ItemsSource="{Binding}" DataContext="{Binding TrackTable, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:MidiImport1}}}" CanUserAddRows="False" CanUserDeleteRows="False" CanUserResizeRows="False" SelectionMode="Single" SelectionUnit="Cell" AutoGenerateColumns="False" ColumnHeaderStyle="{DynamicResource HeaderCenterAlign}">
                     <DataGrid.Columns>
                         <DataGridTextColumn Binding="{Binding TrackNumber}" IsReadOnly="True" CellStyle="{StaticResource DgCellRightAlign}">
                             <DataGridTextColumn.Header>

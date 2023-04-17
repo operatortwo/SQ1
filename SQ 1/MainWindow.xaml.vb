@@ -218,6 +218,31 @@ Class MainWindow
         End If
     End Sub
 
+    Private Sub MiSoundReset_Click(sender As Object, e As RoutedEventArgs) Handles MiSoundReset.Click
+        ' Emergency in case of hanging notes, inappropriate controller settings,..
+
+        ' All Notes Off, All Sound Off, Reset All Controllers --> Port 0
+        Dim stat As Byte
+
+        '-- all notes off 123 (7B)
+        For i = 0 To &HF
+            stat = CByte(i Or &HB0)
+            MidiOutShortMsg(0, stat, &H7B, 0)           ' All Notes Off (Bx, 7B, 0)            
+        Next
+
+        '-- all sound off 120 (78h)
+        For i = 0 To &HF
+            stat = CByte(i Or &HB0)
+            MidiOutShortMsg(0, stat, &H78, 0)           ' All Notes Off (Bx, 78, 0)            
+        Next
+
+        '-- reset all controllers 121 (79h)
+        For i = 0 To &HF
+            stat = CByte(i Or &HB0)
+            MidiOutShortMsg(0, stat, &H79, 0)           ' All Notes Off (Bx, 79, 0)            
+        Next
+    End Sub
+
     Private Sub CompositionEndReached() Handles Sequencer.Play_Sequence_EndReached
         'If Me.Dispatcher.CheckAccess Then
         'ScreenRefresh()
@@ -575,7 +600,6 @@ Class MainWindow
         dlg.WindowStartupLocation = WindowStartupLocation.CenterOwner
         If dlg.ShowDialog() = True Then
 
-
             If SequencerBase.CurrentCompositionFileName <> "" Then
                 SaveCompositionIfChanged()
             End If
@@ -588,6 +612,7 @@ Class MainWindow
             Set_LoopRestartState()
             ShowCurrentCompsitionName()
 
+            CompositionPanel.CollapseAllVoicePanels()
 
             CurrentCompositionFileName = ""
 
@@ -728,6 +753,10 @@ Class MainWindow
             CompositionPanel.RedrawAllTracks()
         End If
     End Sub
+
+
+
+
 
 
 

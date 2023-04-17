@@ -3,8 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:SequencerUI"
-             xmlns:uc1="clr-namespace:UserControls1;assembly=UserControls1"
+             xmlns:local="clr-namespace:SequencerUI"             
+             xmlns:duc="clr-namespace:DailyUserControls;assembly=DailyUserControls"
              mc:Ignorable="d" 
               d:DesignWidth="300" MaxHeight="600" MinHeight="30" VerticalAlignment="Top" Height="90">
     <Grid Margin="0,2,0,0">
@@ -17,7 +17,7 @@
                 <DockPanel x:Name="TrackRowHeader" >
                     <Grid x:Name="NoteIndexColumn" Width="30" DockPanel.Dock="Right" Background="#FFDBDFEC" Visibility="Collapsed"/>
                     <WrapPanel HorizontalAlignment="Left">
-                        <uc1:ToggleButton Text="Mute" VerticalAlignment="Top"  Margin="0,0,4,2" HorizontalContentAlignment="Center" BackgroundChecked="#FF9CEDFF" Height="Auto" BorderBrush="#FF969697" Width="32" ClickMode="Press" TextChecked="Mute" TextUnchecked="Mute" IsEnabled="False"/>
+                        <duc:ToggleButton Text="Mute" VerticalAlignment="Top"  Margin="0,0,4,2" HorizontalContentAlignment="Center" BackgroundChecked="#FF9CEDFF" Height="Auto" BorderBrush="#FF969697" Width="32" ClickMode="Press" TextChecked="Mute" TextUnchecked="Mute" IsEnabled="False"/>
                         <TextBox x:Name="tbTrackTitle" Text="Track Title" Width="70" HorizontalAlignment="Left" VerticalAlignment="Top" Height="20" VerticalContentAlignment="Center" Margin="0,0,4,2" MaxLength="32"/>
                         <Button x:Name="btnTrackViewType" Content=" View " Margin="0,0,4,2" ToolTip="Set TrackView Options"/>
                         <RepeatButton x:Name="btnTrackScaleYPlus" Margin="0,0,4,2" ToolTip="Zoom Y Plus" Width="20">

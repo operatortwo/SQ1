@@ -3,8 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:SequencerUI"
-             xmlns:uc1="clr-namespace:UserControls1;assembly=UserControls1"
+             xmlns:local="clr-namespace:SequencerUI"             
+             xmlns:duc="clr-namespace:DailyUserControls;assembly=DailyUserControls"
              mc:Ignorable="d" 
              d:DesignHeight="400" d:DesignWidth="700">
     <Grid>
@@ -21,8 +21,8 @@
             </Grid.ColumnDefinitions>
             <Grid Background="#FFD4D5FF" Margin="0,0,4,0">
                 <TextBlock HorizontalAlignment="Left" Margin="30,5,0,0" TextWrapping="NoWrap" Text="Voices" VerticalAlignment="Top" FontSize="20" FontWeight="Light" Foreground="#FF120090" FontStyle="Normal"/>
-                <uc1:ToggleButton x:Name="btnCollapseExpandAll" Margin="2,37,0,0" TextChecked="" TextUnchecked="" HorizontalAlignment="Left" Width="20" VerticalAlignment="Top" ClickMode="Press" ImageChecked="/SequencerUI;component/Resources/Images/ChevronDownGroup_24x.png" ImageUnchecked="/SequencerUI;component/Resources/Images/ChevronUpGroup_24x.png" Height="20" BackgroundChecked="{x:Null}" BackgroundUnchecked="{x:Null}" Background="White" />
-                <uc1:ToggleButton x:Name="btnMuteUnMuteAll" Width="30" Height="20" Margin="30,37,0,0" TextChecked="M" TextUnchecked="M" BorderBrush="#FF969697" BackgroundChecked="#FF9CEDFF"/>
+                <duc:ToggleButton x:Name="btnCollapseExpandAll" Margin="2,37,0,0" TextChecked="" TextUnchecked="" HorizontalAlignment="Left" Width="20" VerticalAlignment="Top" ClickMode="Press" ImageChecked="/SequencerUI;component/Resources/Images/ChevronDownGroup_24x.png" ImageUnchecked="/SequencerUI;component/Resources/Images/ChevronUpGroup_24x.png" Height="20" BackgroundChecked="{x:Null}" BackgroundUnchecked="{x:Null}" Background="White" />
+                <duc:ToggleButton x:Name="btnMuteUnMuteAll" Width="30" Height="20" Margin="30,37,0,0" TextChecked="M" TextUnchecked="M" BorderBrush="#FF969697" BackgroundChecked="#FF9CEDFF"/>
                 <Button x:Name="btnAddVoice" Content="Add Voice" HorizontalAlignment="Left" Margin="172,0,0,5" VerticalAlignment="Bottom" Width="80"/>
             </Grid>
             <ScrollViewer x:Name="VoicePanelStackScroll" Grid.Row="1" VerticalScrollBarVisibility="Auto" Focusable="False">

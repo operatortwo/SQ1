@@ -3,8 +3,8 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:SequencerUI"
-        xmlns:uc1="clr-namespace:UserControls1;assembly=UserControls1"
+        xmlns:local="clr-namespace:SequencerUI"        
+        xmlns:duc="clr-namespace:DailyUserControls;assembly=DailyUserControls"
         mc:Ignorable="d"
         Title="Composition" Height="420" Width="300" WindowStyle="ToolWindow" Loaded="Window_Loaded" Closing="Window_Closing" HorizontalAlignment="Left" VerticalAlignment="Top" >
     <Grid >
@@ -13,7 +13,7 @@
         <Label Content="Composition Name:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="26" Width="117"/>
         <Label Content="Comments:" HorizontalAlignment="Left" Margin="10,70,0,0" VerticalAlignment="Top" Height="26" Width="70"/>
         <Label Content="Tempo:" HorizontalAlignment="Left" Margin="11,164,0,0" VerticalAlignment="Top" Height="26" Width="48"/>
-        <uc1:NumericUpDown x:Name="nudTempo" Height="22" Width="64" HorizontalAlignment="Left" VerticalAlignment="Top" MinimumValue="30" MaximumValue="298" Margin="120,166,0,0" ValueChanged="nudTempo_ValueChanged"/>
+        <duc:NumericUpDown x:Name="nudTempo" Height="22" Width="64" HorizontalAlignment="Left" VerticalAlignment="Top" MinimumValue="30" MaximumValue="298" Margin="120,166,0,0" ValueChanged="nudTempo_ValueChanged"/>
         <Label Content="Time Signature:" HorizontalAlignment="Left" Margin="11,195,0,0" VerticalAlignment="Top" Height="26" Width="92"/>
         <Label Content="TPQ (TicksPerQuaterNote) =" HorizontalAlignment="Left" Margin="11,337,0,0" VerticalAlignment="Top" Height="26" Width="166"/>
         <Label Content="Length:" HorizontalAlignment="Left" Margin="11,226,0,0" VerticalAlignment="Top" Height="26" Width="48"/>
