@@ -65,6 +65,15 @@ Class MainWindow
         ScreenRefreshTimer.Start()
         Sequencer.Start_Timer()
 
+        '--- add pattern examples for DirectPlay
+
+        Sequencer.DPlay.PatternStore.Add(Pattern1.Copy)
+        Sequencer.DPlay.PatternStore.Add(Pattern2.Copy)
+
+        'For Each pattern In Sequencer.DPlay.PatternStore
+        '    lbDpPatternStore.Items.Add(pattern.Label)
+        'Next
+
         '---
 
         'CompositionPanel.UpdateScaleX()                 ' initialize first
@@ -218,30 +227,6 @@ Class MainWindow
         End If
     End Sub
 
-    Private Sub MiSoundReset_Click(sender As Object, e As RoutedEventArgs) Handles MiSoundReset.Click
-        ' Emergency in case of hanging notes, inappropriate controller settings,..
-
-        ' All Notes Off, All Sound Off, Reset All Controllers --> Port 0
-        Dim stat As Byte
-
-        '-- all notes off 123 (7B)
-        For i = 0 To &HF
-            stat = CByte(i Or &HB0)
-            MidiOutShortMsg(0, stat, &H7B, 0)           ' All Notes Off (Bx, 7B, 0)            
-        Next
-
-        '-- all sound off 120 (78h)
-        For i = 0 To &HF
-            stat = CByte(i Or &HB0)
-            MidiOutShortMsg(0, stat, &H78, 0)           ' All Notes Off (Bx, 78, 0)            
-        Next
-
-        '-- reset all controllers 121 (79h)
-        For i = 0 To &HF
-            stat = CByte(i Or &HB0)
-            MidiOutShortMsg(0, stat, &H79, 0)           ' All Notes Off (Bx, 79, 0)            
-        Next
-    End Sub
 
     Private Sub CompositionEndReached() Handles Sequencer.Play_Sequence_EndReached
         'If Me.Dispatcher.CheckAccess Then
@@ -313,14 +298,14 @@ Class MainWindow
         Dim time As Long = CLng(Sequencer.SequencerTime)
         lblSequencerPosition.Content = TimeTo_MBT(time)
 
-        'lblAuditionTime.Content = Sequencer.AuditionTime
-        lblAuditionTime.Content = TimeTo_MBT(CLng(Sequencer.AuditionTime))
-
-
         If Sequencer.BPM <> BpmSlider.Value Then
             BpmSlider.Value = Sequencer.BPM
         End If
 
+        '--- Audition Tab ---
+
+        'lblAuditionTime.Content = Sequencer.AuditionTime
+        lblAuditionTime.Content = TimeTo_MBT(CLng(Sequencer.AuditionTime))
 
         If Sequencer.PlayAuditionErrors > 0 Then
             Status_AuditionErrorCount.Text = CStr(Sequencer.PlayAuditionErrors)
@@ -340,6 +325,29 @@ Class MainWindow
 
         Status_NumberOfTimedEvents.Text = CStr(Sequencer.TimedEvents.Count)
 
+        '--- DirectPlay Tab ---
+
+        If tiDirectPlay.IsSelected Then
+            If Sequencer.DirectPlayIsOn = True Then
+                lblDirectPlayTime.Content = TimeTo_MBT(CLng(Sequencer.DirectPlayTime))
+            End If
+        End If
+
+
+
+        If Sequencer.DirectPlayErrors > 0 Then
+            Status_DirectPlayErrorCount.Text = CStr(Sequencer.DirectPlayErrors)
+        End If
+
+        'Sequencer.DPlay.Voices(0).MidiChannel = 0
+        'Sequencer.DPlay.Voices(0).Queues.Item(0).Dequeue()
+
+        '--- debug Tab
+
+        lblMidiOutShortMsg_Count.Content = MidiOutShortMsg_Counter
+
+        '--- debug window ---
+
         If DebugWindow1 IsNot Nothing Then
             If DebugWindow1.IsLoaded Then
                 If DebugWindow1.WindowState <> WindowState.Minimized Then
@@ -349,11 +357,6 @@ Class MainWindow
                 End If
             End If
         End If
-
-        '--- debug Tab
-
-        lblMidiOutShortMsg_Count.Content = MidiOutShortMsg_Counter
-
 
     End Sub
 
@@ -542,6 +545,8 @@ Class MainWindow
 
     End Sub
 
+
+#Region "Menu Items"
     Private Sub Mi_MidiPorts_Click(sender As Object, e As RoutedEventArgs) Handles Mi_MidiPorts.Click
         Dim dlg As New DlgMidiPorts(Me)
         dlg.Owner = Me
@@ -564,7 +569,6 @@ Class MainWindow
         Set_LoopRestartState()
 
     End Sub
-
 
     Private Sub Mi_File_Load_Composition_Click(sender As Object, e As RoutedEventArgs) Handles Mi_File_Load_Composition.Click
         If SequencerBase.CurrentCompositionFileName <> "" Then
@@ -618,9 +622,41 @@ Class MainWindow
 
         End If
 
-
     End Sub
 
+    Private Sub Mi_About_Click(sender As Object, e As RoutedEventArgs) Handles Mi_About.Click
+        Dim win As New AboutWin
+        win.Owner = Me
+        win.ShowDialog()
+    End Sub
+
+    Private Sub MiSoundReset_Click(sender As Object, e As RoutedEventArgs) Handles MiSoundReset.Click
+        ' Emergency in case of hanging notes, inappropriate controller settings,..
+
+        ' All Notes Off, All Sound Off, Reset All Controllers --> Port 0
+        Dim stat As Byte
+
+        '-- all notes off 123 (7B)
+        For i = 0 To &HF
+            stat = CByte(i Or &HB0)
+            MidiOutShortMsg(0, stat, &H7B, 0)           ' All Notes Off (Bx, 7B, 0)            
+        Next
+
+        '-- all sound off 120 (78h)
+        For i = 0 To &HF
+            stat = CByte(i Or &HB0)
+            MidiOutShortMsg(0, stat, &H78, 0)           ' All Notes Off (Bx, 78, 0)            
+        Next
+
+        '-- reset all controllers 121 (79h)
+        For i = 0 To &HF
+            stat = CByte(i Or &HB0)
+            MidiOutShortMsg(0, stat, &H79, 0)           ' All Notes Off (Bx, 79, 0)            
+        Next
+    End Sub
+
+
+#End Region
 
     Private Sub btnKeyboard2_Click(sender As Object, e As RoutedEventArgs) Handles btnKeyboard2.Click
         Mkbd.show("Transpose")
@@ -702,13 +738,77 @@ Class MainWindow
 
 #End Region
 
-    Private Sub Mi_About_Click(sender As Object, e As RoutedEventArgs) Handles Mi_About.Click
-        Dim win As New AboutWin
-        win.Owner = Me
-        win.ShowDialog()
+
+#Region "DirectPlay tab"
+    Private Sub lbDpPatternStore_MouseDoubleClick(sender As Object, e As MouseButtonEventArgs) Handles lbDpPatternStore.MouseDoubleClick
+
     End Sub
 
+    Private Sub btnLoadToDpPatternStore_Click(sender As Object, e As RoutedEventArgs) Handles btnLoadToDpPatternStore.Click
+        Dim patx As New SequencerBase.PatternX
+        Dim pat As SequencerBase.Pattern
+        If SequencerBase.LoadPatternFromXML(patx) = True Then
+            pat = patx.ToPattern
+            Sequencer.DPlay.PatternStore.Add(pat)
+            'lbDpPatternStore.Items.Add(pat.Label)           ' xxx Label only                        
+        End If
+    End Sub
 
+    Private Sub btnRemoveFromDpPatternStore_Click(sender As Object, e As RoutedEventArgs) Handles btnRemoveFromDpPatternStore.Click
+
+    End Sub
+
+    Private Sub lbDpPatternStore_MouseMove(sender As Object, e As MouseEventArgs) Handles lbDpPatternStore.MouseMove
+        If e.LeftButton = MouseButtonState.Pressed Then
+            Dim listbox = TryCast(sender, ListBox)
+            If listbox IsNot Nothing Then
+                If listbox.SelectedItem IsNot Nothing Then
+                    'Dim dataFormat As String = "Pattern"
+                    'dataObject.SetData(DataFormat, listbox.SelectedItem)            ' format as string
+                    Dim dataObject As New DataObject
+                    dataObject.SetData(GetType(Pattern), listbox.SelectedItem)     ' format as type
+                    DragDrop.DoDragDrop(listbox, dataObject, DragDropEffects.Copy)
+                End If
+            End If
+        End If
+
+    End Sub
+
+    Private Sub tblkV0Q0_DragOver(sender As Object, e As DragEventArgs) Handles tblkV0Q0.DragOver
+        If e.Data.GetDataPresent(GetType(Pattern)) Then
+            e.Effects = DragDropEffects.Copy
+        Else
+            e.Effects = DragDropEffects.None
+        End If
+    End Sub
+
+    Private Sub tblkV0Q0_Drop(sender As Object, e As DragEventArgs) Handles tblkV0Q0.Drop
+        If e.Data.GetDataPresent(GetType(Pattern)) Then
+            Dim pattern As Pattern = CType(e.Data.GetData(GetType(Pattern)), Pattern)
+            If pattern IsNot Nothing Then
+                Sequencer.DPlay.PlayPattern(0, 0, pattern, 960)
+            End If
+        End If
+    End Sub
+
+    Private Sub tblkV1Q0_DragOver(sender As Object, e As DragEventArgs) Handles tblkV1Q0.DragOver
+        If e.Data.GetDataPresent(GetType(Pattern)) Then
+            e.Effects = DragDropEffects.Copy
+        Else
+            e.Effects = DragDropEffects.None
+        End If
+    End Sub
+
+    Private Sub tblkV1Q0_Drop(sender As Object, e As DragEventArgs) Handles tblkV1Q0.Drop
+        If e.Data.GetDataPresent(GetType(Pattern)) Then
+            Dim pattern As Pattern = CType(e.Data.GetData(GetType(Pattern)), Pattern)
+            If pattern IsNot Nothing Then
+                Sequencer.DPlay.PlayPattern(1, 0, pattern, 960)
+            End If
+        End If
+    End Sub
+
+#End Region
 
 #Region "Debug tab"
     Private Sub ShowCurrentCompsitionName()

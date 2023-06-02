@@ -52,22 +52,26 @@ One reason is that I started with some ideas but without an exact plan or diagra
  Soon after the start i had to make some decisions. Whether they were good or not so good, the future will tell.
  - Choosing a value for the TPQ (Ticks per quarter note) constant. It is now a a quite high value of 960. Maybe it would also work with 480, but it doesn't really matter. If you consider that a typical sequence will rarely last longer than 10 minutes and the maximum duration that can be reached with a time field of type UInteger at BPM 120 is over 20 days, there should be enough reserve.
  - After a few tests with saving and loading files, I decided to use the .xml format and not a binary format. Xml seems to be a bit more tolerant of small changes in the data structure, and it also offers better possibilities for checking and debugging. A small disadvantage is the file size, but this can be reduced by about 90 percent in later versions using compression.
- - Then I tried to write a structure for the sequencer data, called **Composition**. That was good so far, but over time I realized that that in addition to the sequential output of notes and patterns, it will also be necessary to output individual elements directly.
- Therefore, an **Audition** time base is kept parallel to the **Composition** time base.
+ - Then I tried to write a structure for the sequencer data, called **Composition**. That was good so far, but over time I realized that in addition to a fixed song structure, a temporary structure would also be useful.
+ So I created a new property **Audition** with the same structure as Composition.
+ After some more testing, it turned out that while composition and audition are good for planned sequences, there should be another option for direct user interaction.
+ For this purpose I started **Directplay**. It's a kind of queued play of pattern.  
+ Therefore, an **Audition** time base is kept parallel to the **Composition** time base and the third time base runs independently for **Directplay**.
  
- 
- patt length/duration
  
  #### The solution 
  The solution is divided into the following parts:
- - SequencerBase  
-    Contains core timer, player, fundamental elements (classes) for the sequencer, definitions of the structures in the sequencer, functions for loading and saving
- - SequencerUI  
-    Contains code and UserControls needed for the Graphical User Interface.
- - SequencerUITools  
-   This is the place for additional tools like Midi-File import
- - SQ1  
-   Is the Main Application
+ - **SequencerBase** contains core timer, player, fundamental elements (classes) for the sequencer, definitions of the structures in the sequencer, functions for loading and saving
+ - **SequencerUI** contains code and UserControls needed for the Graphical User Interface.
+ - **SequencerUITools** is is the place for additional tools like Midi-File import
+ - **SQ1** is the Main Application
+
+Some important objects
+- **Voice** determines the instrument, the volume and other parameters for the note output. Also contains the table of running notes for note-off processing.
+- **Track** is the carrier for the patterns.
+- **Pattern** contains the list of midi events. The length property describes the number of ticks from the beginning to the end of the pattern. 
+The Duration property describes how long the pattern is played. If the duration is greater than the length, then the pattern will be played repeatedly.
+
 
 #### Some important functions from the programmer's point of view
 

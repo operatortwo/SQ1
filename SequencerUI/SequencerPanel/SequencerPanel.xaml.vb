@@ -57,7 +57,9 @@ Public Class SequencerPanel
 
     Public Sub ScreenRefresh()
 
-        TracksHeader.MeasureAdornerLayer.Update()
+        If TracksHeader.MeasureAdornerLayer IsNot Nothing Then
+            TracksHeader.MeasureAdornerLayer.Update()
+        End If
 
         If Sequencer.IsRunning Then
             TracksFooter.ScrollIntoView(Sequencer.SequencerTime)

@@ -159,6 +159,32 @@
                         </StatusBar>
                     </Grid>
                 </TabItem>
+                <TabItem x:Name="tiDirectplay" Header="Directplay">
+                    <Grid>
+                        <duc:SmallSlider x:Name="DplayBpmSlider" Margin="52,31,0,0" MinimumValue="10" MaximumValue="300" Value="{Binding Sequencer.DPlay_BPM, Mode=TwoWay, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:MainWindow}}}" SliderBrush="#FFFF9800" Width="100" HorizontalAlignment="Left" VerticalAlignment="Top" Height="23"/>
+                        <Label Content="DpTime:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,61,0,0"/>
+                        <Label x:Name="lblDirectPlayTime" Content="xM: xB: xT" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="69,61,0,0"/>
+                        <Label Content="BPM:" HorizontalAlignment="Left" Margin="10,30,0,0" VerticalAlignment="Top"/>
+                        <CheckBox x:Name="cbDPlayIsOn" Content="Directplay is On" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" IsChecked="{Binding Sequencer.DirectplayIsOn, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:MainWindow}}}"/>
+                        <GroupBox Header="Directplay PatternStore" HorizontalAlignment="Left" Margin="285,20,0,243" Width="335">
+                            <Grid>
+                                <ListBox x:Name="lbDpPatternStore" HorizontalAlignment="Left" Margin="10,10,0,10" Width="123" ItemsSource="{Binding Sequencer.DPlay.PatternStore, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:MainWindow}}}" DisplayMemberPath="Label"/>
+                                <Button x:Name="btnLoadToDpPatternStore" Content="Add" HorizontalAlignment="Left" Margin="148,10,0,0" VerticalAlignment="Top" Width="37"/>
+                                <Button x:Name="btnRemoveFromDpPatternStore" Content="Del" HorizontalAlignment="Left" Margin="148,54,0,0" VerticalAlignment="Top" Width="37"/>
+                            </Grid>
+                        </GroupBox>
+                        <StatusBar Height="28" VerticalAlignment="Bottom" DockPanel.Dock="Bottom">
+                            <StatusBarItem>
+                                <TextBlock Text="Directplay Errors:" Margin="5,0,0,0"/>
+                            </StatusBarItem>
+                            <StatusBarItem>
+                                <TextBlock x:Name="Status_DirectplayErrorCount" Text="0"/>
+                            </StatusBarItem>
+                        </StatusBar>
+                        <TextBlock x:Name="tblkV0Q0" HorizontalAlignment="Left" Margin="189,163,0,0" TextWrapping="Wrap" Text="Voice 0 Slot 0" VerticalAlignment="Top" Height="45" Width="56" Background="#FFFBEED2" AllowDrop="True"/>
+                        <TextBlock x:Name="tblkV1Q0" HorizontalAlignment="Left" Margin="189,86,0,0" TextWrapping="Wrap" Text="Voice 1 Slot 0 Drums" VerticalAlignment="Top" Height="50" Width="56" Background="#FFD2DEFB" AllowDrop="True"/>
+                    </Grid>
+                </TabItem>
                 <TabItem x:Name="tiDebug" Header="Debug">
                     <Grid>
                         <Button x:Name="btnShowPointers" Content="Show Pointers" HorizontalAlignment="Left" Margin="46,30,0,0" VerticalAlignment="Top"/>

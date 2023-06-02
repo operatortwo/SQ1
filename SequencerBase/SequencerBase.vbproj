@@ -73,6 +73,7 @@
     <Compile Include="Composition\Track.vb" />
     <Compile Include="Composition\Voice.vb" />
     <Compile Include="Midi\Common\NoteNames.vb" />
+    <Compile Include="Midi\DirectPlay.vb" />
     <Compile Include="Midi\Sequencer.vb" />
     <Compile Include="Common\Module1.vb" />
     <Compile Include="Midi\TimedEvent.vb" />

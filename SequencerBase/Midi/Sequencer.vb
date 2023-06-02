@@ -1,26 +1,28 @@
 ﻿Public Class Sequencer
 
-    Public Event TimerTick()
+    'Public Event TimerTick()                                           'currently not needed
     Public Event SequencerRunningChanged(IsRunning As Boolean)
     Public Event Play_Sequence_EndReached()
 
-    Friend Const DebugEventOutList_MaxEvents = 1000                      ' limit the List's size
+    Friend Const DebugEventOutList_MaxEvents = 1000                     ' limit the List's size
     Public DebugEventOutList As New List(Of PortTrackEvent)(1000)
 
-    'Public WithEvents Composition As New Composition
-    'Public WithEvents Audition As New Composition
+    'Public WithEvents Composition As New Composition    
     Public Property Composition As New Composition
-    'Public Composition As New Composition
     Public Property Audition As New Composition
+    Public Property DPlay As New Directplay
 
-    Public ReadOnly Property PlayAuditionErrors As Integer  ' Number of Catches in the Play_Audition Sub
     Public ReadOnly Property PlaySequenceErrors As Integer  ' Number of Catches in the Play_Sequence Sub
+    Public ReadOnly Property PlayAuditionErrors As Integer  ' Number of Catches in the Play_Audition Sub
+    Public ReadOnly Property DirectplayErrors As Integer    ' Number of Catches in Directplay
     Public ReadOnly Property TimedEventErrors As Integer    ' Number of Catches in the Check_TimedEvents Sub
 
-    Public Property AuditionTime As Double         ' Timer Ticks, for Audition
     Public ReadOnly Property SequencerTime As Double        ' Sequencer Ticks, Sequencer position
+    Public ReadOnly Property AuditionTime As Double                  ' Sequencer Ticks, for Audition
+    Public ReadOnly Property DirectplayTime As Double                ' Sequencer Ticks, for Direct Play
     Public ReadOnly Property IsRunning As Boolean           ' Is Sequencer Running ?
     Public ReadOnly Property AuditionIsRunning As Boolean
+    Public Property DirectplayIsOn As Boolean               ' can be used as On / Off Switch for Directplay
 
     Public Const TPQ = 960                                  ' Ticks per Quarter Note 
     Private Const TPQdiv60 = TPQ \ 60                       ' auxiliary
@@ -44,6 +46,27 @@
             End If
         End Set
     End Property
+
+    Private _DPlayBPM As Single = 120
+    ''' <summary>
+    ''' Tempo (BeatsPerMinute) for Directplay Minimum: 10, Maximum: 300. Values above and below will be corrected    
+    ''' </summary>
+    ''' <returns></returns>
+    Public Property DPlay_BPM As Single                   ' tempo (Beats per Minute)
+        Get
+            Return _DPlayBPM
+        End Get
+        Set(value As Single)
+            If value < 10 Then
+                _DPlayBPM = 10
+            ElseIf value > 300 Then
+                _DPlayBPM = 300
+            Else
+                _DPlayBPM = value
+            End If
+        End Set
+    End Property
+
 
     Private ReadOnly Stopwatch As New Stopwatch         ' to accurately measure elapsed time
     Private LastStopwatchTick As Long                   ' last Stopwatch.elapsedTicks    
@@ -342,17 +365,9 @@
         ' Ticks = time(sec) * BPM * 16
         DeltaSongTicks = DeltaTicks / Stopwatch.Frequency * BPM * TPQdiv60
 
-        RaiseEvent TimerTick()          ' needed ?
+        'RaiseEvent TimerTick()          ' needed ?
 
-        If AuditionIsRunning = True Then
-            _AuditionTime += DeltaSongTicks
-            Try
-                Play_Audition(CLng(AuditionTime))
-            Catch
-                _PlayAuditionErrors += 1
-            End Try
-        End If
-
+        '--- Sequencer ---
         If IsRunning = True Then
             _SequencerTime += DeltaSongTicks
             Try
@@ -362,6 +377,30 @@
             End Try
         End If
 
+        '--- Audition ---
+        If AuditionIsRunning = True Then
+            _AuditionTime += DeltaSongTicks
+            Try
+                Play_Audition(CLng(AuditionTime))
+            Catch
+                _PlayAuditionErrors += 1
+            End Try
+        End If
+
+        '--- Direct Play ---
+        If DirectplayIsOn = True Then
+            Dim DeltaDirectplayTicks As Double                                ' player ticks
+            DeltaDirectplayTicks = DeltaTicks / Stopwatch.Frequency * DPlay_BPM * TPQdiv60
+
+            _DirectplayTime += DeltaDirectplayTicks
+            Try
+                DPlay.Play(CUInt(DirectplayTime))
+            Catch
+                _DirectplayErrors += 1
+            End Try
+        End If
+
+        '--- Auxiliary TimedEvents ---
         If AuditionIsRunning = True Or IsRunning = True Then
             If TimedEvents.Count > 0 Then
                 Try

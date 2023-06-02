@@ -13,7 +13,7 @@
     Public Property BankSelectLSB As Byte           ' when non-GM
     Public Property VoiceNumber As Byte             ' when non-GM, Bank Select Msb,Lsb + Progarm Change
     Public Property NoteTranspose As Short
-    Public Property Tracks As New List(Of Track)
+    Public Property Tracks As New List(Of Track)        ' for Composition and Audition
 
     '--- Signal the UI that these properties have been updated.
     '--- The ScreenRefresh-tick proc will update the controls and reset the Booleans
