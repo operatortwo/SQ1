@@ -113,6 +113,9 @@
     <Compile Include="Windows\Dialogs\Various\TrackViewSettings.xaml.vb">
       <DependentUpon>TrackViewSettings.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Windows\Dialogs\Various\VoicePopup.xaml.vb">
+      <DependentUpon>VoicePopup.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\PatternStoreWin.xaml.vb">
       <DependentUpon>PatternStoreWin.xaml</DependentUpon>
     </Compile>
@@ -176,6 +179,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Windows\Dialogs\Various\TrackViewSettings.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\Dialogs\Various\VoicePopup.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

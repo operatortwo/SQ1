@@ -181,8 +181,9 @@
                                 <TextBlock x:Name="Status_DirectplayErrorCount" Text="0"/>
                             </StatusBarItem>
                         </StatusBar>
-                        <TextBlock x:Name="tblkV0Q0" HorizontalAlignment="Left" Margin="189,163,0,0" TextWrapping="Wrap" Text="Voice 0 Slot 0" VerticalAlignment="Top" Height="45" Width="56" Background="#FFFBEED2" AllowDrop="True"/>
-                        <TextBlock x:Name="tblkV1Q0" HorizontalAlignment="Left" Margin="189,86,0,0" TextWrapping="Wrap" Text="Voice 1 Slot 0 Drums" VerticalAlignment="Top" Height="50" Width="56" Background="#FFD2DEFB" AllowDrop="True"/>
+                        <TextBlock x:Name="tblkV1S0" HorizontalAlignment="Left" Margin="189,86,0,0" TextWrapping="Wrap" Text="Voice 1 Slot 0 Drums" VerticalAlignment="Top" Height="50" Width="56" Background="#FFD2DEFB" AllowDrop="True"/>
+                        <TextBlock x:Name="tblkV0S0" HorizontalAlignment="Left" Margin="189,163,0,0" TextWrapping="Wrap" Text="Voice 0 Slot 0" VerticalAlignment="Top" Height="45" Width="56" Background="#FFFBEED2" AllowDrop="True"/>
+                        <Button x:Name="btnDirectplayVc0" Margin="119,170,0,0" Content="Voice 0" Height="22" Width="55" HorizontalAlignment="Left" VerticalAlignment="Top"/>
                     </Grid>
                 </TabItem>
                 <TabItem x:Name="tiDebug" Header="Debug">

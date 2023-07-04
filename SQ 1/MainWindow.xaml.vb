@@ -1,6 +1,7 @@
 ﻿Imports SequencerBase
 Imports SequencerBase.Module1
 Imports SequencerBase.Sequencer
+Imports SequencerUI
 Imports SequencerUITools
 
 Class MainWindow
@@ -36,6 +37,17 @@ Class MainWindow
 
         WindowTitle_Base = Me.Title
 
+        '--- in case the Application Version has changed, Upgrade the settings ---
+
+        If My.Settings.UpgradeRequired = True Then
+            My.Settings.Upgrade()
+            My.Settings.UpgradeRequired = False
+            My.Settings.Save()
+        End If
+
+        '---
+        LastPatternDirectory = My.Settings.LastPatternDirectory
+
         '--- try to set Last Midi Output ports
 
         MidiOutPort0_preferred = My.Settings.LastMidiOutPort0
@@ -48,7 +60,6 @@ Class MainWindow
         If MidiOutPort0_preferred = "" Then MidiOutPort0_preferred = "init"
         If AlternativeMidiOutPort = "" Then AlternativeMidiOutPort = "first available"
         '---
-
 
         OpenMidiOutPorts()
 
@@ -118,6 +129,8 @@ Class MainWindow
         My.Settings.LastMidiOutPort2 = MidiOutPort2_preferred
         My.Settings.LastMidiOutPort3 = MidiOutPort3_preferred
         My.Settings.LastAlternativeMidiOutPort = AlternativeMidiOutPort
+
+        My.Settings.LastPatternDirectory = LastPatternDirectory
 
         My.Settings.Save()
 
@@ -327,16 +340,16 @@ Class MainWindow
 
         '--- DirectPlay Tab ---
 
-        If tiDirectPlay.IsSelected Then
-            If Sequencer.DirectPlayIsOn = True Then
-                lblDirectPlayTime.Content = TimeTo_MBT(CLng(Sequencer.DirectPlayTime))
+        If tiDirectplay.IsSelected Then
+            If Sequencer.DirectplayIsOn = True Then
+                lblDirectPlayTime.Content = TimeTo_MBT(CLng(Sequencer.DirectplayTime))
             End If
         End If
 
 
 
-        If Sequencer.DirectPlayErrors > 0 Then
-            Status_DirectPlayErrorCount.Text = CStr(Sequencer.DirectPlayErrors)
+        If Sequencer.DirectplayErrors > 0 Then
+            Status_DirectplayErrorCount.Text = CStr(Sequencer.DirectplayErrors)
         End If
 
         'Sequencer.DPlay.Voices(0).MidiChannel = 0
@@ -739,7 +752,7 @@ Class MainWindow
 #End Region
 
 
-#Region "DirectPlay tab"
+#Region "Directplay tab"
     Private Sub lbDpPatternStore_MouseDoubleClick(sender As Object, e As MouseButtonEventArgs) Handles lbDpPatternStore.MouseDoubleClick
 
     End Sub
@@ -774,7 +787,7 @@ Class MainWindow
 
     End Sub
 
-    Private Sub tblkV0Q0_DragOver(sender As Object, e As DragEventArgs) Handles tblkV0Q0.DragOver
+    Private Sub tblkV0S0_DragOver(sender As Object, e As DragEventArgs) Handles tblkV0S0.DragOver
         If e.Data.GetDataPresent(GetType(Pattern)) Then
             e.Effects = DragDropEffects.Copy
         Else
@@ -782,7 +795,7 @@ Class MainWindow
         End If
     End Sub
 
-    Private Sub tblkV0Q0_Drop(sender As Object, e As DragEventArgs) Handles tblkV0Q0.Drop
+    Private Sub tblkV0S0_Drop(sender As Object, e As DragEventArgs) Handles tblkV0S0.Drop
         If e.Data.GetDataPresent(GetType(Pattern)) Then
             Dim pattern As Pattern = CType(e.Data.GetData(GetType(Pattern)), Pattern)
             If pattern IsNot Nothing Then
@@ -791,7 +804,7 @@ Class MainWindow
         End If
     End Sub
 
-    Private Sub tblkV1Q0_DragOver(sender As Object, e As DragEventArgs) Handles tblkV1Q0.DragOver
+    Private Sub tblkV1S0_DragOver(sender As Object, e As DragEventArgs) Handles tblkV1S0.DragOver
         If e.Data.GetDataPresent(GetType(Pattern)) Then
             e.Effects = DragDropEffects.Copy
         Else
@@ -799,13 +812,19 @@ Class MainWindow
         End If
     End Sub
 
-    Private Sub tblkV1Q0_Drop(sender As Object, e As DragEventArgs) Handles tblkV1Q0.Drop
+    Private Sub tblkV1S0_Drop(sender As Object, e As DragEventArgs) Handles tblkV1S0.Drop
         If e.Data.GetDataPresent(GetType(Pattern)) Then
             Dim pattern As Pattern = CType(e.Data.GetData(GetType(Pattern)), Pattern)
             If pattern IsNot Nothing Then
                 Sequencer.DPlay.PlayPattern(1, 0, pattern, 960)
             End If
         End If
+    End Sub
+
+    Private Sub btnDirectplayVc0_Click(sender As Object, e As RoutedEventArgs) Handles btnDirectplayVc0.Click
+        Dim vcpop As New VoicePopup(Sequencer.DPlay.Voices(0))
+        vcpop.Owner = Me
+        vcpop.ShowDialog()
     End Sub
 
 #End Region
@@ -853,6 +872,8 @@ Class MainWindow
             CompositionPanel.RedrawAllTracks()
         End If
     End Sub
+
+
 
 
 

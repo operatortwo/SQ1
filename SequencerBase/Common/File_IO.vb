@@ -6,7 +6,8 @@ Public Module File_IO
 
     Friend BaseDirectory As String = AppDomain.CurrentDomain.BaseDirectory
     Public ReadOnly CompositionsDirectory As String = BaseDirectory & "Compositions\"
-    Friend PatternDirectory As String = BaseDirectory & "Pattern\"
+    Friend DefaultPatternDirectory As String = BaseDirectory & "Pattern\"
+    Public LastPatternDirectory As String = ""
 
     Friend DataDirectory As String = BaseDirectory & "Data\"
 
@@ -15,8 +16,8 @@ Public Module File_IO
     Public Sub LoadPattern(ByRef DestinationPattern As Pattern)
         Dim ofd As New Microsoft.Win32.OpenFileDialog
 
-        If IO.Directory.Exists(PatternDirectory) Then
-            ofd.InitialDirectory = PatternDirectory
+        If IO.Directory.Exists(DefaultPatternDirectory) Then
+            ofd.InitialDirectory = DefaultPatternDirectory
         Else
             ofd.InitialDirectory = BaseDirectory
         End If
@@ -45,14 +46,18 @@ Public Module File_IO
     Public Function LoadPatternFromXML(ByRef DestinationPattern As PatternX) As Boolean
         Dim ofd As New Microsoft.Win32.OpenFileDialog
 
-        If IO.Directory.Exists(PatternDirectory) Then
-            ' ofd.InitialDirectory = PatternDirectory
+        If IO.Directory.Exists(LastPatternDirectory) Then
+            ofd.InitialDirectory = LastPatternDirectory
+        ElseIf Directory.Exists(DefaultPatternDirectory) Then
+            ofd.InitialDirectory = DefaultPatternDirectory
         Else
-            '  ofd.InitialDirectory = BaseDirectory
+            ofd.InitialDirectory = BaseDirectory
         End If
 
         ofd.Filter = "XML files|*.xml"
         If ofd.ShowDialog() = False Then Return False
+
+        LastPatternDirectory = Path.GetDirectoryName(ofd.FileName)
 
         Try
             Dim myObject As New PatternX
