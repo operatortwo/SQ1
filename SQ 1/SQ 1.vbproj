@@ -188,6 +188,9 @@
     </None>
     <Resource Include="Development\Version History SQ1.txt" />
     <Resource Include="Development\Version History Sequencer.txt" />
+    <Content Include="Pattern\Empty.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Pattern\FngrBa10.pat">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

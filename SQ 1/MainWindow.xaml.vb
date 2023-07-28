@@ -307,6 +307,8 @@ Class MainWindow
         'SequencerUI.SequencerPanel1.ScreenRefresh()
         CompositionPanel.ScreenRefresh()
 
+        SequencerUI.ScreenRefreshMain()
+
         '--- Sequencer Time (Ticks)
         Dim time As Long = CLng(Sequencer.SequencerTime)
         lblSequencerPosition.Content = TimeTo_MBT(time)
@@ -763,12 +765,15 @@ Class MainWindow
         If SequencerBase.LoadPatternFromXML(patx) = True Then
             pat = patx.ToPattern
             Sequencer.DPlay.PatternStore.Add(pat)
-            'lbDpPatternStore.Items.Add(pat.Label)           ' xxx Label only                        
         End If
     End Sub
 
     Private Sub btnRemoveFromDpPatternStore_Click(sender As Object, e As RoutedEventArgs) Handles btnRemoveFromDpPatternStore.Click
+        Dim ndx As Integer = lbDpPatternStore.SelectedIndex
 
+        If ndx <> -1 Then
+            Sequencer.DPlay.PatternStore.RemoveAt(ndx)
+        End If
     End Sub
 
     Private Sub lbDpPatternStore_MouseMove(sender As Object, e As MouseEventArgs) Handles lbDpPatternStore.MouseMove
@@ -799,7 +804,7 @@ Class MainWindow
         If e.Data.GetDataPresent(GetType(Pattern)) Then
             Dim pattern As Pattern = CType(e.Data.GetData(GetType(Pattern)), Pattern)
             If pattern IsNot Nothing Then
-                Sequencer.DPlay.PlayPattern(0, 0, pattern, 960)
+                Sequencer.DPlay.InsertPattern(0, 0, pattern, 960)
             End If
         End If
     End Sub
@@ -816,16 +821,29 @@ Class MainWindow
         If e.Data.GetDataPresent(GetType(Pattern)) Then
             Dim pattern As Pattern = CType(e.Data.GetData(GetType(Pattern)), Pattern)
             If pattern IsNot Nothing Then
-                Sequencer.DPlay.PlayPattern(1, 0, pattern, 960)
+                Sequencer.DPlay.InsertPattern(1, 0, pattern, 960)
             End If
         End If
     End Sub
 
     Private Sub btnDirectplayVc0_Click(sender As Object, e As RoutedEventArgs) Handles btnDirectplayVc0.Click
-        Dim vcpop As New VoicePopup(Sequencer.DPlay.Voices(0))
+        Dim vcpop As New VoicePopup(Sequencer.DPlay.SystemVoice)
         vcpop.Owner = Me
         vcpop.ShowDialog()
     End Sub
+
+    Private Sub btnDirectplayVc2_Click(sender As Object, e As RoutedEventArgs) Handles btnDirectplayVc2.Click
+        Dim vcpop As New VoicePopup(Sequencer.DPlay.Voices(2))
+        vcpop.Owner = Me
+        vcpop.ShowDialog()
+    End Sub
+
+    Private Sub btnDirectplayVc3_Click(sender As Object, e As RoutedEventArgs) Handles btnDirectplayVc3.Click
+        Dim vcpop As New VoicePopup(Sequencer.DPlay.Voices(3))
+        vcpop.Owner = Me
+        vcpop.ShowDialog()
+    End Sub
+
 
 #End Region
 
@@ -872,15 +890,6 @@ Class MainWindow
             CompositionPanel.RedrawAllTracks()
         End If
     End Sub
-
-
-
-
-
-
-
-
-
 
 
 

@@ -22,7 +22,7 @@
     Public ReadOnly Property DirectplayTime As Double                ' Sequencer Ticks, for Direct Play
     Public ReadOnly Property IsRunning As Boolean           ' Is Sequencer Running ?
     Public ReadOnly Property AuditionIsRunning As Boolean
-    Public Property DirectplayIsOn As Boolean               ' can be used as On / Off Switch for Directplay
+    Public Property DirectplayIsOn As Boolean = True          ' can be used as On / Off Switch for Directplay
 
     Public Const TPQ = 960                                  ' Ticks per Quarter Note 
     Private Const TPQdiv60 = TPQ \ 60                       ' auxiliary

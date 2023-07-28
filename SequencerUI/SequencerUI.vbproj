@@ -65,6 +65,12 @@
     <Reference Include="System.Net.Http" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Directplay\DpJobElement.xaml.vb">
+      <DependentUpon>DpJobElement.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Directplay\DpSlot.xaml.vb">
+      <DependentUpon>DpSlot.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Module1.vb" />
     <Compile Include="SequencerPanel\SequencerPanel.xaml.vb">
       <DependentUpon>SequencerPanel.xaml</DependentUpon>
@@ -122,6 +128,14 @@
     <Compile Include="Windows\SectionsWin.xaml.vb">
       <DependentUpon>SectionsWin.xaml</DependentUpon>
     </Compile>
+    <Page Include="Directplay\DpJobElement.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Directplay\DpSlot.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="SequencerPanel\SequencerPanel.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -282,6 +296,7 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <Resource Include="Resources\Images\emblem_minus_x32.png" />
     <Content Include="Resources\Library\DailyUserControls.dll" />
     <Resource Include="Resources\Library\DailyUserControls.xml" />
   </ItemGroup>

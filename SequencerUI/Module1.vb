@@ -2,12 +2,21 @@
 
     Public WithEvents Sequencer As SequencerBase.Sequencer  ' Sequencer Instance, definied in MainWindow, assigned in MainWindow
 
+    Public Event ScreenRefreshChildren()        ' to be subscribed from Controls outside SequencerPanel
+
     Public Property CompositionPanel1 As SequencerPanel
 
     Public SkipChangedEvent As Boolean
 
     Public Const TicksToPixelFactor = 0.03125       ' ( 1 / 32 )
     Public Const PixelToTicksFactor = 32            ' ( 1 / TicksToPixelFactor )
+
+    ''' <summary>
+    ''' To be called from the Refresh-Timer. Raises the ScreenRefreshChildren Event.
+    ''' </summary>
+    Public Sub ScreenRefreshMain()
+        RaiseEvent ScreenRefreshChildren()
+    End Sub
 
     Public Function FindLogicalParent(base As FrameworkElement, targetType As Type) As Object
 
@@ -54,5 +63,6 @@
 
         Return steps * stepvalue
     End Function
+
 
 End Module

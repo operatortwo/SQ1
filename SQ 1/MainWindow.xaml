@@ -166,7 +166,7 @@
                         <Label x:Name="lblDirectPlayTime" Content="xM: xB: xT" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="69,61,0,0"/>
                         <Label Content="BPM:" HorizontalAlignment="Left" Margin="10,30,0,0" VerticalAlignment="Top"/>
                         <CheckBox x:Name="cbDPlayIsOn" Content="Directplay is On" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" IsChecked="{Binding Sequencer.DirectplayIsOn, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:MainWindow}}}"/>
-                        <GroupBox Header="Directplay PatternStore" HorizontalAlignment="Left" Margin="285,20,0,243" Width="335">
+                        <GroupBox Header="Directplay PatternStore" HorizontalAlignment="Left" Margin="102,92,0,107" Width="215">
                             <Grid>
                                 <ListBox x:Name="lbDpPatternStore" HorizontalAlignment="Left" Margin="10,10,0,10" Width="123" ItemsSource="{Binding Sequencer.DPlay.PatternStore, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:MainWindow}}}" DisplayMemberPath="Label"/>
                                 <Button x:Name="btnLoadToDpPatternStore" Content="Add" HorizontalAlignment="Left" Margin="148,10,0,0" VerticalAlignment="Top" Width="37"/>
@@ -181,9 +181,15 @@
                                 <TextBlock x:Name="Status_DirectplayErrorCount" Text="0"/>
                             </StatusBarItem>
                         </StatusBar>
-                        <TextBlock x:Name="tblkV1S0" HorizontalAlignment="Left" Margin="189,86,0,0" TextWrapping="Wrap" Text="Voice 1 Slot 0 Drums" VerticalAlignment="Top" Height="50" Width="56" Background="#FFD2DEFB" AllowDrop="True"/>
-                        <TextBlock x:Name="tblkV0S0" HorizontalAlignment="Left" Margin="189,163,0,0" TextWrapping="Wrap" Text="Voice 0 Slot 0" VerticalAlignment="Top" Height="45" Width="56" Background="#FFFBEED2" AllowDrop="True"/>
-                        <Button x:Name="btnDirectplayVc0" Margin="119,170,0,0" Content="Voice 0" Height="22" Width="55" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                        <TextBlock x:Name="tblkV1S0" HorizontalAlignment="Left" Margin="18,92,0,0" TextWrapping="Wrap" Text="Voice 1 Slot 0 Drums" VerticalAlignment="Top" Height="50" Width="56" Background="#FFD2DEFB" AllowDrop="True"/>
+                        <TextBlock x:Name="tblkV0S0" HorizontalAlignment="Left" Margin="18,162,0,0" TextWrapping="Wrap" Text="Voice 0 Slot 0" VerticalAlignment="Top" Height="45" Width="56" Background="#FFFBEED2" AllowDrop="True"/>
+                        <Button x:Name="btnDirectplayVc0" Margin="18,220,0,0" Content="Voice 0" Height="22" Width="56" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                        <SequencerUI:DpSlot Margin="336,66,0,0" Height="262" VerticalAlignment="Top" HorizontalAlignment="Left" Width="222"/>
+                        <Button x:Name="btnDirectplayVc2" Margin="406,356,0,0" Content="Voice 2" Height="22" Width="55" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                        <SequencerUI:DpSlot Margin="598,66,0,0" Height="262" VerticalAlignment="Top" HorizontalAlignment="Left" Width="222" VoiceNumber="3"/>
+                        <Button x:Name="btnDirectplayVc3" Margin="670,356,0,0" Content="Voice 3" Height="22" Width="55" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                        <Label Content="Drums" HorizontalAlignment="Left" Margin="336,35,0,0" VerticalAlignment="Top"/>
+                        <Label Content="Bass" HorizontalAlignment="Left" Margin="598,35,0,0" VerticalAlignment="Top"/>
                     </Grid>
                 </TabItem>
                 <TabItem x:Name="tiDebug" Header="Debug">
