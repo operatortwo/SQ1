@@ -1,6 +1,7 @@
 ﻿Imports System.Collections.ObjectModel
 Imports SequencerBase.Directplay
 
+
 Public Class Directplay
 
     Public Property PatternStore As New ObservableCollection(Of Pattern)    ' need 'Property' for WPF Databinding
@@ -56,11 +57,28 @@ Public Class Directplay
 
     Public Class Slot
         Public Joblist As New List(Of Job)
-        Public IsRunning As Boolean = True              ' if TRUE: is running
         Public HoldCurrent As Boolean                   ' if TRUE: restart the job when job duration is over
         Public RingPlay As Boolean                        ' if TRUE: enque the current job when job duration is over
         Public Group As Integer                         ' selected Group number for receiving group commands
         Public Refresh_UI As Boolean                    ' something was changed by code, signal that DpSlot should refresh
+
+        Private _IsRunning As Boolean = True
+        Public Property IsRunning As Boolean            ' if TRUE: is running
+            Get
+                Return _IsRunning
+            End Get
+            Set(value As Boolean)
+                If value = True Then
+                    If _IsRunning = False Then
+                        If Joblist.Count > 0 Then
+                            SequencerInstance.DPlay.ResumeJob(Joblist(Joblist.Count - 1))
+                        End If
+                    End If
+                End If
+                _IsRunning = value
+            End Set
+        End Property
+
     End Class
 
     Public MustInherit Class Job
@@ -101,8 +119,10 @@ Public Class Directplay
             voice.Do_TimedNoteOff(currentTime)          ' turn notes at end of their duration off
             For Each slot In voice.Slots
                 If slot.Joblist.Count > 0 Then
-                    Dim job As Job = slot.Joblist(slot.Joblist.Count - 1)
-                    PlayJob(currentTime, voice, slot, job)
+                    If slot.IsRunning = True Then
+                        Dim job As Job = slot.Joblist(slot.Joblist.Count - 1)
+                        PlayJob(currentTime, voice, slot, job)
+                    End If
                 End If
             Next
         Next
@@ -146,7 +166,6 @@ Public Class Directplay
             slot.Refresh_UI = True
 
         End If
-
 
 
     End Sub
@@ -205,76 +224,13 @@ Public Class Directplay
 
     End Sub
 
-
-    Friend Sub Play_old(currentTime As UInteger)
-
-        For Each voice In Voices
-
-            voice.Do_TimedNoteOff(currentTime)
-
-            For Each slot In voice.Slots
-
-                If slot.Joblist.Count > 0 Then
-                    Dim job As Job = slot.Joblist(slot.Joblist.Count - 1)
-
-                    PlayJob(currentTime, voice, slot, job)
-                End If
-
-            Next
-        Next
-
-    End Sub
-    Private Sub PlayPatternJob_old(currentTime As UInteger, voice As Voice, slot As Slot, job As PatternJob)
-
-        If (job.EventListPtr) >= job.EventList.Count Then Exit Sub
-
-        Dim tev As TrackEvent
-        tev = job.EventList(job.EventListPtr)
-
-        If job.StartOffset < job.Duration Then
-
-            While job.StartTime + job.StartOffset + tev.Time <= currentTime
-
-                ' send also MetaEvents to play f.e. SetTempo
-                voice.PlayEvent(CUInt(currentTime), job.StartTime + job.StartOffset + tev.Time, tev)
-
-                job.EventListPtr += 1                                       ' try to go to next event
-
-                If Not job.EventListPtr >= job.EventList.Count Then
-                    tev = job.EventList(job.EventListPtr)                   ' if not above last event                    
-                Else
-                    ' restart pattern
-
-                    job.EventListPtr = 0                    ' to start   
-                    job.StartOffset += job.Length
-                    tev = job.EventList(job.EventListPtr)
-
-                    If job.StartOffset >= job.Duration Then
-
-                        If slot.RingPlay = False Then
-                            slot.Joblist.Remove(job)
-                        Else
-                            Dim rjob As Job
-                            rjob = job
-                            slot.Joblist.Remove(job)
-                            rjob.StartOffset = 0
-                            slot.Joblist.Insert(0, rjob)
-                        End If
-
-                        If slot.Joblist.Count > 0 Then
-                            Dim newjob As Job = slot.Joblist(slot.Joblist.Count - 1)
-                            newjob.StartTime = currentTime + GetAlignOffset(currentTime, newjob.StartAlign)
-                        End If
-                        slot.Refresh_UI = True
-                        Exit While
-                    End If
-
-                End If
-
-            End While
-
+    Private Sub ResumeJob(job As Job)
+        If job.JobType = JobType.Pattern Then
+            CType(job, PatternJob).EventListPtr = 0
         End If
 
+        job.StartOffset = 0
+        job.StartTime = ForwardAlign(CUInt(SequencerInstance.DirectplayTime), TicksPerBeat)
     End Sub
 
 
@@ -308,6 +264,8 @@ Public Class Directplay
             time = CUInt(SequencerInstance.DirectplayTime)
             job.StartTime = time + GetAlignOffset(time, StartAlign)
         End If
+
+
 
         '--- in any case: enqueue the job
         'Voices(VoiceNumber).Slots(SlotNumber).Joblist.Enqueue(job)
@@ -349,6 +307,27 @@ Public Class Directplay
         Newtime = Time + RemainingTicks                     ' round up to end of this unit
 
         Return RemainingTicks
+    End Function
+
+    ''' <summary>
+    ''' Round forward to next align step. Result is always >= input time.
+    ''' </summary>
+    ''' <param name="Time">current time</param>
+    ''' <param name="Align">forward alignment in ticks, f.e. 960 = start at next beat.</param>
+    ''' <returns></returns>
+    Public Function ForwardAlign(Time As UInteger, Align As UInteger) As UInteger
+        If Align = 0 Then Return 0
+
+        Dim Newtime As UInteger
+
+        Dim ElapsedTicks As UInteger                        ' in this unit
+        Dim RemainingTicks As UInteger                      ' in this unit     
+
+        ElapsedTicks = Time Mod Align
+        RemainingTicks = Align - ElapsedTicks
+        Newtime = Time + RemainingTicks                     ' round up to end of this unit
+
+        Return Newtime
     End Function
 
 

@@ -3,7 +3,8 @@
 
 Date			Version		Changes
 ------------------------------------------------	
-2023 97 28		1.0.2.2		slot-control for Directplay
+2023 07 31		1.0.2.3		run/stop for Directplay
+2023 07 28		1.0.2.2		slot-control for Directplay
 2023 06 08		1.0.2.0		started with Directplay
 2023 05 24		1.0.1.2		duc 1.0.1.0, Voice Pan: LeftRightLook
 2023 05 23		1.0.1.1		Midi Import: added 'Split to SingelChannelTracks'

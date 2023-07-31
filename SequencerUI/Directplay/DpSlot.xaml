@@ -17,7 +17,7 @@
                 <TextBlock Text="Drop Pattern here" VerticalAlignment="Top" Height="22" DockPanel.Dock="Bottom" TextAlignment="Center" Background="#FFD6FFCE" Margin="10,0,10,0"/>
             </DockPanel>
         </Grid>
-        <duc:ToggleButton x:Name="tgBtnRun" Margin="13,10,0,0" HorizontalAlignment="Left" Width="50" Height="20" VerticalAlignment="Top" ClickMode="Press" TextChecked="Run" TextUnchecked="Run" IsChecked="True" IsEnabled="False"/>
+        <duc:ToggleButton x:Name="tgBtnRun" Margin="13,10,0,0" HorizontalAlignment="Left" Width="50" Height="20" VerticalAlignment="Top" ClickMode="Press" TextChecked="Run" TextUnchecked="Run" IsChecked="True"/>
         <duc:ToggleButton x:Name="tgBtnRing" Margin="13,230,0,0" TextChecked="Ring" TextUnchecked="OneTime" Width="58" HorizontalAlignment="Left" IsChecked="True" Height="20" VerticalAlignment="Top" ClickMode="Press"/>
         <duc:ToggleButton x:Name="tgBtnHold" Margin="79,230,0,0" TextChecked="Hold" TextUnchecked="Hold" HorizontalAlignment="Left" Width="64" Height="20" VerticalAlignment="Top" ClickMode="Press" IsEnabled="False"/>
         <Button x:Name="btnNext" Content="Next" HorizontalAlignment="Left" Margin="151,230,0,0" Width="60" Height="20" VerticalAlignment="Top" IsEnabled="False"/>

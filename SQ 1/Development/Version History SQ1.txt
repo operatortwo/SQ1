@@ -3,6 +3,7 @@
 
 Date			Version		Changes
 ------------------------------------------------	
+2023 07 31		1.0.2.3		run/stop for Directplay
 2023 97 28		1.0.2.2		slot-control for Directplay
 2023 06 30		1.0.2.1		added handling for My.Settings.Upgrade
 2023 06 08		1.0.2.0		started with Directplay

@@ -57,7 +57,7 @@
             </Menu>
             <ToolBarTray Height="29" VerticalAlignment="Top" DockPanel.Dock="Top" Background="#FFF3F5F7">
                 <ToolBar  VerticalAlignment="Top"  Margin="0" TabIndex="200" KeyboardNavigation.TabNavigation="Continue" Height="31">
-                    <duc:ImageButton x:Name="btnKeyboard" Width="26" Height="26" Image="/Resources/Images/Keyboard_x32.png" Margin="0" Background="{x:Null}" ImageMargin="0" ToolTip="Keyboard" IsTabStop="True" TabIndex="10" Text="" IsEnabled="False"/>
+                    <duc:ImageButton x:Name="btnKeyboard" Width="26" Height="26" Image="/Resources/Images/Keyboard_x32.png" Margin="0" Background="{x:Null}" ImageMargin="0" ToolTip="Keyboard" IsTabStop="True" TabIndex="10" Text=""/>
                     <duc:ImageButton x:Name="btnRestart" Width="26" Height="26" Image="/Resources/Images/PreviousTrack_x22.png" Margin="0" Background="{x:Null}" ImageMargin="0" ToolTip="Return To Zero" IsTabStop="True" TabIndex="12" Text=""/>
                     <duc:ImageButton x:Name="btnStop" Width="26" Height="26" Image="/Resources/Images/Stop_x22.png" Margin="1,0,0,0" ButtonPressedBackground="#FFFAFF9A" ImageMargin="0" ToolTip="Stop" IsTabStop="True" TabIndex="30" Background="#FFE6E6E6"/>
                     <duc:ImageButton x:Name="btnPlay" Width="26" Height="26" Margin="1,0,0,0" ImageMargin="0" ToolTip="Play" IsTabStop="True" TabIndex="40" Image="/Resources/Images/Play_x22.png" Background="#FFE8E8E8"/>

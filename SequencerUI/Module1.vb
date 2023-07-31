@@ -64,5 +64,4 @@
         Return steps * stepvalue
     End Function
 
-
 End Module

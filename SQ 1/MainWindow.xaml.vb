@@ -3,6 +3,7 @@ Imports SequencerBase.Module1
 Imports SequencerBase.Sequencer
 Imports SequencerUI
 Imports SequencerUITools
+Imports SQ_1.My
 
 Class MainWindow
 
@@ -105,6 +106,8 @@ Class MainWindow
             End If
         End If
 
+        TabControl1.SelectedIndex = My.Settings.LastTabIndex
+
     End Sub
 
     Private Sub Window_Closing(sender As Object, e As ComponentModel.CancelEventArgs)
@@ -131,6 +134,8 @@ Class MainWindow
         My.Settings.LastAlternativeMidiOutPort = AlternativeMidiOutPort
 
         My.Settings.LastPatternDirectory = LastPatternDirectory
+
+        My.Settings.LastTabIndex = TabControl1.SelectedIndex
 
         My.Settings.Save()
 
