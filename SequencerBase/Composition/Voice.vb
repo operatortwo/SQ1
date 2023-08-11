@@ -239,6 +239,32 @@
 
     End Sub
 
+    '--- for Manually send events with Note-On and Note-Off ---
+
+    ''' <summary>
+    ''' Bypass Note-Off processing and send Short Midi-Event to the selected Port of this voice.
+    ''' </summary>
+    ''' <param name="CurrentTime">Is needed for Debug only</param>
+    ''' <param name="Status">Statusbyte like h90</param>
+    ''' <param name="Data1">First data byte of midi-event</param>
+    ''' <param name="data2">Second data byte of midi event</param>
+    Public Sub Manually_OutShort(CurrentTime As UInteger, Status As Byte, Data1 As Byte, data2 As Byte)
+        Dim stat As Byte = CByte(Status And &HF0)
+        Dim StatChan As Byte
+
+        If stat >= &H80 AndAlso stat < &HF0 Then
+            If IsMultiChannel = False Then
+                StatChan = stat Or MidiChannel          ' use MidiChannel of this voice            
+            Else
+                StatChan = Status                       ' unchanged Status and Channel            
+            End If
+
+            OutShort(PortNumber, CurrentTime, StatChan, Data1, data2)
+            ' can be &h80, &h90, &hA0, &hB0, &hC0, &hD0, &hE0
+        End If
+    End Sub
+
+
     '--- for UI ---
 
     ''' <summary>

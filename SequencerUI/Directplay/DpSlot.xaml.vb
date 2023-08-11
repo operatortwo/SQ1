@@ -10,7 +10,6 @@ Public Class DpSlot
 
         ' this call is required for the Designer
         InitializeComponent()
-        Console.WriteLine("Initialized")
     End Sub
 
     Private Property Voice As DirectplayVoice

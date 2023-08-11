@@ -99,8 +99,8 @@
                 </TabItem>
                 <TabItem x:Name="tiAudition" Header="Audition Test">
                     <Grid>
-                        <Label x:Name="lblAuditionTime" Content="xxx" HorizontalAlignment="Left" Margin="234,0,0,34" VerticalAlignment="Bottom" Width="83"/>
-                        <Label Content="Audition Time:" HorizontalAlignment="Left" Margin="142,0,0,33" VerticalAlignment="Bottom"/>
+                        <Label x:Name="lblAuditionTime" Content="xxx" HorizontalAlignment="Left" Margin="347,0,0,60" VerticalAlignment="Bottom" Width="83"/>
+                        <Label Content="Audition Time:" HorizontalAlignment="Left" Margin="225,0,0,60" VerticalAlignment="Bottom"/>
                         <Label Content="Audition:" HorizontalAlignment="Left" Margin="23,0,0,182" VerticalAlignment="Bottom"/>
                         <Button x:Name="btnStartAudition" Content="Start Audition" HorizontalAlignment="Left" Margin="474,0,0,89" VerticalAlignment="Bottom" Width="91"/>
                         <Button x:Name="btnStopAudition" Content="Stop Audition" HorizontalAlignment="Left" Margin="347,0,0,89" VerticalAlignment="Bottom" Width="101"/>
@@ -108,7 +108,7 @@
                         <Button x:Name="btnPlayPattern" Content="Play Pattern" HorizontalAlignment="Left" Margin="347,0,0,166" VerticalAlignment="Bottom" Width="84"/>
                         <Button x:Name="btnMoresGM" Content="MORES GM" HorizontalAlignment="Left" Margin="33,23,0,0" VerticalAlignment="Top" Width="75"/>
                         <Button x:Name="btnAllNotesOff" Content="All Notes Off" HorizontalAlignment="Left" Margin="33,63,0,0" VerticalAlignment="Top" Width="74"/>
-                        <Label x:Name="lblAuditionTime2" Content="xxx" HorizontalAlignment="Left" Margin="331,0,0,35" VerticalAlignment="Bottom"/>
+                        <Label x:Name="lblAuditionTime2" Content="xxx" HorizontalAlignment="Left" Margin="459,0,0,60" VerticalAlignment="Bottom"/>
                         <Button x:Name="btnPlayPattern2" Content="Play Pattern 2" HorizontalAlignment="Left" Margin="347,0,0,136" VerticalAlignment="Bottom" Width="84"/>
                         <Button x:Name="btnSavePattern" Content="Save Pattern" HorizontalAlignment="Left" Margin="588,0,0,136" VerticalAlignment="Bottom" Width="106" IsEnabled="False"/>
                         <Button x:Name="btnSavePatternAsXML" Content="Save Pattern XML " HorizontalAlignment="Left" Margin="602,0,0,46" VerticalAlignment="Bottom" Width="106" IsEnabled="False"/>
@@ -127,6 +127,8 @@
                         <duc:ImageButton x:Name="btnKeyboard2" Width="26" Height="26" Image="/Resources/Images/Keyboard_x32.png" Margin="160,0,0,98" Background="{x:Null}" ImageMargin="0" ToolTip="Keyboard" IsTabStop="True" TabIndex="10" Text="" VerticalAlignment="Bottom"/>
                         <Label Content="9=Drums" HorizontalAlignment="Left" Margin="153,0,0,134" VerticalAlignment="Bottom"/>
                         <Button x:Name="btnTestTimedEvent" Content="TimedEvent" HorizontalAlignment="Left" Margin="160,63,0,0" VerticalAlignment="Top" Width="75"/>
+                        <Label Content="BPM:" Height="26" VerticalAlignment="Top" Margin="50,118,0,0" HorizontalAlignment="Left" />
+                        <duc:SmallSlider x:Name="AuditionBpmSlider" MinimumValue="10" MaximumValue="300" Value="120" SliderBrush="#FF00B400" TabIndex="80" Margin="92,120,0,0" Width="90" Height="23"/>
                         <GroupBox Header="Audition PatternStore" HorizontalAlignment="Left" Margin="285,20,0,243" Width="335">
                             <Grid>
                                 <ListBox x:Name="lbxPatternStore" HorizontalAlignment="Left" Margin="10,10,0,10" Width="123"/>
@@ -157,6 +159,8 @@
                                 <TextBlock x:Name="Status_NoteOffListCount" Text="0"/>
                             </StatusBarItem>
                         </StatusBar>
+                        <Label Content="Audition Length:" HorizontalAlignment="Left" Margin="225,0,0,35" VerticalAlignment="Bottom"/>
+                        <Label x:Name="lblAuditionLength" Content="xxx" HorizontalAlignment="Left" Margin="459,0,0,35" VerticalAlignment="Bottom" Width="83"/>
                     </Grid>
                 </TabItem>
                 <TabItem x:Name="tiDirectplay" Header="Directplay">
@@ -190,6 +194,11 @@
                         <Button x:Name="btnDirectplayVc3" Margin="670,356,0,0" Content="Voice 3" Height="22" Width="55" HorizontalAlignment="Left" VerticalAlignment="Top"/>
                         <Label Content="Drums" HorizontalAlignment="Left" Margin="336,35,0,0" VerticalAlignment="Top"/>
                         <Label Content="Bass" HorizontalAlignment="Left" Margin="598,35,0,0" VerticalAlignment="Top"/>
+                    </Grid>
+                </TabItem>
+                <TabItem x:Name="tiPatternWorkshop" Header="Pattern Workshop">
+                    <Grid>
+                        <duc:ImageButton x:Name="btnEditPattern" Text="Edit Pattern" Image="/Resources/Images/Edit_x16.png" Margin="216,51,0,0" Height="26" Width="120"/>
                     </Grid>
                 </TabItem>
                 <TabItem x:Name="tiDebug" Header="Debug">

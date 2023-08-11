@@ -3,6 +3,7 @@
     'Public Event TimerTick()                                           'currently not needed
     Public Event SequencerRunningChanged(IsRunning As Boolean)
     Public Event Play_Sequence_EndReached()
+    Public Event Play_Audition_EndReached()
 
     Friend Const DebugEventOutList_MaxEvents = 1000                     ' limit the List's size
     Public DebugEventOutList As New List(Of PortTrackEvent)(1000)
@@ -27,6 +28,8 @@
     Public Const TPQ = 960                                  ' Ticks per Quarter Note 
     Private Const TPQdiv60 = TPQ \ 60                       ' auxiliary
 
+    Public Const TicksPerBeat = TPQ
+
     Private _BPM As Single = 120
     ''' <summary>
     ''' Tempo (BeatsPerMinute) Minimum: 10, Maximum: 300. Values above and below will be corrected    
@@ -46,6 +49,27 @@
             End If
         End Set
     End Property
+
+    Private _AuditionBPM As Single = 120
+    ''' <summary>
+    ''' Tempo (BeatsPerMinute) Minimum: 10, Maximum: 300. Values above and below will be corrected    
+    ''' </summary>
+    ''' <returns></returns>
+    Public Property AuditionBPM As Single                      ' tempo (Beats per Minute)
+        Get
+            Return _AuditionBPM
+        End Get
+        Set(value As Single)
+            If value < 10 Then
+                _AuditionBPM = 10
+            ElseIf value > 300 Then
+                _AuditionBPM = 300
+            Else
+                _AuditionBPM = value
+            End If
+        End Set
+    End Property
+
 
     Private _DPlayBPM As Single = 120
     ''' <summary>
@@ -182,15 +206,32 @@
         End If
 
         _SequencerTime = newTime
-        Set_CompositionPointers(newTime)
+        Set_CompositionPointers(Composition, newTime)
     End Sub
 
-    Private Sub Set_CompositionPointers(newTime As Double)
+
+    Public Sub Set_AuditionTime(newTime As Double)
+        If AuditionIsRunning = True Then
+            If newTime < AuditionTime Then
+                For v = 1 To Audition.Voices.Count
+                    Audition.Voices(v - 1).AllRunningNotesOff(CUInt(AuditionTime))
+                Next
+            End If
+        End If
+
+        _AuditionTime = newTime
+        Set_CompositionPointers(Audition, newTime)
+    End Sub
+
+
+    Private Sub Set_CompositionPointers(comp As Composition, newTime As Double)
         'Reset_CompositionPointers()                            ' all to 0 (save, but set more ptrs than needed
         '                                                       ' (need time if many Voices + tracks + pattern)
         '                                                       ' this is now made in Track.Play for the next Pattern
 
-        For Each voice In Composition.Voices
+        ' can be used for Sequencer.Composition and Sequencer.Audition
+        'For Each voice In Composition.Voices
+        For Each voice In comp.Voices
             For Each track In voice.Tracks
                 If track.PatternList.Count > 0 Then
 
@@ -379,9 +420,11 @@
 
         '--- Audition ---
         If AuditionIsRunning = True Then
-            _AuditionTime += DeltaSongTicks
+            Dim DeltaAuditionTicks As Double                                ' player ticks
+            DeltaAuditionTicks = DeltaTicks / Stopwatch.Frequency * AuditionBPM * TPQdiv60
+            _AuditionTime += DeltaAuditionTicks
             Try
-                Play_Audition(CLng(AuditionTime))
+                Play_Audition()
             Catch
                 _PlayAuditionErrors += 1
             End Try
@@ -414,19 +457,8 @@
 
     End Sub
 
-    Private Sub Play_Audition(AuditionTime As Long)
-        If Audition Is Nothing Then Exit Sub
-
-        For v = 1 To Audition.Voices.Count
-            For t = 1 To Audition.Voices(v - 1).Tracks.Count
-
-                'Audition.Voices(v - 1).Tracks(t - 1).AuditionPlayPattern(AuditionTime, Audition.Voices(v - 1))
-
-                Audition.Voices(v - 1).Tracks(t - 1).PlayTrack(AuditionTime, Audition.Voices(v - 1), Audition.Voices(v - 1).Tracks(t - 1))
-                'Composition.Voices(v - 1).Tracks(t - 1).PlayTrack(CLng(SequencerTime), Composition.Voices(v - 1), Composition.Voices(v - 1).Tracks(t - 1))
-
-            Next
-        Next
+    Private Sub Play_Audition()             ' for Sequencer.Audition
+        'If Audition Is Nothing Then Exit Sub
 
         '--- turn notes at end of NoteDuration off
 
@@ -434,10 +466,41 @@
             Audition.Voices(v - 1).Do_TimedNoteOff(AuditionTime)
         Next
 
+        For v = 1 To Audition.Voices.Count
+            For t = 1 To Audition.Voices(v - 1).Tracks.Count
+                Audition.Voices(v - 1).Tracks(t - 1).PlayTrack(CLng(AuditionTime), Audition.Voices(v - 1), Audition.Voices(v - 1).Tracks(t - 1))
+            Next
+        Next
+
+        '--- if LoopMode, check for loopEnd
+
+        If Audition.LoopMode = True Then
+            If Audition.LoopEnd > Audition.LoopStart Then
+                If AuditionTime >= Audition.LoopEnd Then
+                    AllAuditionNotesOff()
+                    Set_AuditionTime(Audition.LoopStart)    ' restart Loop
+                    Exit Sub                                    ' exit here, no check for end of sequence needed
+                End If
+            End If
+        End If
+
+        '--- check for end of sequence ---
+
+        If AuditionTime >= Audition.Length Then
+
+            If Audition.RestartAtEnd = True Then
+                AllAuditionNotesOff()
+                Set_AuditionTime(0)                            ' restart sequence
+            Else
+                Stop_Audition()
+                RaiseEvent Play_Audition_EndReached()
+            End If
+
+        End If
 
     End Sub
 
-    Private Sub Play_Sequence()
+    Private Sub Play_Sequence()                     ' for Sequencer.Composition
 
         '--- turn notes at end of NoteDuration off
         ' turn note off is set to the beginning for some specisl Midi-import where notes are immediately
@@ -461,7 +524,7 @@
         If Composition.LoopMode = True Then
             If Composition.LoopEnd > Composition.LoopStart Then
                 If SequencerTime >= Composition.LoopEnd Then
-                    AllNotesOff()
+                    AllSequencerNotesOff()
                     Set_SequencerTime(Composition.LoopStart)    ' restart Loop
                     Exit Sub                                    ' exit here, no check for end of sequence needed
                 End If
@@ -473,7 +536,7 @@
         If SequencerTime >= Composition.Length Then
 
             If Composition.RestartAtEnd = True Then
-                AllNotesOff()
+                AllSequencerNotesOff()
                 Set_SequencerTime(0)                            ' restart sequence
             Else
                 Stop_Sequencer()
@@ -484,9 +547,15 @@
 
     End Sub
 
-    Private Sub AllNotesOff()
+    Private Sub AllSequencerNotesOff()
         For v = 1 To Composition.Voices.Count
             Composition.Voices(v - 1).AllRunningNotesOff(CUInt(SequencerTime))
+        Next
+    End Sub
+
+    Private Sub AllAuditionNotesOff()
+        For v = 1 To Audition.Voices.Count
+            Audition.Voices(v - 1).AllRunningNotesOff(CUInt(AuditionTime))
         Next
     End Sub
 

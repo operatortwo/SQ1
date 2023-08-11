@@ -87,6 +87,7 @@
     <Import Include="System.Windows.Navigation" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Module3.vb" />
     <Compile Include="My Project\AssemblyInfo.vb">
       <SubType>Code</SubType>
     </Compile>
@@ -102,6 +103,19 @@
     </Compile>
     <Compile Include="Midi\MidiImport1.xaml.vb">
       <DependentUpon>MidiImport1.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\PatternEdit\Dialogs\KeyModeDlg.xaml.vb">
+      <DependentUpon>KeyModeDlg.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\PatternEdit\Panel\PatternAdorner.vb" />
+    <Compile Include="Windows\PatternEdit\Panel\PatternKeyPanel.vb" />
+    <Compile Include="Windows\PatternEdit\Panel\PatternNotePanel.vb" />
+    <Compile Include="Windows\PatternEdit\Panel\PatternPanel.xaml.vb">
+      <DependentUpon>PatternPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\PatternEdit\Panel\PatternPanelSub.vb" />
+    <Compile Include="Windows\PatternEdit\PatternEditWin.xaml.vb">
+      <DependentUpon>PatternEditWin.xaml</DependentUpon>
     </Compile>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
@@ -121,6 +135,18 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Windows\PatternEdit\Dialogs\KeyModeDlg.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\PatternEdit\Panel\PatternPanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\PatternEdit\PatternEditWin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Images\Cancel_x16.png" />
@@ -128,11 +154,15 @@
     <Resource Include="Resources\Images\OK_x32.png" />
     <Resource Include="Resources\Images\Load_x16.png" />
     <Resource Include="Resources\Images\list_ptr_x22.png" />
-    <Resource Include="Resources\Images\process_stop_x32.png" />
     <Resource Include="Resources\Images\Unchecked_x32.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Images\Split_x32.png" />
+    <Resource Include="Resources\Images\Play_x22.png" />
+    <Resource Include="Resources\Images\Play_Restart_x22.png" />
+    <Resource Include="Resources\Images\PreviousTrack_x22.png" />
+    <Resource Include="Resources\Images\Stop_x22.png" />
+    <Resource Include="Resources\Images\Play_Restart_transp_x22.png" />
     <Content Include="Resources\Library\Midi_File.dll" />
     <Resource Include="Resources\Library\Midi_File.xml" />
   </ItemGroup>
@@ -141,6 +171,11 @@
       <Project>{0411264d-319e-4ee9-b08a-8d5e2f4c3a31}</Project>
       <Name>SequencerBase</Name>
     </ProjectReference>
+    <ProjectReference Include="..\SequencerUI\SequencerUI.vbproj">
+      <Project>{8BC34B23-1CF3-4EA1-9345-071176295CBA}</Project>
+      <Name>SequencerUI</Name>
+    </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>

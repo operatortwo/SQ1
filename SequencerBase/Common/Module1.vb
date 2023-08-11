@@ -6,7 +6,7 @@ Imports System.Linq
 Public Module Module1
     Public Event MidiOutShortMsg(port As Byte, status As Byte, data1 As Byte, data2 As Byte)
 
-    Friend SequencerInstance As Sequencer
+    Public SequencerInstance As Sequencer
 
     Public MidiOutShortMsg_Counter As Integer
 

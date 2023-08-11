@@ -23,7 +23,6 @@ Public Class Directplay
         For v = 1 To NumberOfVoices
             Dim vc As New DirectplayVoice
             For q = 1 To NumberOfSlotsPerVoice
-                'vc.Queues.Add(New Queue(Of Job))
                 vc.Slots.Add(New Slot)
             Next
             Voices.Add(vc)
@@ -42,8 +41,6 @@ Public Class Directplay
 
         Voices(2).Slots(0).RingPlay = True
         Voices(3).Slots(0).RingPlay = True
-
-        'Dim queue = GetQueue(Voices(0), 10)         ' xxx
 
     End Sub
 
@@ -191,30 +188,9 @@ Public Class Directplay
                     tev = job.EventList(job.EventListPtr)                   ' if not above last event                    
                 Else
                     ' restart pattern
-
                     job.EventListPtr = 0                    ' to start   
                     job.StartOffset += job.Length
                     tev = job.EventList(job.EventListPtr)
-
-                    'If job.StartOffset >= job.Duration Then
-
-                    '    If slot.RingPlay = False Then
-                    '        slot.Joblist.Remove(job)
-                    '    Else
-                    '        Dim rjob As Job
-                    '        rjob = job
-                    '        slot.Joblist.Remove(job)
-                    '        rjob.StartOffset = 0
-                    '        slot.Joblist.Insert(0, rjob)
-                    '    End If
-
-                    '    If slot.Joblist.Count > 0 Then
-                    '        Dim newjob As Job = slot.Joblist(slot.Joblist.Count - 1)
-                    '        newjob.StartTime = currentTime + GetAlignOffset(currentTime, newjob.StartAlign)
-                    '    End If
-                    '    slot.Refresh_UI = True
-                    '    Exit While
-                    'End If
 
                 End If
 
@@ -235,13 +211,13 @@ Public Class Directplay
 
 
     ''' <summary>
-    ''' Insert Pattern for playing
+    ''' Insert Pattern for queued playing
     ''' </summary>
     ''' <param name="VoiceNumber"></param>
     ''' <param name="SlotNumber"></param>
     ''' <param name="Pattern">Pattern where desired duration is set</param>
     ''' <param name="StartAlign">forward alignment in ticks, f.e. 960 = start at next beat in DirectplayTime</param>
-    ''' <returns>True if successful, False if Voice or Queue number invalid, pattern is nothing or queue is full</returns>
+    ''' <returns>True if successful, False if Voice or Slot number invalid, pattern is nothing or Slot is full</returns>
     Public Function InsertPattern(VoiceNumber As Integer, SlotNumber As Integer, Pattern As Pattern, StartAlign As UInteger) As Boolean
         If VoiceNumber >= Voices.Count Then Return False
         If SlotNumber >= Voices(VoiceNumber).Slots.Count Then Return False
@@ -265,29 +241,50 @@ Public Class Directplay
             job.StartTime = time + GetAlignOffset(time, StartAlign)
         End If
 
-
-
-        '--- in any case: enqueue the job
-        'Voices(VoiceNumber).Slots(SlotNumber).Joblist.Enqueue(job)
+        '--- in any case: insert the job        
         Voices(VoiceNumber).Slots(SlotNumber).Joblist.Insert(0, job)
 
         Return True
     End Function
 
-    Public Function AddJob(Voice As DirectplayVoice, QueueNumber As Integer, job As Job) As Boolean
-        Dim queue = GetQueue(Voice, QueueNumber)
-        If queue Is Nothing Then Return False
-        'Voice.Slots(QueueNumber).Joblist.Enqueue(job)
-        Voice.Slots(QueueNumber).Joblist.Insert(0, job)
-        Return True
+    ''' <summary>
+    ''' Play the pattern immediate. Removes any Job in the Joblist.
+    ''' </summary>
+    ''' <param name="VoiceNumber"></param>
+    ''' <param name="SlotNumber"></param>
+    ''' <param name="Pattern">Pattern where desired duration is set</param>
+    ''' <returns></returns>
+    Public Function PlayPattern(VoiceNumber As Integer, SlotNumber As Integer, Pattern As Pattern) As Boolean
+        If VoiceNumber >= Voices.Count Then Return False
+        If SlotNumber >= Voices(VoiceNumber).Slots.Count Then Return False
+        'If Voices(VoiceNumber).Slots(SlotNumber).Joblist.Count >= MaximumNumberOfJoblistItems Then Return False
+        If Pattern Is Nothing Then Return False
+
+        Voices(VoiceNumber).Slots(SlotNumber).Joblist.Clear()
+        Voices(VoiceNumber).Slots(SlotNumber).Refresh_UI = True
+
+        Return InsertPattern(VoiceNumber, SlotNumber, Pattern, 0)
     End Function
 
-    Private Function GetQueue(Voice As DirectplayVoice, QueueNumber As Integer) As List(Of Job)
-        If Voice Is Nothing Then Return Nothing
-        If QueueNumber >= Voice.Slots.Count Then Return Nothing
-        Return Voice.Slots(QueueNumber).Joblist
-    End Function
+    ''' <summary>
+    ''' Play the pattern with the given StartAlignment. Removes any Job in the Joblist.
+    ''' </summary>
+    ''' <param name="VoiceNumber"></param>
+    ''' <param name="SlotNumber"></param>
+    ''' <param name="Pattern">Pattern where desired duration is set</param>
+    ''' <param name="StartAlign">forward alignment in ticks, f.e. 960 = start at next beat in DirectplayTime</param>
+    ''' <returns></returns>
+    Public Function PlayPattern(VoiceNumber As Integer, SlotNumber As Integer, Pattern As Pattern, StartAlign As UInteger) As Boolean
+        If VoiceNumber >= Voices.Count Then Return False
+        If SlotNumber >= Voices(VoiceNumber).Slots.Count Then Return False
+        'If Voices(VoiceNumber).Slots(SlotNumber).Joblist.Count >= MaximumNumberOfJoblistItems Then Return False
+        If Pattern Is Nothing Then Return False
 
+        Voices(VoiceNumber).Slots(SlotNumber).Joblist.Clear()
+        Voices(VoiceNumber).Slots(SlotNumber).Refresh_UI = True
+
+        Return InsertPattern(VoiceNumber, SlotNumber, Pattern, StartAlign)
+    End Function
     ''' <summary>
     ''' Get Offset needed to align time to the align grid.
     ''' </summary>

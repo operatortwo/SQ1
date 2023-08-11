@@ -3,7 +3,6 @@ Imports SequencerBase.Module1
 Imports SequencerBase.Sequencer
 Imports SequencerUI
 Imports SequencerUITools
-Imports SQ_1.My
 
 Class MainWindow
 
@@ -312,7 +311,8 @@ Class MainWindow
         'SequencerUI.SequencerPanel1.ScreenRefresh()
         CompositionPanel.ScreenRefresh()
 
-        SequencerUI.ScreenRefreshMain()
+        ScreenRefreshMain()
+        ScreenRefresh_UITools_Main()
 
         '--- Sequencer Time (Ticks)
         Dim time As Long = CLng(Sequencer.SequencerTime)
@@ -333,6 +333,8 @@ Class MainWindow
 
         lblAuditionTime2.Content = CLng(Sequencer.AuditionTime)
         lblAuditionTime2.Content = Math.Round(Sequencer.AuditionTime, 0)
+
+        lblAuditionLength.Content = Sequencer.Audition.Length
 
         If Sequencer.Audition.Voices(0).NoteOffList.Count > 0 Then
             Dim txt As String
@@ -490,6 +492,16 @@ Class MainWindow
 
     End Sub
 
+
+    Private Sub tiAudition_GotFocus(sender As Object, e As RoutedEventArgs) Handles tiAudition.GotFocus
+        AuditionBpmSlider.SetValueSilent(Sequencer.AuditionBPM)
+    End Sub
+
+    Private Sub AuditionBpmSlider_ValueChanged(sender As Object, e As RoutedPropertyChangedEventArgs(Of Double)) Handles AuditionBpmSlider.ValueChanged
+        Sequencer.AuditionBPM = CSng(e.NewValue)
+    End Sub
+
+
     Private Sub btnSavePattern_Click(sender As Object, e As RoutedEventArgs) Handles btnSavePattern.Click
         SequencerBase.SavePattern(Pattern1)
     End Sub
@@ -507,13 +519,13 @@ Class MainWindow
         If SequencerBase.LoadPatternFromXML(patx) = True Then
             Sequencer.Stop_Audition()
             Pattern1 = patx.ToPattern
-            BpmSlider.Value = patx.BPM
-
+            'BpmSlider.Value = patx.BPM
+            AuditionBpmSlider.SetValueSilent(patx.BPM)
+            Sequencer.AuditionBPM = patx.BPM
             'nudVc0MidiChannel.Value = 9     ' reset to drums
             nudVc0Transpose.Value = 0       ' reset Transpose
             Sequencer.Play_Pattern(Pattern1, CBool(cbPatternDoLoop.IsChecked))
         End If
-
 
     End Sub
 
@@ -809,7 +821,8 @@ Class MainWindow
         If e.Data.GetDataPresent(GetType(Pattern)) Then
             Dim pattern As Pattern = CType(e.Data.GetData(GetType(Pattern)), Pattern)
             If pattern IsNot Nothing Then
-                Sequencer.DPlay.InsertPattern(0, 0, pattern, 960)
+                'Sequencer.DPlay.InsertPattern(0, 0, pattern, 960)
+                Sequencer.DPlay.PlayPattern(0, 0, pattern)
             End If
         End If
     End Sub
@@ -826,7 +839,8 @@ Class MainWindow
         If e.Data.GetDataPresent(GetType(Pattern)) Then
             Dim pattern As Pattern = CType(e.Data.GetData(GetType(Pattern)), Pattern)
             If pattern IsNot Nothing Then
-                Sequencer.DPlay.InsertPattern(1, 0, pattern, 960)
+                'Sequencer.DPlay.InsertPattern(1, 0, pattern, 960)
+                Sequencer.DPlay.PlayPattern(1, 0, pattern)
             End If
         End If
     End Sub
@@ -850,6 +864,20 @@ Class MainWindow
     End Sub
 
 
+#End Region
+
+
+#Region "Pattern Workshop"
+
+    Private Sub btnEditPattern_Click(sender As Object, e As RoutedEventArgs) Handles btnEditPattern.Click
+        Dim win As New PatternEditWin(Pattern2)
+        win.Owner = Me
+        win.WindowStartupLocation = WindowStartupLocation.CenterOwner
+        win.ShowDialog()
+
+
+
+    End Sub
 #End Region
 
 #Region "Debug tab"
@@ -895,6 +923,10 @@ Class MainWindow
             CompositionPanel.RedrawAllTracks()
         End If
     End Sub
+
+
+
+
 
 
 

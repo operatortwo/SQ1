@@ -350,6 +350,7 @@
     <Resource Include="Resources\Images\reset_sound_x32.png" />
     <Resource Include="Resources\Images\warning_x32.png" />
     <Resource Include="Resources\Images\Wrench_Icon_x32.png" />
+    <Resource Include="Resources\Images\Edit_x16.png" />
     <Content Include="Resources\Library\DailyUserControls.dll" />
     <Resource Include="Resources\Library\DailyUserControls.xml" />
     <Content Include="Resources\Library\Midi_IO.dll" />
