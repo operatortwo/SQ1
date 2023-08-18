@@ -341,6 +341,31 @@ Public Class PatternPanel
         End If
     End Sub
 
+    Private Sub KeyPanel_PreviewMouseWheel(sender As Object, e As MouseWheelEventArgs) Handles KeyPanel.PreviewMouseWheel
+        ' e.Delta is negative if the mouse wheel is rotated in a downward direction (toward the user). 
+        If e.Delta < 0 Then
+            MasterVScroll.Value += PixelPerNoteRow
+        Else
+            MasterVScroll.Value -= PixelPerNoteRow
+        End If
+        KeyPanelScroll_ScrollV()
+        NotePanelScroll_ScrollV()
+        e.Handled = True
+    End Sub
+
+    Private Sub NotePanel_PreviewMouseWheel(sender As Object, e As MouseWheelEventArgs) Handles NotePanel.PreviewMouseWheel
+        ' e.Delta is negative if the mouse wheel is rotated in a downward direction (toward the user). 
+        If e.Delta < 0 Then
+            MasterVScroll.Value += PixelPerNoteRow
+        Else
+            MasterVScroll.Value -= PixelPerNoteRow
+        End If
+        KeyPanelScroll_ScrollV()
+        NotePanelScroll_ScrollV()
+        e.Handled = True
+    End Sub
+
+
 
 
 

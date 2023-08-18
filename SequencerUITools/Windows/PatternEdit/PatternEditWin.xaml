@@ -25,15 +25,22 @@
             <Label Content="BPM:" Height="26" VerticalAlignment="Top" Margin="10,0,0,0" />
             <duc:SmallSlider x:Name="AuditionBpmSlider" Height="23" MinimumValue="10" MaximumValue="300" Value="120" Width="120" SliderBrush="#FF00B400" TabIndex="80" Margin="0,2,0,0"/>
         </ToolBar>
-        <Label x:Name="lblPattern1Name" HorizontalAlignment="Left" Margin="20,91,0,0" VerticalAlignment="Top" Height="20" Width="100" Padding="4,0,0,0" BorderBrush="Black" BorderThickness="1,1,1,1"/>
+        <duc:NumericUpDown x:Name="nudAuditionLength" Margin="20,91,0,0" MinimumValue="1" Value="4" Height="24" HorizontalAlignment="Left" VerticalAlignment="Top" Width="79"/>
+        <Label x:Name="lblPattern1Name" HorizontalAlignment="Left" Margin="20,197,0,0" VerticalAlignment="Top" Height="20" Width="100" Padding="4,0,0,0" BorderBrush="Black" BorderThickness="1,1,1,1"/>
 
         <Border Margin="155,91,61,47" BorderBrush="#FF194800" BorderThickness="1,1,1,1">
             <local:PatternPanel x:Name="PatternPanel1" />
         </Border>
-        <Label Content="Length:" HorizontalAlignment="Left" Margin="20,116,0,0" VerticalAlignment="Top" Padding="0,0,0,0"/>
-        <Label x:Name="lblPattern1Length" Content="xxx" HorizontalAlignment="Left" Margin="82,116,0,0" VerticalAlignment="Top" Padding="0,0,0,0"/>
-        <Label Content="Duration:" HorizontalAlignment="Left" Margin="20,137,0,0" VerticalAlignment="Top" Padding="0,0,0,0"/>
-        <Label x:Name="lblPattern1Duration" Content="xxx" HorizontalAlignment="Left" Margin="82,137,0,0" VerticalAlignment="Top" Padding="0,0,0,0"/>
+        <Label Content="Length:" HorizontalAlignment="Left" Margin="20,227,0,0" VerticalAlignment="Top" Padding="0,0,0,0"/>
+        <Label x:Name="lblPattern1Length" Content="xxx" HorizontalAlignment="Left" Margin="82,227,0,0" VerticalAlignment="Top" Padding="0,0,0,0"/>
+        <Label Content="Duration:" HorizontalAlignment="Left" Margin="20,248,0,0" VerticalAlignment="Top" Padding="0,0,0,0"/>
+        <Label x:Name="lblPattern1Duration" Content="xxx" HorizontalAlignment="Left" Margin="82,248,0,0" VerticalAlignment="Top" Padding="0,0,0,0"/>
+        <Label Content="Audition Length: [Beats]" HorizontalAlignment="Left" Margin="20,70,0,0" VerticalAlignment="Top" Padding="0,0,0,0"/>
+        <Grid HorizontalAlignment="Left" Height="35" Margin="21,157,0,0" VerticalAlignment="Top" Width="62">
+            <RadioButton x:Name="rbVoice" Content="Voice" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+            <RadioButton x:Name="rbDrum" Content="Drum" HorizontalAlignment="Center" Margin="0,20,0,0" VerticalAlignment="Top" IsChecked="True"/>
+        </Grid>
+        <Button x:Name="btnVc0" Content="Voice" HorizontalAlignment="Left" Margin="24,126,0,0" VerticalAlignment="Top" Width="72"/>
 
     </Grid>
 </Window>

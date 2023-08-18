@@ -1,6 +1,7 @@
 ﻿Imports System.Windows.Interop
 Imports SequencerBase
 Imports SequencerBase.Directplay
+Imports SequencerUI
 
 Public Class PatternEditWin
     Private WithEvents Seq As Sequencer = SequencerInstance
@@ -36,6 +37,7 @@ Public Class PatternEditWin
         slot.RingPlay = False
         tgbtnRestartAtEnd.IsChecked = slot.RingPlay
         AuditionBpmSlider.SetValueSilent(Seq.AuditionBPM)
+        nudAuditionLength.SetValueSilent(Aud.Length / TicksPerBeat)
 
         AddHandler Module3.ScreenRefreshUITools, AddressOf ScreenRefresh
 
@@ -151,20 +153,21 @@ Public Class PatternEditWin
         End If
     End Sub
 
-#Region "Pattern Panel"
+    Private Sub nudAuditionLength_ValueChanged(sender As Object, e As RoutedPropertyChangedEventArgs(Of Double)) Handles nudAuditionLength.ValueChanged
+        Aud.Length = nudAuditionLength.Value * TicksPerBeat
+    End Sub
 
+    Private Sub rbVoice_Checked(sender As Object, e As RoutedEventArgs) Handles rbVoice.Checked
+        Aud.Voices(0).MidiChannel = 0
+    End Sub
 
+    Private Sub rbDrum_Checked(sender As Object, e As RoutedEventArgs) Handles rbDrum.Checked
+        Aud.Voices(0).MidiChannel = 9
+    End Sub
 
-
-
-
-
-
-
-
-
-
-#End Region
-
-
+    Private Sub btnVc0_Click(sender As Object, e As RoutedEventArgs) Handles btnVc0.Click
+        Dim dlg As New VoicePopup(Aud.Voices(0))
+        dlg.Owner = Me
+        dlg.ShowDialog()
+    End Sub
 End Class

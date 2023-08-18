@@ -4,7 +4,7 @@ Imports SequencerUI
 
 Partial Public Class PatternPanel
 
-    Private KeyNoteNumber_playing As Byte               ' currently playing Note initiated from user. > 127 = none
+    Private KeyNoteNumber_playing As Byte = 128           ' currently playing Note initiated from user. > 127 = none
 
     Friend Const PixelPerNoteRow = 20
     Private PatternInfo1 As PatternInfo
