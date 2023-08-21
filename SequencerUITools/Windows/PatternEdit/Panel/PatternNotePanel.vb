@@ -14,9 +14,13 @@ Public Class PatternNotePanel
     Private GridPen8 As New Pen(Brushes.Gray, 0.7)
     Private GridPen16 As New Pen(Brushes.Gray, 0.7)
 
+    Private NoteBrushFull As New SolidColorBrush(Colors.LightGray)
+    'Private NoteBrushVeocity As New SolidColorBrush(Colors.LightGray)
+    Private NoteBrushVelocity As New SolidColorBrush(Color.FromRgb(0, 122, 204))
+
     Private Class Nrect
-        Public fullRect As Rect
-        Public velocityRect As Rect
+        Public full As Rect
+        Public velocity As Rect
     End Class
 
 
@@ -49,6 +53,7 @@ Public Class PatternNotePanel
         Dim nrect As Nrect
         Dim noteRow As Integer
         Dim velheight As Integer
+        Dim veloffset As Integer
 
         ' insert note rectangle if note-event
         For Each ev In evlist
@@ -56,29 +61,27 @@ Public Class PatternNotePanel
                 noteRow = GetNoteRow(ev.Data1)
                 If noteRow <> -1 Then
                     nrect = New Nrect
-                    '--- fullrect
-                    nrect.fullRect.X = ev.Time * ticksToPixelFactor * scaleX
-                    nrect.fullRect.Width = ev.Duration * ticksToPixelFactor * scaleX
-                    nrect.fullRect.Y = noteRow * PatternPanel.PixelPerNoteRow * scaleY
-                    nrect.fullRect.Height = (PatternPanel.PixelPerNoteRow - 2) * scaleY
+                    '--- full rect
+                    nrect.full.X = ev.Time * ticksToPixelFactor * scaleX
+                    nrect.full.Width = ev.Duration * ticksToPixelFactor * scaleX
+                    nrect.full.Y = noteRow * PatternPanel.PixelPerNoteRow * scaleY
+                    nrect.full.Height = (PatternPanel.PixelPerNoteRow - 2) * scaleY
                     '--- velocity rect
-                    nrect.velocityRect = nrect.fullRect
-                    nrect.velocityRect.Height = nrect.velocityRect.Height / 2
-
-                    velheight = nrect.fullRect.Height / 127 * ev.Data2
-                    nrect.velocityRect.Height = nrect.fullRect.Height - velheight
-
+                    nrect.velocity = nrect.full
+                    velheight = nrect.full.Height / 127 * ev.Data2
+                    veloffset = nrect.full.Height - velheight
+                    nrect.velocity.Height = velheight
+                    nrect.velocity.Y += veloffset
                     drawlist.Add(nrect)
+                    End If
                 End If
-            End If
         Next
 
         For Each nrect In drawlist
-            'dc.DrawRectangle(Brushes.Red, NotePen, nrect.fullRect)                  ' draw full rectangle
-            dc.DrawRectangle(Brushes.Gray, NotePen, nrect.fullRect)                  ' draw full rectangle
-            If scaleY > 0.8 Then
-                'dc.DrawRectangle(Brushes.Orange, Nothing, nrect.velocityRect)       ' draw velocity rectangle
-                dc.DrawRectangle(Brushes.LightGray, Nothing, nrect.velocityRect)       ' draw velocity rectangle
+            dc.DrawRectangle(NoteBrushFull, Nothing, nrect.full)                ' draw full rectangle
+            dc.DrawRectangle(NoteBrushVelocity, Nothing, nrect.velocity)        ' draw velocity rectangle            
+            If scaleX > 0.4 Then
+                dc.DrawRectangle(Nothing, NotePen, nrect.full)                  ' draw border rectangle
             End If
         Next
 
