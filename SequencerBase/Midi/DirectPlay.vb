@@ -232,7 +232,7 @@ Public Class Directplay
         job.StartAlign = StartAlign
         job.EventListPtr = 0
         job.EventList = Pattern.EventList
-        job.Label = Pattern.Label
+        job.Label = Pattern.Name
 
         '--- if this is the only job, prepare to start
         If Voices(VoiceNumber).Slots(SlotNumber).Joblist.Count = 0 Then

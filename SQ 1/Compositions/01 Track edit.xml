@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Composition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <TimeSignature_BeatsPerBar>4</TimeSignature_BeatsPerBar>
   <TimeSignature_NoteValuePerBeat>4</TimeSignature_NoteValuePerBeat>
@@ -432,7 +432,7 @@
           <Duration>148</Duration>
         </TrackEvent>
       </EventList>
-      <Label>70sRockB</Label>
+      <Name>70sRockB</Name>
     </Pattern>
     <Pattern>
       <StartTime>0</StartTime>
@@ -556,7 +556,7 @@
           <Duration>197</Duration>
         </TrackEvent>
       </EventList>
-      <Label>Ba Trance G</Label>
+      <Name>Ba Trance G</Name>
     </Pattern>
     <Pattern>
       <StartTime>0</StartTime>
@@ -2272,7 +2272,7 @@
           <Duration>147</Duration>
         </TrackEvent>
       </EventList>
-      <Label>GangstaC</Label>
+      <Name>GangstaC</Name>
     </Pattern>
     <Pattern>
       <StartTime>0</StartTime>
@@ -2532,7 +2532,7 @@
           <Duration>149</Duration>
         </TrackEvent>
       </EventList>
-      <Label>HipHop4</Label>
+      <Name>HipHop4</Name>
     </Pattern>
     <Pattern>
       <StartTime>0</StartTime>
@@ -2608,7 +2608,7 @@
           <Duration>263</Duration>
         </TrackEvent>
       </EventList>
-      <Label>Ba Dream D1</Label>
+      <Name>Ba Dream D1</Name>
     </Pattern>
   </PatternStore>
   <Voices>
@@ -3055,7 +3055,7 @@
                   <Duration>148</Duration>
                 </TrackEvent>
               </EventList>
-              <Label>70sRockB</Label>
+              <Name>70sRockB</Name>
             </Pattern>
             <Pattern>
               <StartTime>17280</StartTime>
@@ -3475,7 +3475,7 @@
                   <Duration>148</Duration>
                 </TrackEvent>
               </EventList>
-              <Label>70sRockB</Label>
+              <Name>70sRockB</Name>
             </Pattern>
             <Pattern>
               <StartTime>48960</StartTime>
@@ -3599,7 +3599,7 @@
                   <Duration>197</Duration>
                 </TrackEvent>
               </EventList>
-              <Label>Ba Trance G</Label>
+              <Name>Ba Trance G</Name>
             </Pattern>
             <Pattern>
               <StartTime>53760</StartTime>
@@ -5315,7 +5315,7 @@
                   <Duration>147</Duration>
                 </TrackEvent>
               </EventList>
-              <Label>GangstaC</Label>
+              <Name>GangstaC</Name>
             </Pattern>
             <Pattern>
               <StartTime>70080</StartTime>
@@ -5575,7 +5575,7 @@
                   <Duration>149</Duration>
                 </TrackEvent>
               </EventList>
-              <Label>HipHop4</Label>
+              <Name>HipHop4</Name>
             </Pattern>
           </PatternList>
         </Track>
@@ -5680,7 +5680,7 @@
                   <Duration>263</Duration>
                 </TrackEvent>
               </EventList>
-              <Label>Ba Dream D1</Label>
+              <Name>Ba Dream D1</Name>
             </Pattern>
             <Pattern>
               <StartTime>17280</StartTime>
@@ -5756,7 +5756,7 @@
                   <Duration>263</Duration>
                 </TrackEvent>
               </EventList>
-              <Label>Ba Dream D1</Label>
+              <Name>Ba Dream D1</Name>
             </Pattern>
             <Pattern>
               <StartTime>32640</StartTime>
@@ -5880,7 +5880,7 @@
                   <Duration>197</Duration>
                 </TrackEvent>
               </EventList>
-              <Label>Ba Trance G</Label>
+              <Name>Ba Trance G</Name>
             </Pattern>
           </PatternList>
         </Track>

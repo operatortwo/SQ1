@@ -66,19 +66,19 @@
 
                     If pat.StartOffset >= pat.Duration Then
 
-                        If pat.DoLoop = False Then
-                            pat.Ended = True
+                        'If pat.DoLoop = False Then
+                        pat.Ended = True
                             If PatternListPtr + 1 < PatternList.Count Then
                                 PatternListPtr += 1             ' to next pattern
                             End If
                             Exit While
-                        Else
-                            pat.StartTime += pat.Duration
-                            pat.StartOffset = 0
-                            Exit While
-                        End If
+                            'Else
+                            'pat.StartTime += pat.Duration
+                            'pat.StartOffset = 0
+                            'Exit While
+                            'End If
 
-                    End If
+                        End If
 
                 End If
 

@@ -327,7 +327,7 @@ Public Class MidiImport1
 
             Dim pat As New Pattern
 
-            pat.Label = TrackTable(i - 1).TrackName
+            pat.Name = TrackTable(i - 1).TrackName
             pat.StartTime = 0
             pat.Length = comp.Length
             pat.Duration = comp.Length

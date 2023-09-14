@@ -13,7 +13,7 @@ Partial Public Class MainWindow
         Dim q As Long = 240 - (pos Mod 240)         ' sync to beat
         'Pattern1.StartTime = pos + q
 
-        Pattern1.Label = "Pattern 1"
+        Pattern1.Name = "Pattern 1"
         Pattern1.EventList = New List(Of TrackEvent)
         Pattern1.Length = 1 * 960
         Pattern1.Duration = 8 * 960
@@ -31,7 +31,7 @@ Partial Public Class MainWindow
 
         '----
 
-        Pattern2.Label = "Pattern 2"
+        Pattern2.Name = "Pattern 2"
         Pattern2.EventList = New List(Of TrackEvent)
         Pattern2.Length = 2 * 960
         Pattern2.Duration = 8 * 960

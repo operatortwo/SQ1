@@ -354,7 +354,7 @@
 
     End Sub
 
-    Public Sub Play_Pattern(vc As Voice, pt As Pattern, DoLoop As Boolean)
+    Public Sub Play_Pattern(vc As Voice, pt As Pattern)
         'Dim vc0 As Voice = Audition.Voices(0)
 
         'vc0.MidiChannel = vc.MidiChannel
@@ -363,10 +363,10 @@
         'Audition.Voices(0) = vc
         Audition.Voices(0).Tracks(0).PatternListPtr = 0
 
-        Play_Pattern(pt, DoLoop)
+        Play_Pattern(pt)
     End Sub
 
-    Public Sub Play_Pattern(pt As Pattern, DoLoop As Boolean)
+    Public Sub Play_Pattern(pt As Pattern)
         ' assume VoiceNumber = 0
 
         If AuditionIsRunning = False Then
@@ -381,9 +381,9 @@
         pt.EventListPtr = 0
         pt.Ended = False
         'pt.DoLoop = DoLoop
-        If DoLoop = True Then
-            pt.Duration = 100000 * TPQ      ' not endless but very long (100'000 beats) to avoid handling of pt.DoLoop
-        End If
+        'If DoLoop = True Then
+        '    pt.Duration = 100000 * TPQ      ' not endless but very long (100'000 beats) to avoid handling of pt.DoLoop
+        'End If
 
 
         Audition.Voices(0).InsertPattern(CUInt(AuditionTime), pt)

@@ -53,7 +53,7 @@
                 End If
                 Dim patplay = pat.Copy
                 ' need to copy, else Pattern/PatternStore/Composition is changed and will ask for save at AppExit
-                Sequencer.Play_Pattern(patplay, False)
+                Sequencer.Play_Pattern(patplay)
             End If
         End If
     End Sub

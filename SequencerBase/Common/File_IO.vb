@@ -177,7 +177,7 @@ Public Module File_IO
         pat2.StartTime = 0
         pat2.StartOffset = 0
         pat2.Duration = pat2.Length
-        pat2.DoLoop = False
+        'pat2.DoLoop = False
         pat2.Ended = False
         pat2.EventListPtr = 0
 
@@ -220,7 +220,7 @@ Public Module File_IO
         pat2.StartTime = 0
         pat2.StartOffset = 0
         pat2.Duration = pat2.Length
-        pat2.DoLoop = False
+        'pat2.DoLoop = False
         pat2.Ended = False
         pat2.EventListPtr = 0
 

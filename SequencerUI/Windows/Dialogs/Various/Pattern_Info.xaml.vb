@@ -16,7 +16,7 @@ Public Class Pattern_Info
     End Sub
 
     Private Sub ShowPatternInfo()
-        tbPatternName.Text = pat.Label
+        tbPatternName.Text = pat.Name
         tbInfo.Clear()
 
         strb.Clear()
@@ -24,7 +24,7 @@ Public Class Pattern_Info
         strb.AppendLine("StartOffset = " & pat.StartOffset)
         strb.AppendLine("Length = " & pat.Length)
         strb.AppendLine("Duration = " & pat.Duration)
-        strb.AppendLine("DoLoop = " & pat.DoLoop)
+        'strb.AppendLine("DoLoop = " & pat.DoLoop)
         strb.AppendLine("Ended = " & pat.Ended)
         strb.AppendLine("EventListPtr = " & pat.EventListPtr)
         strb.AppendLine("EventList Count = " & pat.EventList.Count)

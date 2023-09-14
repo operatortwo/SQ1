@@ -253,13 +253,13 @@ Public Class DebugWindow
         If pat IsNot Nothing Then
             strb.Clear()
 
-            strb.AppendLine("Label = " & pat.Label)
+            strb.AppendLine("Name = " & pat.Name)
             strb.AppendLine("---------------")
             strb.AppendLine("StartTime =" & pat.StartTime)
             strb.AppendLine("StartOffset =" & pat.StartOffset)
             strb.AppendLine("Length = " & pat.Length)
             strb.AppendLine("Duration = " & pat.Duration)
-            strb.AppendLine("DoLoop = " & pat.DoLoop)
+            'strb.AppendLine("DoLoop = " & pat.DoLoop)
             strb.AppendLine("Ended = " & pat.Ended)
             strb.AppendLine("EventListPtr = " & pat.EventListPtr)
             strb.AppendLine("EventList.Count = " & pat.EventList.Count)

@@ -119,7 +119,7 @@ Public Class PatternRectangle
 
     Private Sub Mi_Play_Click(sender As Object, e As RoutedEventArgs) Handles Mi_Play.Click
         Dim pt As Pattern = Me.Pattern.Copy
-        pt.DoLoop = False
+        'pt.DoLoop = False
 
         If pt.Duration > Sequencer.TPQ * 4 Then
             pt.Duration = Sequencer.TPQ * 4
@@ -138,7 +138,7 @@ Public Class PatternRectangle
                 If voiceNumber < comp.Voices.Count Then
                     Dim vc As Voice
                     vc = tc.Composition.Voices(tc.VoiceNumber)
-                    Sequencer.Play_Pattern(vc, pt, False)
+                    Sequencer.Play_Pattern(vc, pt)
                 End If
             End If
         End If

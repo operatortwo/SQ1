@@ -35,8 +35,8 @@ Partial Public Class TrackCanvas
         'rect.Fill = PatternRectFillBrush
         'rect.Stroke = Brushes.Black
 
-        rect.Text = pattern.Label
-        rect.ToolTip = pattern.Label
+        rect.Text = pattern.Name
+        rect.ToolTip = pattern.Name
         rect.Pattern = pattern
 
         Canvas1.Children.Add(rect)

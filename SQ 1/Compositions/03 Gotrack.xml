@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Composition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <TimeSignature_BeatsPerBar>4</TimeSignature_BeatsPerBar>
   <TimeSignature_NoteValuePerBeat>4</TimeSignature_NoteValuePerBeat>
@@ -65,7 +65,7 @@
                   <Duration>0</Duration>
                 </TrackEvent>
               </EventList>
-              <Label> - [no Name]</Label>
+              <Name> - [no Name]</Name>
             </Pattern>
           </PatternList>
         </Track>
@@ -873,7 +873,7 @@
                   <Duration>70</Duration>
                 </TrackEvent>
               </EventList>
-              <Label> - drum 16 </Label>
+              <Name> - drum 16 </Name>
             </Pattern>
           </PatternList>
         </Track>
@@ -1233,7 +1233,7 @@
                   <Duration>480</Duration>
                 </TrackEvent>
               </EventList>
-              <Label> - bass    </Label>
+              <Name> - bass    </Name>
             </Pattern>
           </PatternList>
         </Track>
@@ -1785,7 +1785,7 @@
                   <Duration>132</Duration>
                 </TrackEvent>
               </EventList>
-              <Label> - seq 1   </Label>
+              <Name> - seq 1   </Name>
             </Pattern>
           </PatternList>
         </Track>

@@ -394,12 +394,12 @@ Class MainWindow
                     aud.Voices(v - 1).Tracks(t - 1).PatternList(p - 1).Ended = False
                     aud.Voices(v - 1).Tracks(t - 1).PatternList(p - 1).StartTime = 0
                     aud.Voices(v - 1).Tracks(t - 1).PatternList(p - 1).StartOffset = 0
-                    aud.Voices(v - 1).Tracks(t - 1).PatternList(p - 1).DoLoop = True
+                    'aud.Voices(v - 1).Tracks(t - 1).PatternList(p - 1).DoLoop = True
                 Next
             Next
         Next
 
-
+        Sequencer.Audition.RestartAtEnd = CBool(cbAuditionRestart.IsChecked)
         Sequencer.Start_Audition()
     End Sub
 
@@ -418,11 +418,13 @@ Class MainWindow
     Private Sub btnPlayPattern_PreviewMouseDown(sender As Object, e As MouseButtonEventArgs) Handles btnPlayPattern.PreviewMouseDown
         Sequencer.Audition.Voices(0).MidiChannel = 9
         'Sequencer.Play_Pattern(Pattern1)
-        Sequencer.Play_Pattern(Pattern1, CBool(cbPatternDoLoop.IsChecked))
+        Sequencer.Audition.RestartAtEnd = CBool(cbAuditionRestart.IsChecked)
+        Sequencer.Play_Pattern(Pattern1)
     End Sub
 
     Private Sub btnPlayPattern2_PreviewMouseDown(sender As Object, e As MouseButtonEventArgs) Handles btnPlayPattern2.PreviewMouseDown
-        Sequencer.Play_Pattern(Pattern2, CBool(cbPatternDoLoop.IsChecked))
+        Sequencer.Audition.RestartAtEnd = CBool(cbAuditionRestart.IsChecked)
+        Sequencer.Play_Pattern(Pattern2)
     End Sub
 
     Public Sub MidiOutShortMsg(port As Byte, status As Byte, data1 As Byte, data2 As Byte)
@@ -524,7 +526,8 @@ Class MainWindow
             Sequencer.AuditionBPM = patx.BPM
             'nudVc0MidiChannel.Value = 9     ' reset to drums
             nudVc0Transpose.Value = 0       ' reset Transpose
-            Sequencer.Play_Pattern(Pattern1, CBool(cbPatternDoLoop.IsChecked))
+            Sequencer.Audition.RestartAtEnd = CBool(cbAuditionRestart.IsChecked)
+            Sequencer.Play_Pattern(Pattern1)
         End If
 
     End Sub
@@ -719,7 +722,7 @@ Class MainWindow
         If SequencerBase.LoadPatternFromXML(patx) = True Then
             pat = patx.ToPattern
             Sequencer.Audition.PatternStore.Add(pat)
-            lbxPatternStore.Items.Add(pat.Label)
+            lbxPatternStore.Items.Add(pat.Name)
             'ListPatternStoreContent()
         End If
     End Sub
@@ -729,7 +732,7 @@ Class MainWindow
 
         For Each pattern In Sequencer.Audition.PatternStore
 
-            lbxPatternStore.Items.Add(pattern.Label)
+            lbxPatternStore.Items.Add(pattern.Name)
 
         Next
 
@@ -740,7 +743,7 @@ Class MainWindow
 
         If ndx <> -1 Then
             If Sequencer.AuditionIsRunning = True Then Sequencer.Stop_Audition()
-            Sequencer.Play_Pattern(Sequencer.Audition.PatternStore(ndx), True)
+            Sequencer.Play_Pattern(Sequencer.Audition.PatternStore(ndx))
 
         End If
     End Sub
@@ -762,7 +765,7 @@ Class MainWindow
             'If Sequencer.AuditionIsRunning = True Then Sequencer.Stop_Audition()
             Dim pat As SequencerBase.Pattern = Sequencer.Audition.PatternStore(ndx)
             pat.StartOffset = 0
-            pat.DoLoop = True
+            'pat.DoLoop = True
             Sequencer.Audition.Voices(1).Tracks(0).PatternList.Clear()
             Sequencer.Audition.Voices(1).InsertPattern(0, Sequencer.Audition.PatternStore(ndx))
         End If
@@ -922,6 +925,10 @@ Class MainWindow
         If TabControl1.SelectedItem Is tiSequencer Then
             CompositionPanel.RedrawAllTracks()
         End If
+    End Sub
+
+    Private Sub cbAuditionRestart_Click(sender As Object, e As RoutedEventArgs) Handles cbAuditionRestart.Click
+        Sequencer.Audition.RestartAtEnd = CBool(cbAuditionRestart.IsChecked)
     End Sub
 
 

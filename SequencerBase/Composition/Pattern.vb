@@ -1,12 +1,12 @@
 ﻿<Serializable>
 Public Class Pattern
 
-    Public Property Label As String = ""                     ' optional description
+    Public Property Name As String = ""             ' need Property for WPF DataBinding
     Public StartTime As UInteger                    ' in Ticks 
     Public StartOffset As UInteger                  ' for repeated play
     Public Length As UInteger                       ' in ticks (1 beat = 960), for the pattern itself
     Public Duration As UInteger                     ' while    
-    Public DoLoop As Boolean                        ' try to avoid this, then only 1 Proc for PlayTrack is needed 
+    'Public DoLoop As Boolean                        ' try to avoid this, then only 1 Proc for PlayTrack is needed 
     '                                               ' (for Composition + Audition) instead use 100'000 * TPQ as Duration
     Public Ended As Boolean                         ' EventPtr is at end of EventList (needed ?)
     Public EventListPtr As Integer                  ' ptr to EventList
@@ -20,12 +20,12 @@ Public Class Pattern
 
         Dim pat2 As New Pattern
 
-        pat2.Label = String.Copy(Label)
+        pat2.Name = String.Copy(Name)
         pat2.StartTime = Me.StartTime               ' Me.StartTime
         pat2.StartOffset = StartOffset
         pat2.Length = Length
         pat2.Duration = Duration
-        pat2.DoLoop = DoLoop
+        'pat2.DoLoop = DoLoop
         pat2.Ended = Ended
         pat2.EventListPtr = EventListPtr
 
@@ -60,7 +60,7 @@ Public Class Pattern
         pat2.StartOffset = StartOffset
         pat2.Length = Length
         pat2.Duration = Duration
-        pat2.DoLoop = DoLoop
+        'pat2.DoLoop = DoLoop
         pat2.Ended = Ended
         pat2.EventListPtr = EventListPtr
 
@@ -148,7 +148,7 @@ End Class
 Public Class PatternX
     Inherits Pattern
 
-    Public Name As String = ""                     ' Pattern name
+    'Public Name As String = ""                     ' Pattern name
     Public Category As String = ""                 ' 
     Public SubCategory As String = ""
     Public VoiceType As String = ""
@@ -175,7 +175,7 @@ Public Class PatternX
         pat2.StartOffset = StartOffset
         pat2.Length = Length
         pat2.Duration = Duration
-        pat2.DoLoop = DoLoop
+        'pat2.DoLoop = DoLoop
         pat2.Ended = Ended
         pat2.EventListPtr = EventListPtr
 
@@ -208,13 +208,13 @@ Public Class PatternX
         'pat2.BPM = BPM
         '-> lose Name, Category, SubCategory, VoiceType, Source, BPM of PatternX
 
-        pat2.Label = Name                           ' set initial text of Label
+        pat2.Name = Name                           ' set initial text of Label
 
         pat2.StartTime = Me.StartTime               ' Me.StartTime
         pat2.StartOffset = StartOffset
         pat2.Length = Length
         pat2.Duration = Duration
-        pat2.DoLoop = DoLoop
+        'pat2.DoLoop = DoLoop
         pat2.Ended = Ended
         pat2.EventListPtr = EventListPtr
 

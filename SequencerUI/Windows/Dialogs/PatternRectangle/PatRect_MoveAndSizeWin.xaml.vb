@@ -39,7 +39,7 @@ Public Class PatRect_MoveAndSizeWin
     End Sub
     Private Sub Window_Loaded(sender As Object, e As RoutedEventArgs)
 
-        lblDialogDescription.Content = "Edit Pattern '" & Pattern.Label & "'"
+        lblDialogDescription.Content = "Edit Pattern '" & Pattern.Name & "'"
 
         Dim tobj As Object = FindLogicalParent(PatternRectangle, GetType(TrackCanvas))
         Dim tc As TrackCanvas = TryCast(tobj, TrackCanvas)

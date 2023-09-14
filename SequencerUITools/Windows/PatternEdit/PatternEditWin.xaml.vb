@@ -18,7 +18,7 @@ Public Class PatternEditWin
         ' this call is required for the designer
         InitializeComponent()
         Pattern1 = New Pattern                       ' start with an empty pattern
-        Pattern1.Label = "New Pattern"
+        Pattern1.Name = "New Pattern"
         Pattern1.Length = Sequencer.TicksPerBeat
         Pattern1.Duration = Pattern1.Length
     End Sub
@@ -77,7 +77,7 @@ Public Class PatternEditWin
         Seq.Audition.Voices(0).InsertPattern(0, Pattern1)
         PatternPanel1.Voice = Seq.Audition.Voices(0)
 
-        lblPattern1Name.Content = Pattern1.Label
+        lblPattern1Name.Content = Pattern1.Name
         lblPattern1Length.Content = Pattern1.Length / TicksPerBeat
         lblPattern1Duration.Content = Pattern1.Duration / TicksPerBeat
 

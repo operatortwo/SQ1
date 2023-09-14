@@ -41,7 +41,7 @@ Public Class PatternPanel
 
 #Region "Sequencer Properties"
 
-    Private Shared NewPattern As New Pattern With {.Label = "New Pattern", .Length = DefaultTPQ, .Duration = DefaultTPQ}
+    Private Shared NewPattern As New Pattern With {.Name = "New Pattern", .Length = DefaultTPQ, .Duration = DefaultTPQ}
 
     Public Shared ReadOnly PatternProperty As DependencyProperty = DependencyProperty.Register("Pattern", GetType(Pattern), GetType(PatternPanel), New FrameworkPropertyMetadata(NewPattern.Copy, New PropertyChangedCallback(AddressOf OnPatternChanged), Nothing))
     <Description("The Pattern to edit."), Category("PatternPanel")>
