@@ -19,7 +19,6 @@
       <StartOffset>0</StartOffset>
       <Length>7680</Length>
       <Duration>7680</Duration>
-      <DoLoop>false</DoLoop>
       <Ended>false</Ended>
       <EventListPtr>0</EventListPtr>
       <EventList>
@@ -567,7 +566,6 @@
       <StartOffset>7680</StartOffset>
       <Length>7680</Length>
       <Duration>7680</Duration>
-      <DoLoop>false</DoLoop>
       <Ended>true</Ended>
       <EventListPtr>0</EventListPtr>
       <EventList>
@@ -659,7 +657,6 @@
       <StartOffset>0</StartOffset>
       <Length>7680</Length>
       <Duration>7680</Duration>
-      <DoLoop>false</DoLoop>
       <Ended>false</Ended>
       <EventListPtr>0</EventListPtr>
       <EventList>
@@ -751,7 +748,6 @@
       <StartOffset>0</StartOffset>
       <Length>7680</Length>
       <Duration>7680</Duration>
-      <DoLoop>false</DoLoop>
       <Ended>false</Ended>
       <EventListPtr>0</EventListPtr>
       <EventList>
@@ -867,7 +863,6 @@
       <StartOffset>0</StartOffset>
       <Length>3840</Length>
       <Duration>3840</Duration>
-      <DoLoop>false</DoLoop>
       <Ended>false</Ended>
       <EventListPtr>0</EventListPtr>
       <EventList>
@@ -1071,7 +1066,6 @@
       <StartOffset>7680</StartOffset>
       <Length>7680</Length>
       <Duration>7680</Duration>
-      <DoLoop>false</DoLoop>
       <Ended>true</Ended>
       <EventListPtr>0</EventListPtr>
       <EventList>
@@ -1182,7 +1176,6 @@
               <StartOffset>0</StartOffset>
               <Length>7680</Length>
               <Duration>30720</Duration>
-              <DoLoop>false</DoLoop>
               <Ended>false</Ended>
               <EventListPtr>0</EventListPtr>
               <EventList>
@@ -1730,7 +1723,6 @@
               <StartOffset>0</StartOffset>
               <Length>3840</Length>
               <Duration>7680</Duration>
-              <DoLoop>false</DoLoop>
               <Ended>true</Ended>
               <EventListPtr>0</EventListPtr>
               <EventList>
@@ -1934,7 +1926,6 @@
               <StartOffset>0</StartOffset>
               <Length>7680</Length>
               <Duration>15360</Duration>
-              <DoLoop>false</DoLoop>
               <Ended>false</Ended>
               <EventListPtr>0</EventListPtr>
               <EventList>
@@ -2511,7 +2502,6 @@
               <StartOffset>0</StartOffset>
               <Length>7680</Length>
               <Duration>15360</Duration>
-              <DoLoop>false</DoLoop>
               <Ended>false</Ended>
               <EventListPtr>0</EventListPtr>
               <EventList>
@@ -2603,7 +2593,6 @@
               <StartOffset>0</StartOffset>
               <Length>7680</Length>
               <Duration>15360</Duration>
-              <DoLoop>false</DoLoop>
               <Ended>false</Ended>
               <EventListPtr>0</EventListPtr>
               <EventList>
@@ -2695,7 +2684,6 @@
               <StartOffset>0</StartOffset>
               <Length>7680</Length>
               <Duration>11520</Duration>
-              <DoLoop>false</DoLoop>
               <Ended>true</Ended>
               <EventListPtr>0</EventListPtr>
               <EventList>
@@ -2779,7 +2767,6 @@
               <StartOffset>0</StartOffset>
               <Length>7680</Length>
               <Duration>7680</Duration>
-              <DoLoop>false</DoLoop>
               <Ended>true</Ended>
               <EventListPtr>0</EventListPtr>
               <EventList>

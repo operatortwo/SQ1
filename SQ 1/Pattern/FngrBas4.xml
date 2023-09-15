@@ -10,7 +10,6 @@
   <StartOffset>0</StartOffset>
   <Length>7680</Length>
   <Duration>7680</Duration>
-  <DoLoop>false</DoLoop>
   <Ended>false</Ended>
   <EventListPtr>0</EventListPtr>
   <EventList>

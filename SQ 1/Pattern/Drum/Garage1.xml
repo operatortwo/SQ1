@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <PatternX xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Name>Garage1</Name>
   <Category>DrPc</Category>
@@ -11,7 +11,6 @@
   <StartOffset>0</StartOffset>
   <Length>7680</Length>
   <Duration>7680</Duration>
-  <DoLoop>false</DoLoop>
   <Ended>false</Ended>
   <EventListPtr>0</EventListPtr>
   <EventList>
