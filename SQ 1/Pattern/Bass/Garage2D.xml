@@ -2,7 +2,7 @@
 <PatternX xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Name>Garage2D</Name>
   <Category>Bass</Category>
-  <SubCategory />
+  <Category2 />
   <VoiceType>Synth Bass</VoiceType>
   <Source>MORES</Source>
   <BPM>127</BPM>

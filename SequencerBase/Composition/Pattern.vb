@@ -150,7 +150,7 @@ Public Class PatternX
 
     'Public Name As String = ""                     ' Pattern name
     Public Category As String = ""                 ' 
-    Public SubCategory As String = ""
+    Public Category2 As String = ""
     Public VoiceType As String = ""
     Public Source As String = ""                   ' f.e. the Device Name, MIDI, App Name,...
     Public BPM As Integer = 120                    ' BeatsPerMinute (Tempo)
@@ -166,7 +166,7 @@ Public Class PatternX
 
         pat2.Name = Name
         pat2.Category = Category
-        pat2.SubCategory = SubCategory
+        pat2.Category2 = Category2
         pat2.VoiceType = VoiceType
         pat2.Source = Source
         pat2.BPM = BPM

@@ -2,7 +2,7 @@
 <PatternX xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Name>DrumBa3A</Name>
   <Category>DrPc</Category>
-  <SubCategory />
+  <Category2 />
   <VoiceType>Drum'nBass</VoiceType>
   <Source>MORES</Source>
   <BPM>154</BPM>

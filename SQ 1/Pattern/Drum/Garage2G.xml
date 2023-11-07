@@ -2,7 +2,7 @@
 <PatternX xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Name>Garage2G</Name>
   <Category>DrPc</Category>
-  <SubCategory />
+  <Category2 />
   <VoiceType>House Kit1</VoiceType>
   <Source>MORES</Source>
   <BPM>127</BPM>
