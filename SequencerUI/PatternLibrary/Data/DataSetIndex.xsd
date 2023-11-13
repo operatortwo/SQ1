@@ -1,0 +1,124 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="DataSetIndex" targetNamespace="http://tempuri.org/DataSetIndex.xsd" xmlns:mstns="http://tempuri.org/DataSetIndex.xsd" xmlns="http://tempuri.org/DataSetIndex.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="DataSetIndex" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_UserDSName="DataSetIndex" msprop:Generator_DataSetName="DataSetIndex">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="DT_Main" msdata:Locale="" msprop:Generator_RowEvHandlerName="DT_MainRowChangeEventHandler" msprop:Generator_RowDeletedName="DT_MainRowDeleted" msprop:Generator_RowDeletingName="DT_MainRowDeleting" msprop:Generator_RowEvArgName="DT_MainRowChangeEvent" msprop:Generator_TablePropName="DT_Main" msprop:Generator_RowChangedName="DT_MainRowChanged" msprop:Generator_RowChangingName="DT_MainRowChanging" msprop:Generator_TableClassName="DT_MainDataTable" msprop:Generator_RowClassName="DT_MainRow" msprop:Generator_TableVarName="tableDT_Main" msprop:Generator_UserTableName="DT_Main">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="1" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_UserColumnName="ID" type="xs:int" />
+              <xs:element name="Pattern_Name" msdata:Caption="Name" msprop:nullValue="_empty" msprop:Generator_ColumnPropNameInTable="Pattern_NameColumn" msprop:Generator_ColumnVarNameInTable="columnPattern_Name" msprop:Generator_UserColumnName="Pattern_Name" msprop:Generator_ColumnPropNameInRow="Pattern_Name" type="xs:string" />
+              <xs:element name="ID_Category" msdata:Caption="Category" msprop:nullValue="_throw" msprop:Generator_ColumnPropNameInTable="ID_CategoryColumn" msprop:Generator_ColumnVarNameInTable="columnID_Category" msprop:Generator_UserColumnName="ID_Category" msprop:Generator_ColumnPropNameInRow="ID_Category" type="xs:int" minOccurs="0" />
+              <xs:element name="ID_Category2" msdata:Caption="Category 2" msprop:nullValue="_throw" msprop:Generator_ColumnPropNameInTable="ID_Category2Column" msprop:Generator_ColumnVarNameInTable="columnID_Category2" msprop:Generator_UserColumnName="ID_Category2" msprop:Generator_ColumnPropNameInRow="ID_Category2" type="xs:int" minOccurs="0" />
+              <xs:element name="ID_VoiceType" msdata:Caption="Voice Type" msprop:nullValue="_throw" msprop:Generator_ColumnPropNameInTable="ID_VoiceTypeColumn" msprop:Generator_ColumnVarNameInTable="columnID_VoiceType" msprop:Generator_UserColumnName="ID_VoiceType" msprop:Generator_ColumnPropNameInRow="ID_VoiceType" type="xs:int" minOccurs="0" />
+              <xs:element name="IsDrumPattern" msdata:Caption="Drum" msprop:Generator_ColumnPropNameInRow="IsDrumPattern" msprop:Generator_ColumnPropNameInTable="IsDrumPatternColumn" msprop:Generator_ColumnVarNameInTable="columnIsDrumPattern" msprop:Generator_UserColumnName="IsDrumPattern" type="xs:boolean" default="false" />
+              <xs:element name="IsPresetPattern" msdata:Caption="Preset" msprop:Generator_ColumnPropNameInRow="IsPresetPattern" msprop:Generator_ColumnPropNameInTable="IsPresetPatternColumn" msprop:Generator_ColumnVarNameInTable="columnIsPresetPattern" msprop:Generator_UserColumnName="IsPresetPattern" type="xs:boolean" default="false" />
+              <xs:element name="ID_Source" msprop:nullValue="_throw" msprop:Generator_ColumnPropNameInTable="ID_SourceColumn" msprop:Generator_ColumnVarNameInTable="columnID_Source" msprop:Generator_UserColumnName="ID_Source" msprop:Generator_ColumnPropNameInRow="ID_Source" type="xs:int" minOccurs="0" />
+              <xs:element name="Length" msprop:Generator_ColumnPropNameInRow="Length" msprop:Generator_ColumnPropNameInTable="LengthColumn" msprop:Generator_ColumnVarNameInTable="columnLength" msprop:Generator_UserColumnName="Length" type="xs:unsignedInt" minOccurs="0" />
+              <xs:element name="BPM" msprop:Generator_ColumnPropNameInRow="BPM" msprop:Generator_ColumnPropNameInTable="BPMColumn" msprop:Generator_ColumnVarNameInTable="columnBPM" msprop:Generator_UserColumnName="BPM" type="xs:unsignedShort" default="0" minOccurs="0" />
+              <xs:element name="DateTime" msprop:Generator_ColumnPropNameInRow="DateTime" msprop:Generator_ColumnPropNameInTable="DateTimeColumn" msprop:Generator_ColumnVarNameInTable="columnDateTime" msprop:Generator_UserColumnName="DateTime" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="Remarks" msprop:nullValue="_empty" msprop:Generator_ColumnPropNameInTable="RemarksColumn" msprop:Generator_ColumnVarNameInTable="columnRemarks" msprop:Generator_UserColumnName="Remarks" msprop:Generator_ColumnPropNameInRow="Remarks" type="xs:string" minOccurs="0" />
+              <xs:element name="Position" msprop:Generator_ColumnPropNameInRow="Position" msprop:Generator_ColumnPropNameInTable="PositionColumn" msprop:Generator_ColumnVarNameInTable="columnPosition" msprop:Generator_UserColumnName="Position" type="xs:unsignedInt" default="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="DT_Categories" msdata:Locale="" msprop:Generator_RowEvHandlerName="DT_CategoriesRowChangeEventHandler" msprop:Generator_RowDeletedName="DT_CategoriesRowDeleted" msprop:Generator_RowDeletingName="DT_CategoriesRowDeleting" msprop:Generator_RowEvArgName="DT_CategoriesRowChangeEvent" msprop:Generator_TablePropName="DT_Categories" msprop:Generator_RowChangedName="DT_CategoriesRowChanged" msprop:Generator_RowChangingName="DT_CategoriesRowChanging" msprop:Generator_TableClassName="DT_CategoriesDataTable" msprop:Generator_RowClassName="DT_CategoriesRow" msprop:Generator_TableVarName="tableDT_Categories" msprop:Generator_UserTableName="DT_Categories">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="1" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_UserColumnName="ID" type="xs:int" />
+              <xs:element name="Name" msprop:nullValue="_empty" msprop:Generator_ColumnPropNameInTable="NameColumn" msprop:Generator_ColumnVarNameInTable="columnName" msprop:Generator_UserColumnName="Name" msprop:Generator_ColumnPropNameInRow="Name" type="xs:string" minOccurs="0" />
+              <xs:element name="Position" msprop:Generator_ColumnPropNameInRow="Position" msprop:Generator_ColumnPropNameInTable="PositionColumn" msprop:Generator_ColumnVarNameInTable="columnPosition" msprop:Generator_UserColumnName="Position" type="xs:unsignedShort" default="1" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="DT_Categories2" msdata:Locale="" msprop:Generator_RowEvHandlerName="DT_Categories2RowChangeEventHandler" msprop:Generator_RowDeletedName="DT_Categories2RowDeleted" msprop:Generator_RowDeletingName="DT_Categories2RowDeleting" msprop:Generator_RowEvArgName="DT_Categories2RowChangeEvent" msprop:Generator_TablePropName="DT_Categories2" msprop:Generator_RowChangedName="DT_Categories2RowChanged" msprop:Generator_RowChangingName="DT_Categories2RowChanging" msprop:Generator_TableClassName="DT_Categories2DataTable" msprop:Generator_RowClassName="DT_Categories2Row" msprop:Generator_TableVarName="tableDT_Categories2" msprop:Generator_UserTableName="DT_Categories2">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="1" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_UserColumnName="ID" type="xs:int" />
+              <xs:element name="Name" msprop:nullValue="_empty" msprop:Generator_ColumnPropNameInTable="NameColumn" msprop:Generator_ColumnVarNameInTable="columnName" msprop:Generator_UserColumnName="Name" msprop:Generator_ColumnPropNameInRow="Name" type="xs:string" minOccurs="0" />
+              <xs:element name="Position" msprop:Generator_ColumnPropNameInRow="Position" msprop:Generator_ColumnPropNameInTable="PositionColumn" msprop:Generator_ColumnVarNameInTable="columnPosition" msprop:Generator_UserColumnName="Position" type="xs:unsignedShort" default="1" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="DT_VoiceTypes" msdata:Locale="" msprop:Generator_RowEvHandlerName="DT_VoiceTypesRowChangeEventHandler" msprop:Generator_RowDeletedName="DT_VoiceTypesRowDeleted" msprop:Generator_RowDeletingName="DT_VoiceTypesRowDeleting" msprop:Generator_RowEvArgName="DT_VoiceTypesRowChangeEvent" msprop:Generator_TablePropName="DT_VoiceTypes" msprop:Generator_RowChangedName="DT_VoiceTypesRowChanged" msprop:Generator_RowChangingName="DT_VoiceTypesRowChanging" msprop:Generator_TableClassName="DT_VoiceTypesDataTable" msprop:Generator_RowClassName="DT_VoiceTypesRow" msprop:Generator_TableVarName="tableDT_VoiceTypes" msprop:Generator_UserTableName="DT_VoiceTypes">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="1" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_UserColumnName="ID" type="xs:int" />
+              <xs:element name="Name" msprop:nullValue="_empty" msprop:Generator_ColumnPropNameInTable="NameColumn" msprop:Generator_ColumnVarNameInTable="columnName" msprop:Generator_UserColumnName="Name" msprop:Generator_ColumnPropNameInRow="Name" type="xs:string" minOccurs="0" />
+              <xs:element name="Position" msprop:Generator_ColumnPropNameInRow="Position" msprop:Generator_ColumnPropNameInTable="PositionColumn" msprop:Generator_ColumnVarNameInTable="columnPosition" msprop:Generator_UserColumnName="Position" type="xs:unsignedShort" default="1" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="DT_Sources" msdata:Locale="" msprop:Generator_RowEvHandlerName="DT_SourcesRowChangeEventHandler" msprop:Generator_RowDeletedName="DT_SourcesRowDeleted" msprop:Generator_RowDeletingName="DT_SourcesRowDeleting" msprop:Generator_RowEvArgName="DT_SourcesRowChangeEvent" msprop:Generator_TablePropName="DT_Sources" msprop:Generator_RowChangedName="DT_SourcesRowChanged" msprop:Generator_RowChangingName="DT_SourcesRowChanging" msprop:Generator_TableClassName="DT_SourcesDataTable" msprop:Generator_RowClassName="DT_SourcesRow" msprop:Generator_TableVarName="tableDT_Sources" msprop:Generator_UserTableName="DT_Sources">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="1" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_UserColumnName="ID" type="xs:int" />
+              <xs:element name="Name" msprop:nullValue="_empty" msprop:Generator_ColumnPropNameInTable="NameColumn" msprop:Generator_ColumnVarNameInTable="columnName" msprop:Generator_UserColumnName="Name" msprop:Generator_ColumnPropNameInRow="Name" type="xs:string" minOccurs="0" />
+              <xs:element name="Position" msprop:Generator_ColumnPropNameInRow="Position" msprop:Generator_ColumnPropNameInTable="PositionColumn" msprop:Generator_ColumnVarNameInTable="columnPosition" msprop:Generator_UserColumnName="Position" type="xs:unsignedShort" default="1" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="DT_Variables" msprop:Generator_RowEvHandlerName="DT_VariablesRowChangeEventHandler" msprop:Generator_RowDeletedName="DT_VariablesRowDeleted" msprop:Generator_RowDeletingName="DT_VariablesRowDeleting" msprop:Generator_RowEvArgName="DT_VariablesRowChangeEvent" msprop:Generator_TablePropName="DT_Variables" msprop:Generator_RowChangedName="DT_VariablesRowChanged" msprop:Generator_RowChangingName="DT_VariablesRowChanging" msprop:Generator_TableClassName="DT_VariablesDataTable" msprop:Generator_RowClassName="DT_VariablesRow" msprop:Generator_TableVarName="tableDT_Variables" msprop:Generator_UserTableName="DT_Variables">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Name" msdata:ReadOnly="true" msprop:Generator_ColumnPropNameInRow="Name" msprop:Generator_ColumnPropNameInTable="NameColumn" msprop:Generator_ColumnVarNameInTable="columnName" msprop:Generator_UserColumnName="Name" type="xs:string" />
+              <xs:element name="Value" msprop:Generator_ColumnPropNameInRow="Value" msprop:Generator_ColumnPropNameInTable="ValueColumn" msprop:Generator_ColumnVarNameInTable="columnValue" msprop:Generator_UserColumnName="Value" type="xs:int" default="0" />
+              <xs:element name="Text" msprop:nullValue="_empty" msprop:Generator_ColumnPropNameInTable="TextColumn" msprop:Generator_ColumnVarNameInTable="columnText" msprop:Generator_UserColumnName="Text" msprop:Generator_ColumnPropNameInRow="Text" type="xs:string" minOccurs="0" />
+              <xs:element name="Remark" msprop:nullValue="_empty" msprop:Generator_ColumnPropNameInTable="RemarkColumn" msprop:Generator_ColumnVarNameInTable="columnRemark" msprop:Generator_UserColumnName="Remark" msprop:Generator_ColumnPropNameInRow="Remark" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:DT_Main" />
+      <xs:field xpath="mstns:ID" />
+    </xs:unique>
+    <xs:unique name="DT_Categories_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:DT_Categories" />
+      <xs:field xpath="mstns:ID" />
+    </xs:unique>
+    <xs:unique name="DT_Categories2_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:DT_Categories2" />
+      <xs:field xpath="mstns:ID" />
+    </xs:unique>
+    <xs:unique name="DT_VoiceTypes_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:DT_VoiceTypes" />
+      <xs:field xpath="mstns:ID" />
+    </xs:unique>
+    <xs:unique name="DT_Sources_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:DT_Sources" />
+      <xs:field xpath="mstns:ID" />
+    </xs:unique>
+    <xs:unique name="DT_Variables_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:DT_Variables" />
+      <xs:field xpath="mstns:Name" />
+    </xs:unique>
+    <xs:keyref name="FK_DT_Categories_DT_Main" refer="DT_Categories_Constraint1" msprop:rel_Generator_UserParentTable="DT_Categories" msprop:rel_Generator_UserChildTable="DT_Main" msprop:rel_Generator_RelationVarName="relationFK_DT_Categories_DT_Main" msprop:rel_Generator_UserRelationName="FK_DT_Categories_DT_Main" msprop:rel_Generator_ChildPropName="GetDT_MainRows" msprop:rel_Generator_ParentPropName="DT_CategoriesRow">
+      <xs:selector xpath=".//mstns:DT_Main" />
+      <xs:field xpath="mstns:ID_Category" />
+    </xs:keyref>
+    <xs:keyref name="FK_DT_VoiceTypes_DT_Main" refer="DT_VoiceTypes_Constraint1" msprop:rel_Generator_UserParentTable="DT_VoiceTypes" msprop:rel_Generator_UserChildTable="DT_Main" msprop:rel_Generator_RelationVarName="relationFK_DT_VoiceTypes_DT_Main" msprop:rel_Generator_UserRelationName="FK_DT_VoiceTypes_DT_Main" msprop:rel_Generator_ChildPropName="GetDT_MainRows" msprop:rel_Generator_ParentPropName="DT_VoiceTypesRow">
+      <xs:selector xpath=".//mstns:DT_Main" />
+      <xs:field xpath="mstns:ID_VoiceType" />
+    </xs:keyref>
+    <xs:keyref name="FK_DT_Sources_DT_Main" refer="DT_Sources_Constraint1" msprop:rel_Generator_UserParentTable="DT_Sources" msprop:rel_Generator_UserChildTable="DT_Main" msprop:rel_Generator_RelationVarName="relationFK_DT_Sources_DT_Main" msprop:rel_Generator_UserRelationName="FK_DT_Sources_DT_Main" msprop:rel_Generator_ChildPropName="GetDT_MainRows" msprop:rel_Generator_ParentPropName="DT_SourcesRow">
+      <xs:selector xpath=".//mstns:DT_Main" />
+      <xs:field xpath="mstns:ID_Source" />
+    </xs:keyref>
+  </xs:element>
+  <xs:annotation>
+    <xs:appinfo>
+      <msdata:Relationship name="DT_Categories2_DT_Main" msdata:parent="DT_Categories2" msdata:child="DT_Main" msdata:parentkey="ID" msdata:childkey="ID_Category2" msprop:Generator_UserParentTable="DT_Categories2" msprop:Generator_UserChildTable="DT_Main" msprop:Generator_RelationVarName="relationDT_Categories2_DT_Main" msprop:Generator_UserRelationName="DT_Categories2_DT_Main" msprop:Generator_ChildPropName="GetDT_MainRows" msprop:Generator_ParentPropName="DT_Categories2Row" />
+    </xs:appinfo>
+  </xs:annotation>
+</xs:schema>

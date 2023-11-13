@@ -30,7 +30,7 @@ Public Class PatternNotePanel
         '--- not added to the visual tree
 
         rendercount += 1
-        Console.WriteLine("render count " & rendercount)                            'debug
+        ' Console.WriteLine("render count " & rendercount)                            'debug
 
         '---
         '

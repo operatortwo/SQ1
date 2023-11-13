@@ -1,4 +1,5 @@
-﻿Imports System.Windows.Interop
+﻿Imports System.IO
+Imports System.Windows.Interop
 Imports SequencerBase
 Imports SequencerBase.Directplay
 Imports SequencerUI
@@ -136,6 +137,23 @@ Public Class PatternEditWin
             Command_Restart()
         End If
 
+        Dim ret As Boolean
+        Dim lopat As New LoadPatternDialog
+        lopat.Multiselect = False
+        ret = lopat.ShowDialog(Me)
+
+        If ret = True Then
+            Pattern1 = lopat.LoadedPattern
+            SetupPatternEditWin()
+        End If
+    End Sub
+
+    Private Sub MiFile_ImportPattern_Click(sender As Object, e As RoutedEventArgs) Handles MiFile_ImportPattern.Click
+        If Seq.AuditionIsRunning = True Then
+            Command_Stop()
+            Command_Restart()
+        End If
+
         Dim pat As New PatternX
         If LoadPatternFromXML(pat) = True Then
             Pattern1 = pat.ToPattern
@@ -170,4 +188,6 @@ Public Class PatternEditWin
         dlg.Owner = Me
         dlg.ShowDialog()
     End Sub
+
+
 End Class

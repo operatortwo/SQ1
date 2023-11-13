@@ -51,6 +51,8 @@
       <HintPath>Resources\Library\DailyUserControls.dll</HintPath>
     </Reference>
     <Reference Include="System.Core" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System" />
@@ -72,6 +74,31 @@
       <DependentUpon>DpSlot.xaml</DependentUpon>
     </Compile>
     <Compile Include="Module1.vb" />
+    <Compile Include="PatternLibrary\Data\DataModule.vb" />
+    <Compile Include="PatternLibrary\Data\DataSetIndex.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSetIndex.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="PatternLibrary\Dialogs\DlgFindOrCreateLibrary.xaml.vb">
+      <DependentUpon>DlgFindOrCreateLibrary.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PatternLibrary\Dialogs\DlgSetPathToLibrary.xaml.vb">
+      <DependentUpon>DlgSetPathToLibrary.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PatternLibrary\LoadPatternDialog.vb" />
+    <Compile Include="PatternLibrary\ManagePatternLibraryDialog.vb" />
+    <Compile Include="PatternLibrary\PatLib_Module.vb" />
+    <Compile Include="PatternLibrary\SavePatternDialog.vb" />
+    <Compile Include="PatternLibrary\Windows\LoadPatternWindow.xaml.vb">
+      <DependentUpon>LoadPatternWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PatternLibrary\Windows\ManagePatternLibraryWindow.xaml.vb">
+      <DependentUpon>ManagePatternLibraryWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PatternLibrary\Windows\SavePatternWindow.xaml.vb">
+      <DependentUpon>SavePatternWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SequencerPanel\SequencerPanel.xaml.vb">
       <DependentUpon>SequencerPanel.xaml</DependentUpon>
     </Compile>
@@ -133,6 +160,26 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Directplay\DpSlot.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PatternLibrary\Dialogs\DlgFindOrCreateLibrary.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PatternLibrary\Dialogs\DlgSetPathToLibrary.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PatternLibrary\Windows\LoadPatternWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PatternLibrary\Windows\ManagePatternLibraryWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PatternLibrary\Windows\SavePatternWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -247,9 +294,21 @@
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
     </EmbeddedResource>
+    <None Include="app.config" />
     <None Include="My Project\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="PatternLibrary\Data\DataSetIndex.xsc">
+      <DependentUpon>DataSetIndex.xsd</DependentUpon>
+    </None>
+    <None Include="PatternLibrary\Data\DataSetIndex.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSetIndex.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="PatternLibrary\Data\DataSetIndex.xss">
+      <DependentUpon>DataSetIndex.xsd</DependentUpon>
     </None>
   </ItemGroup>
   <ItemGroup>

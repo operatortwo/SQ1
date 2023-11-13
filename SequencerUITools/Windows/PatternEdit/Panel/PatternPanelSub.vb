@@ -21,7 +21,7 @@ Partial Public Class PatternPanel
     Private Sub DrawPattern()
 
         drawcount += 1
-        Console.WriteLine("drawcount " & drawcount)
+        ' Console.WriteLine("drawcount " & drawcount)
 
         ' NotePanel.rendercount
 

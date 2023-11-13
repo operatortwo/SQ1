@@ -1,0 +1,107 @@
+﻿<Window x:Class="ManagePatternLibraryWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SequencerUI"
+        mc:Ignorable="d"
+        Title="Manage Pattern-Library" Height="600" Width="800" WindowStyle="ToolWindow" Loaded="Window_Loaded">
+    <Window.Resources>
+        <local:DataSetIndex x:Key="DSI"/>
+        <!-- ObjectInstance of odp is set from code -->
+        <ObjectDataProvider x:Key="Dsi1" ObjectInstance=""/>
+        <!-- CollectionViewSources for ComboBoxes -->
+        <CollectionViewSource x:Key="CategoriesViewSource" Source="{Binding DT_Categories, Source={StaticResource Dsi1}}"/>
+        <CollectionViewSource x:Key="Categories2ViewSource" Source="{Binding DT_Categories2, Source={StaticResource Dsi1}}"/>
+        <CollectionViewSource x:Key="VoiceTypesViewSource" Source="{Binding DT_VoiceTypes, Source={StaticResource Dsi1}}"/>
+        <CollectionViewSource x:Key="SourcesViewSource" Source="{Binding DT_Sources, Source={StaticResource Dsi1}}"/>
+        <Style x:Key="HeaderCenterAlign" TargetType="DataGridColumnHeader">
+            <Setter Property="HorizontalContentAlignment" Value="Center" />
+        </Style>
+        <Style x:Key="DgCellCenterAlign" >
+            <Setter Property="Control.HorizontalAlignment"  Value="Center"/>
+        </Style>
+        <Style x:Key="DgCellRightAlign" TargetType="DataGridCell">
+            <Setter Property="TextBlock.HorizontalAlignment" Value="Right"/>
+        </Style>
+        <Style x:Key="DataGridCellStyle1" TargetType="{x:Type DataGridCell}" >
+            <Style.Triggers>
+                <Trigger Property="IsSelected" Value="True">
+                    <Setter Property="Background" Value="#FFDEF7FF"/>
+                    <Setter Property="BorderBrush" Value="#FFDEF7FF"/>
+                    <Setter Property="Foreground" Value="Black"/>
+                </Trigger>
+                <Trigger Property="IsFocused" Value="True">
+                    <Setter Property="Background" Value="#FFB7D9FF"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="DataGridCellStyleRO" BasedOn="{StaticResource DataGridCellStyle1}" TargetType="DataGridCell">
+            <Setter Property="Background" Value="#FFF5F3F3"/>
+        </Style>
+    </Window.Resources>
+    <Grid Background="#FFEDD7ED">
+        <Button x:Name="btnOk" Content="OK" HorizontalAlignment="Left" Margin="460,12,0,0" Width="60" IsDefault="True" Height="25" VerticalAlignment="Top" Background="#FFE4F9FF"/>
+        <Button x:Name="btnCancel" Content="Cancel" HorizontalAlignment="Left" Margin="590,12,0,0" IsCancel="True" Height="25" VerticalAlignment="Top" Width="60" Background="#FFE4F9FF"/>
+        <DataGrid x:Name="DgMain" Margin="10,220,10,34" ItemsSource="{Binding DT_Main, Source={StaticResource Dsi1}}" CanUserResizeRows="False"  CanUserAddRows="False" CanUserDeleteRows="False" AutoGenerateColumns="False" ColumnHeaderStyle="{StaticResource HeaderCenterAlign}" CellStyle="{DynamicResource DataGridCellStyle1}" TabIndex="201" SelectionMode="Single">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding ID}" Header="ID" IsReadOnly="True" CellStyle="{StaticResource DataGridCellStyleRO}" ElementStyle="{StaticResource DgCellCenterAlign}"/>
+                <DataGridTextColumn Binding="{Binding Pattern_Name}" IsReadOnly="True"  CellStyle="{StaticResource DataGridCellStyleRO}" Header="Name"/>
+                <DataGridComboBoxColumn Header="Category" ItemsSource="{Binding  Source={StaticResource CategoriesViewSource}}" DisplayMemberPath="Name" SelectedValuePath="ID" SelectedValueBinding="{Binding ID_Category}" IsReadOnly="False" />
+                <DataGridComboBoxColumn Header="Category 2" ItemsSource="{Binding  Source={StaticResource Categories2ViewSource}}" DisplayMemberPath="Name" SelectedValuePath="ID" SelectedValueBinding="{Binding ID_Category2}" IsReadOnly="False" />
+                <DataGridComboBoxColumn Header="Voice Type" ItemsSource="{Binding  Source={StaticResource VoiceTypesViewSource}}" DisplayMemberPath="Name" SelectedValuePath="ID" SelectedValueBinding="{Binding ID_VoiceType}" IsReadOnly="False" />
+                <DataGridComboBoxColumn Header="Source" ItemsSource="{Binding  Source={StaticResource SourcesViewSource}}" DisplayMemberPath="Name" SelectedValuePath="ID" SelectedValueBinding="{Binding ID_Source}" IsReadOnly="False"  />
+                <DataGridCheckBoxColumn Binding="{Binding IsDrumPattern}" Header="Drum" IsReadOnly="True" CellStyle="{StaticResource DataGridCellStyleRO}"/>
+                <DataGridCheckBoxColumn Binding="{Binding IsPresetPattern}" Header="Preset" IsReadOnly="True" CellStyle="{StaticResource DataGridCellStyleRO}"/>
+                <DataGridTextColumn Binding="{Binding Length}" Header="Length" IsReadOnly="True" CellStyle="{StaticResource DataGridCellStyleRO}"/>
+                <DataGridTextColumn Binding="{Binding BPM}" Header="BPM"  IsReadOnly="True" CellStyle="{StaticResource DataGridCellStyleRO}" ElementStyle="{StaticResource DgCellCenterAlign}"/>
+                <DataGridTextColumn Binding="{Binding DateTime}" Header="Last Write" IsReadOnly="True" CellStyle="{StaticResource DataGridCellStyleRO}"/>
+                <DataGridTextColumn Binding="{Binding Remarks}" Header="Remarks"/>
+                <DataGridTextColumn Binding="{Binding Position}" Header="Pos" ElementStyle="{StaticResource DgCellCenterAlign}"  />
+            </DataGrid.Columns>
+        </DataGrid>
+        <StatusBar Height="25" VerticalAlignment="Bottom">
+            <StatusBarItem x:Name="sbiSelectMode" Content="Multi/Single Select" Margin="10,0,0,0"/>
+            <Separator/>
+            <StatusBarItem Content="Viewing" Margin="2,0,0,0"/>
+            <StatusBarItem x:Name="sbiViewCount" Content="x"/>
+            <StatusBarItem Content="of"/>
+            <StatusBarItem x:Name="sbiTotalCount" Content="x"/>
+            <StatusBarItem Content="Pattern"/>
+            <Separator/>
+            <StatusBarItem x:Name="sbiSelectionCount" Content="x" Margin="2,0,0,0"/>
+            <StatusBarItem Content="Selected"/>
+        </StatusBar>
+        <Grid x:Name="FilterGrid" Height="56" Margin="10,157,10,0" VerticalAlignment="Top">
+            <Grid.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FFF0F0F0" Offset="1"/>
+                    <GradientStop Color="White" Offset="0"/>
+                </LinearGradientBrush>
+            </Grid.Background>
+            <Border BorderBrush="#FF688CAF" BorderThickness="1,1,1,1"/>
+            <Label Content="Filter:" HorizontalAlignment="Left" Margin="19,20,0,0" VerticalAlignment="Top" Padding="0,0,0,0"/>
+            <Label Content="Category" HorizontalAlignment="Left" Margin="81,5,0,0" VerticalAlignment="Top" Padding="0,0,0,0"/>
+            <ComboBox x:Name="cmbCategoryFilter" HorizontalAlignment="Left" Margin="62,25,0,0" VerticalAlignment="Top" Width="90" TabIndex="101"/>
+            <Label Content="Category 2" HorizontalAlignment="Left" Margin="186,5,0,0" VerticalAlignment="Top" Padding="0,0,0,0"/>
+            <ComboBox x:Name="cmbCategory2Filter" HorizontalAlignment="Left" Margin="172,25,0,0" VerticalAlignment="Top" Width="90" TabIndex="102"/>
+            <Label Content="Voice Type" HorizontalAlignment="Left" Margin="297,5,0,0" VerticalAlignment="Top" Padding="0,0,0,0"/>
+            <ComboBox x:Name="cmbVoiceTypeFilter" HorizontalAlignment="Left" Margin="282,25,0,0" VerticalAlignment="Top" Width="90" TabIndex="103"/>
+            <Label Content="Source" HorizontalAlignment="Left" Margin="415,5,0,0" VerticalAlignment="Top" Padding="0,0,0,0"/>
+            <ComboBox x:Name="cmbSourceFilter" HorizontalAlignment="Left" Margin="392,25,0,0" VerticalAlignment="Top" Width="90" TabIndex="104"/>
+            <Label Content="Drum / Voice" HorizontalAlignment="Left" Margin="502,5,0,0" VerticalAlignment="Top" Padding="0,0,0,0"/>
+            <ComboBox x:Name="cmbDrumVoiceFilter" HorizontalAlignment="Left" Margin="502,25,0,0" VerticalAlignment="Top" Width="70" TabIndex="105"/>
+            <Label Content="Preset / User" HorizontalAlignment="Left" Margin="594,5,0,0" VerticalAlignment="Top" Padding="0,0,0,0"/>
+            <ComboBox x:Name="cmbPresetUserFilter" HorizontalAlignment="Left" Margin="592,25,0,0" VerticalAlignment="Top" Width="70" TabIndex="106"/>
+            <Button x:Name="btnResetAllFilters" Content="*" HorizontalAlignment="Left" Margin="692,26,0,0" VerticalAlignment="Top" Width="39" Height="19" ToolTip="Reset all filters" Background="#FFE4F9FF" TabIndex="107"/>
+        </Grid>
+        <Label x:Name="lblNumPatternsToSave" Content="x Pattern(s) to save" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+
+        <Grid x:Name="InputGrid" Background="#FFFFFFDE" Margin="10,45,10,0" Height="105" VerticalAlignment="Top">
+            <Border BorderBrush="#FF688CAF" BorderThickness="1,1,1,1"/>
+        </Grid>
+        <Label x:Name="lblNumPatternsSaved" Content="0  Pattern saved" HorizontalAlignment="Left" Margin="150,11,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="lblNumSaveErors" Content="No Errors" HorizontalAlignment="Left" Margin="300,10,0,0" VerticalAlignment="Top"/>
+
+    </Grid>
+</Window>

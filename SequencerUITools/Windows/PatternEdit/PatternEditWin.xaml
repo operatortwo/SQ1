@@ -11,6 +11,7 @@
         <Menu VerticalAlignment="Top">
             <MenuItem Header="File" Margin="5,0,0,0">
                 <MenuItem x:Name="MiFile_LoadPattern" Header="Load Pattern"/>
+                <MenuItem x:Name="MiFile_ImportPattern" Header="Import Pattern"/>
                 <Separator/>
                 <MenuItem x:Name="MiFile_Exit" Header="Exit"/>
             </MenuItem>

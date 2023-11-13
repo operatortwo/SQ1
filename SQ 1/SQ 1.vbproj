@@ -186,12 +186,15 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
     </None>
+    <Content Include="Pattern\PresetPattern.lib">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Resource Include="Development\Version History SQ1.txt" />
     <Resource Include="Development\Version History Sequencer.txt" />
     <Content Include="Pattern\Empty.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Pattern\FngrBa10.pat">
+    <Content Include="Pattern\Mixed\FngrBa10.pat">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
@@ -228,19 +231,19 @@
     <Resource Include="Resources\Images\PreviousTrack_x22.png" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Pattern\70sRockB.xml">
+    <Content Include="Pattern\Mixed\70sRockB.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Pattern\Ba Dream B.xml">
+    <Content Include="Pattern\Mixed\Ba Dream B.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Pattern\Ba Dream B2.xml">
+    <Content Include="Pattern\Mixed\Ba Dream B2.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Pattern\Ba Dream D1.xml">
+    <Content Include="Pattern\Mixed\Ba Dream D1.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Pattern\Ba Trance G.xml">
+    <Content Include="Pattern\Mixed\Ba Trance G.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Pattern\Bass\Garage2B.xml">
@@ -264,19 +267,19 @@
     <Content Include="Pattern\Bass\LatinHsG.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Pattern\BgBeat1A.xml">
+    <Content Include="Pattern\Mixed\BgBeat1A.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Pattern\BgBeat1B.xml">
+    <Content Include="Pattern\Mixed\BgBeat1B.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Pattern\BigBeat2.xml">
+    <Content Include="Pattern\Mixed\BigBeat2.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Pattern\BigBeat3.xml">
+    <Content Include="Pattern\Mixed\BigBeat3.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Pattern\DrumBa3A.xml">
+    <Content Include="Pattern\Mixed\DrumBa3A.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Pattern\Drum\Garage1.xml">
@@ -297,28 +300,28 @@
     <Content Include="Pattern\Drum\Garage2G.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Pattern\FngrBa10.xml">
+    <Content Include="Pattern\Mixed\FngrBa10.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Pattern\FngrBas1.xml">
+    <Content Include="Pattern\Mixed\FngrBas1.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Pattern\FngrBas4.xml">
+    <Content Include="Pattern\Mixed\FngrBas4.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Pattern\GangstaC.xml">
+    <Content Include="Pattern\Mixed\GangstaC.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Pattern\HipHop4.xml">
+    <Content Include="Pattern\Mixed\HipHop4.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Pattern\MondoRkA.xml">
+    <Content Include="Pattern\Mixed\MondoRkA.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Pattern\Roll 2.xml">
+    <Content Include="Pattern\Mixed\Roll 2.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Pattern\Trance G.xml">
+    <Content Include="Pattern\Mixed\Trance G.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Compositions\01 Track edit.xml">
@@ -351,6 +354,9 @@
     <Resource Include="Resources\Images\warning_x32.png" />
     <Resource Include="Resources\Images\Wrench_Icon_x32.png" />
     <Resource Include="Resources\Images\Edit_x16.png" />
+    <Content Include="Pattern\PresetPatternInfo.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Resources\Library\DailyUserControls.dll" />
     <Resource Include="Resources\Library\DailyUserControls.xml" />
     <Content Include="Resources\Library\Midi_IO.dll" />
