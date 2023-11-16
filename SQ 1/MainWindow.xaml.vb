@@ -1,8 +1,12 @@
-﻿Imports SequencerBase
+﻿Imports System.Configuration
+Imports System.Globalization
+Imports System.Windows.Markup
+Imports SequencerBase
 Imports SequencerBase.Module1
 Imports SequencerBase.Sequencer
 Imports SequencerUI
 Imports SequencerUITools
+Imports SQ_1.My
 
 Class MainWindow
 
@@ -26,6 +30,8 @@ Class MainWindow
 
 
     Private Sub Window_Loaded(sender As Object, e As RoutedEventArgs)
+        ' set local format for Datagrid DateTime column
+        LanguageProperty.OverrideMetadata(GetType(FrameworkElement), New FrameworkPropertyMetadata(XmlLanguage.GetLanguage(CultureInfo.CurrentCulture.Name)))
 
         '--- make sure the windows will be closed on exit. SidePanel will also set owner of Associated Windows
         WindowComposition.Owner = Me
@@ -43,6 +49,8 @@ Class MainWindow
             My.Settings.Upgrade()
             My.Settings.UpgradeRequired = False
             My.Settings.Save()
+            SequencerUISettings_Upgrade()
+            SetSequencerUISetting_CheckPresetPatternUpdate(True)  ' maybe new PresetPatterns are delivered with new version
         End If
 
         '---

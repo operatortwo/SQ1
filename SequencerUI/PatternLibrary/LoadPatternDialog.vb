@@ -16,6 +16,9 @@ Public Class LoadPatternDialog
 
         If LoadIndex() = False Then Return False
 
+        'Dim var = Get_DSI_VarValue("PresetVersion")
+        'var can be used to check if the PresetPatterns are updated
+
         Dim win As New LoadPatternWindow
         win.Owner = OwnerWindow
         win.WindowStartupLocation = WindowStartupLocation.CenterOwner

@@ -1,4 +1,6 @@
-﻿Public Module Module1                                       ' Public for access from MainWindow
+﻿Imports System.Resources
+
+Public Module Module1                                       ' Public for access from MainWindow
 
     Public WithEvents Sequencer As SequencerBase.Sequencer  ' Sequencer Instance, definied in MainWindow, assigned in MainWindow
 
@@ -63,5 +65,23 @@
 
         Return steps * stepvalue
     End Function
+
+    ''' <summary>
+    ''' Make this Setting for PatternLibrary accessible from outside SequenerUI
+    ''' </summary>
+    ''' <param name="state"></param>
+    Public Sub SetSequencerUISetting_CheckPresetPatternUpdate(state As Boolean)
+        If state <> My.Settings.CheckPresetPatternUpdate Then
+            My.Settings.CheckPresetPatternUpdate = state
+            My.Settings.Save()
+        End If
+    End Sub
+    ''' <summary>
+    ''' Alllow upgrading SequencerUI Settings from Main Application
+    ''' </summary>
+    Public Sub SequencerUISettings_Upgrade()
+        My.Settings.Upgrade()
+        My.Settings.Save()
+    End Sub
 
 End Module

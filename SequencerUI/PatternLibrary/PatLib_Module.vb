@@ -1,4 +1,5 @@
 ﻿Imports SequencerBase
+Imports SequencerUI.My
 Imports System.Collections.ObjectModel
 Imports System.Data
 Imports System.IO
@@ -10,6 +11,9 @@ Friend Module PatLib_Module
 
     Friend PresetPatternLibFilename As String = "PresetPattern.lib"
     Friend PresetPatternLibFullname As String = PatternDirectory & PresetPatternLibFilename
+
+    Friend PresetPatternInfoFilename As String = "PresetPatternInfo.xml"
+    Friend PresetPatternInfoFullname As String = PatternDirectory & PresetPatternInfoFilename
 
     Friend PatternLibFilename As String = "PatternLibrary.lib"
     Friend PatternLibFullname As String = ""
@@ -43,17 +47,14 @@ Friend Module PatLib_Module
             MessageBox.Show(ex.Message, "Error loading Pattern from Library")
             Return Nothing
 
-#Disable Warning BC42104 ' Die Variable wurde verwendet, bevor ihr ein Wert zugewiesen wurde.
-
+#Disable Warning BC42104 ' Variable is used before it has been assigned a value
         Finally
             If Archive IsNot Nothing Then Archive.Dispose()
             If fs IsNot Nothing Then fs.Close()
         End Try
 
         Return Pattern
-
-#Enable Warning BC42104 ' Die Variable wurde verwendet, bevor ihr ein Wert zugewiesen wurde.
-
+#Enable Warning BC42104 ' Variable is used before it has been assigned a value
     End Function
 
     Friend Function GetPatternsFromArchive(names As ArrayList) As List(Of Pattern)
@@ -183,7 +184,6 @@ Friend Module PatLib_Module
             Set_DSI_VarValue("LibVersionMajor", 1)
             Set_DSI_VarValue("LibVersionMinor", 0)
 
-
             Dim IndexEntry As ZipArchiveEntry = Archive.CreateEntry(LibIndexName)
             DSI.WriteXml(IndexEntry.Open, XmlWriteMode.WriteSchema)
         Catch ex As Exception
@@ -296,6 +296,17 @@ Friend Module PatLib_Module
 
                 DSI.DT_Main.AddDT_MainRow(mrow)
             Next
+
+            '---
+            Dim version As Integer
+
+            Try
+                Dim Information As XElement = XElement.Load(PresetPatternInfoFullname)      ' PresetPatternInfo.xml
+                version = CInt(Information.<PresetVersion>.Value)
+            Catch
+            End Try
+
+            Set_DSI_VarValue("PresetVersion", version)
 
             ' update Index
             indexstream.Seek(0, SeekOrigin.Begin)
