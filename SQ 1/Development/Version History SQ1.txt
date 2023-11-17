@@ -3,6 +3,7 @@
 
 Date			Version		Changes
 ------------------------------------------------	
+2023 11 16		1.0.5.2		Started with Help
 2023 11 16		1.0.5.1		little fixes around Patlib and Settings
 2023 11 10		1.0.5.0		Started with Pattern-Library
 2023 11 07		1.0.4.1		Preset Patterns cleaned

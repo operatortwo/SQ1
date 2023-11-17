@@ -25,6 +25,7 @@ Class MainWindow
     Private RemoteControl1 As RemoteControl
 
     Private WindowTitle_Base As String
+    Public Const HelpUrl As String = "SQ1 Help.chm"
 
     Private Const DefaultNameForNewComposition = "New Composition.xml"
 
@@ -667,6 +668,18 @@ Class MainWindow
 
     End Sub
 
+    Private Sub Mi_Help_Click(sender As Object, e As RoutedEventArgs) Handles Mi_Help.Click
+        'Forms.Help.ShowHelp(Nothing, HelpUrl, "Sequencer UI\Pattern Library\Overview.html")
+        Forms.Help.ShowHelp(Nothing, HelpUrl)
+    End Sub
+    ''' <summary>
+    ''' allows calling help from SequencerUI
+    ''' </summary>
+    ''' <param name="keyword"></param>
+    Public Sub SubShowHelp(keyword As String)
+        Forms.Help.ShowHelp(Nothing, HelpUrl, keyword)
+    End Sub
+
     Private Sub Mi_About_Click(sender As Object, e As RoutedEventArgs) Handles Mi_About.Click
         Dim win As New AboutWin
         win.Owner = Me
@@ -938,6 +951,8 @@ Class MainWindow
     Private Sub cbAuditionRestart_Click(sender As Object, e As RoutedEventArgs) Handles cbAuditionRestart.Click
         Sequencer.Audition.RestartAtEnd = CBool(cbAuditionRestart.IsChecked)
     End Sub
+
+
 
 
 

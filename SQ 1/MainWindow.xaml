@@ -48,6 +48,12 @@
                     </MenuItem>
                 </MenuItem>
                 <MenuItem Header="Info" TabIndex="3">
+                    <MenuItem x:Name="Mi_Help" Header="Help">
+                        <MenuItem.Icon>
+                            <Image Source="/Resources/Images/StatusHelp_16x.png"/>
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <Separator/>
                     <MenuItem x:Name="Mi_About" Header="About">
                         <MenuItem.Icon>
                             <Image Source="/Resources/Images/Information_x16.png"/>
