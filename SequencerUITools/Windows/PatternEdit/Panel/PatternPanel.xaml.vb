@@ -182,8 +182,15 @@ Public Class PatternPanel
 
     Private Sub sldScaleY_ValueChanged(sender As Object, e As RoutedPropertyChangedEventArgs(Of Double)) Handles sldScaleY.ValueChanged
         If IsLoaded = True Then
+            Dim vscvrel As Double = MasterVScroll.Value / e.OldValue
+
             SetVscrollValues()
             DrawKeys()
+
+            ' scaleY has changed, try to keep the same "First note row on screen"
+            MasterVScroll.Value = vscvrel * e.NewValue
+            KeyPanelScroll_ScrollV()
+            NotePanelScroll_ScrollV()
         End If
     End Sub
 

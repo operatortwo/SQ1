@@ -15,7 +15,7 @@ Imports System.Windows
 <Assembly: AssemblyDescription("SQ1 is a Pattern-based Midi-Sequencer")>
 <Assembly: AssemblyCompany("SQ Programming")>
 <Assembly: AssemblyProduct("SQ_1")>
-<Assembly: AssemblyCopyright("Copyright ©  2023   operatortwo")>
+<Assembly: AssemblyCopyright("Copyright ©  2023 - 2024   operatortwo")>
 <Assembly: AssemblyTrademark("")>
 <Assembly: ComVisible(false)>
 

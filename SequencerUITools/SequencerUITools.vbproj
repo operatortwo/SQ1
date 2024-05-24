@@ -163,6 +163,7 @@
     <Resource Include="Resources\Images\PreviousTrack_x22.png" />
     <Resource Include="Resources\Images\Stop_x22.png" />
     <Resource Include="Resources\Images\Play_Restart_transp_x22.png" />
+    <Resource Include="Resources\Images\process_stop_x32.png" />
     <Content Include="Resources\Library\Midi_File.dll" />
     <Resource Include="Resources\Library\Midi_File.xml" />
   </ItemGroup>

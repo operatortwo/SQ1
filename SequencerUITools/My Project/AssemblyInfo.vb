@@ -15,7 +15,7 @@ Imports System.Windows
 <Assembly: AssemblyDescription("User Interface Tools for sequencer")>
 <Assembly: AssemblyCompany("")>
 <Assembly: AssemblyProduct("SequencerUITools")>
-<Assembly: AssemblyCopyright("Copyright @  2023   operatortwo")>
+<Assembly: AssemblyCopyright("Copyright @  2023 - 2024   operatortwo")>
 <Assembly: AssemblyTrademark("")>
 <Assembly: ComVisible(false)>
 

@@ -1,5 +1,10 @@
 # SQ1 - A pattern-based Midi sequencer
 
+March 2024 note: Work on this project has been temporarily stopped.  
+When thinking about how the missing edit functions can be created, I decided to put these in a separate library.
+[Mmultitool](https://github.com/operatortwo/Mmultitool) is intended to provide certain functions in a more general way so that they can be used in this as well as other projects.  
+
+##
 
 I started this project to try some ideas about midi processing and to get some practice in WPF programming.
 

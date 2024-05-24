@@ -14,12 +14,35 @@
         <Style x:Key="HeaderRightAlign" TargetType="DataGridColumnHeader">
             <Setter Property="HorizontalContentAlignment" Value="Right" />
         </Style>
-        <Style x:Key="DgCellCenterAlign" TargetType="DataGridCell">
-            <Setter Property="TextBlock.HorizontalAlignment" Value="Center" />
+
+        <Style x:Key="DgCellStyle" TargetType="DataGridCell">
+            <!-- Brushes when Cell Style is not explicit set with CellAlign(DataGridCellStyle -> DgCellStyle) -->
+            <Style.Triggers>
+                <Trigger Property="IsSelected" Value="True">
+                    <Setter Property="Background" Value="LightBlue"/>
+                    <Setter Property="Foreground" Value="Black"/>
+                </Trigger>
+                <Trigger Property="IsFocused" Value="True">
+                    <Setter Property="Background" Value="#FFDEF7FF"/>
+                </Trigger>
+            </Style.Triggers>
         </Style>
         <Style x:Key="DgCellRightAlign" TargetType="DataGridCell">
-            <Setter Property="TextBlock.HorizontalAlignment" Value="Right" />
+            <Setter Property="TextBox.TextAlignment" Value="Right" />
+            <!-- need also set IsSelected/IsFocused -->
+            <Style.Triggers>
+                <Trigger Property="IsSelected" Value="True">
+                    <Setter Property="Background" Value="LightBlue"/>
+                    <Setter Property="Foreground" Value="Black"/>
+                </Trigger>
+                <Trigger Property="IsFocused" Value="True">
+                    <Setter Property="Background" Value="#FFDEF7FF"/>
+                </Trigger>
+            </Style.Triggers>
         </Style>
+
+
+
     </Window.Resources>
     <Grid>
         <DockPanel>
@@ -37,7 +60,7 @@
                 <Label Width="20" Height="20" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,8,0,0" BorderBrush="#FFC3C3C3" BorderThickness="1,1,1,1"/>
                 <Image x:Name="imgLoadOk" Source="/SequencerUITools;component/Resources/Images/OK_x32.png" Width="20" Height="20" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,8,0,0" Visibility="Hidden"/>
                 <Image x:Name="imgLoadFail" Source="/SequencerUITools;component/Resources/Images/process_stop_x32.png" Width="20" Height="20" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,8,0,0" Visibility="Hidden"/>
-                <DataGrid x:Name="dgvTracklist" Margin="10,72,100,10" ItemsSource="{Binding}" DataContext="{Binding TrackTable, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:MidiImport1}}}" CanUserAddRows="False" CanUserDeleteRows="False" CanUserResizeRows="False" SelectionMode="Single" SelectionUnit="Cell" AutoGenerateColumns="False" ColumnHeaderStyle="{DynamicResource HeaderCenterAlign}">
+                <DataGrid x:Name="dgvTracklist" Margin="10,72,100,10" ItemsSource="{Binding}" DataContext="{Binding TrackTable, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:MidiImport1}}}" CanUserAddRows="False" CanUserDeleteRows="False" CanUserResizeRows="False" SelectionMode="Single" SelectionUnit="Cell" AutoGenerateColumns="False" ColumnHeaderStyle="{DynamicResource HeaderCenterAlign}" CellStyle="{DynamicResource DgCellStyle}">
                     <DataGrid.Columns>
                         <DataGridTextColumn Binding="{Binding TrackNumber}" IsReadOnly="True" CellStyle="{StaticResource DgCellRightAlign}">
                             <DataGridTextColumn.Header>
