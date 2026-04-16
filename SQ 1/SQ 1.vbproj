@@ -8,9 +8,10 @@
     <OutputType>WinExe</OutputType>
     <RootNamespace>SQ_1</RootNamespace>
     <AssemblyName>SQ 1</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <MyType>Custom</MyType>
     <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -58,9 +59,9 @@
     <ApplicationManifest>My Project\app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="DailyUserControls, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="DailyUserControls, Version=1.0.8.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>Resources\Library\DailyUserControls.dll</HintPath>
+      <HintPath>..\SequencerUI\Resources\Library\DailyUserControls.dll</HintPath>
     </Reference>
     <Reference Include="Midi_IO">
       <HintPath>..\..\..\DLL\Midi_IO\Midi_IO\bin\Debug\Midi_IO.dll</HintPath>
@@ -190,8 +191,6 @@
     <Content Include="Pattern\PresetPattern.lib">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\Library\DailyUserControls.dll" />
-    <Resource Include="Resources\Library\DailyUserControls.xml" />
     <Content Include="SQ1 Help.chm">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

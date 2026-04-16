@@ -7,10 +7,11 @@
     <RootNamespace>SequencerUI</RootNamespace>
     <AssemblyName>SequencerUI</AssemblyName>
     <OutputType>Library</OutputType>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <MyType>Custom</MyType>
     <Deterministic>true</Deterministic>
     <ProjectGuid>{8BC34B23-1CF3-4EA1-9345-071176295CBA}</ProjectGuid>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -354,11 +355,11 @@
     <Resource Include="Resources\Images\ChevronUpGroup_24x.png" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Resources\Library\DailyUserControls.dll" />
-    <Resource Include="Resources\Library\DailyUserControls.xml" />
+    <Resource Include="Resources\Images\emblem_minus_x32.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\Images\emblem_minus_x32.png" />
+    <Content Include="Resources\Library\DailyUserControls.dll" />
+    <Resource Include="Resources\Library\DailyUserControls.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>

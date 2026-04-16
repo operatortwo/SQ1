@@ -15,9 +15,9 @@
             </LinearGradientBrush>
         </Grid.Background>
         <StackPanel Orientation="Horizontal">
-        <duc:ImageButton x:Name="btnRestart" Width="26" Height="26" Image="/Resources/Images/PreviousTrack_x22.png"  ImageMargin="0" ToolTip="Return To Zero" IsTabStop="True" TabIndex="12" Text="" Margin="9,5,0,0" Background="#FFE6E6E6"/>
-        <duc:ImageButton x:Name="btnStop" Width="26" Height="26" Image="/Resources/Images/Stop_x22.png" Margin="4,5,0,0" ButtonPressedBackground="#FFFAFF9A" ImageMargin="0" ToolTip="Stop" IsTabStop="True" TabIndex="30" Background="#FFE6E6E6"/>
-        <duc:ImageButton x:Name="btnPlay" Width="26" Height="26" Margin="4,5,0,0" ImageMargin="0" ToolTip="Play" IsTabStop="True" TabIndex="40" Image="/Resources/Images/Play_x22.png" Background="#FFE8E8E8"/>
+        <duc:ImageButton x:Name="btnRestart" Width="26" Height="26" Image="/Resources/Images/PreviousTrack_x22.png"  ImageMargin="0" ToolTip="Return To Zero" IsTabStop="True" TabIndex="12" Text="" Margin="9,5,0,0" Background="#FFE6E6E6" BorderBrush="{x:Null}"/>
+        <duc:ImageButton x:Name="btnStop" Width="26" Height="26" Image="/Resources/Images/Stop_x22.png" Margin="4,5,0,0" ButtonPressedBackground="#FFFAFF9A" ImageMargin="0" ToolTip="Stop" IsTabStop="True" TabIndex="30" Background="#FFE6E6E6" BorderBrush="{x:Null}"/>
+        <duc:ImageButton x:Name="btnPlay" Width="26" Height="26" Margin="4,5,0,0" ImageMargin="0" ToolTip="Play" IsTabStop="True" TabIndex="40" Image="/Resources/Images/Play_x22.png" Background="#FFE8E8E8" BorderBrush="{x:Null}"/>
         </StackPanel>
     </Grid>
 </Window>

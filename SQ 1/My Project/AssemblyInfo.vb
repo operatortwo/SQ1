@@ -15,7 +15,7 @@ Imports System.Windows
 <Assembly: AssemblyDescription("SQ1 is a Pattern-based Midi-Sequencer")>
 <Assembly: AssemblyCompany("SQ Programming")>
 <Assembly: AssemblyProduct("SQ_1")>
-<Assembly: AssemblyCopyright("Copyright ©  2023 - 2024   operatortwo")>
+<Assembly: AssemblyCopyright("Copyright ©  2023 - 2026   operatortwo")>
 <Assembly: AssemblyTrademark("")>
 <Assembly: ComVisible(false)>
 
@@ -55,5 +55,5 @@ Imports System.Windows
 ' indem Sie "*" wie unten gezeigt eingeben:
 ' <Assembly: AssemblyVersion("1.0.*")>
 
-<Assembly: AssemblyVersion("1.0.6.0")>
-<Assembly: AssemblyFileVersion("1.0.6.0")>
+<Assembly: AssemblyVersion("1.0.7.0")>
+<Assembly: AssemblyFileVersion("1.0.7.0")>
