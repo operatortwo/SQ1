@@ -1,5 +1,5 @@
-﻿Imports SequencerBase
-Imports SequencerUI.My
+﻿Imports DailyUserControls
+Imports SequencerBase
 Imports System.Collections.ObjectModel
 Imports System.Data
 Imports System.IO
@@ -22,13 +22,22 @@ Friend Module PatLib_Module
 
     Friend OwnerWindow As Window
 
+    '---------------------
+    ' V 1.0.8.0   changed path separator in Archive from \ to /
+    '---------------------
+    ' Starting with apps that target the .NET Framework 4.6.1, the path separator used in the
+    ' ZipArchiveEntry.FullName property has changed from the backslash ("\") used in previous
+    ' versions of .NET Framework to a forward slash ("/").
+    '----------------------
+
+
     Friend Function GetPatternFromArchive(name As String) As Pattern
         If name Is Nothing Then Return Nothing
         If name = "" Then Return Nothing
 
         Dim fs As FileStream
         Dim Archive As ZipArchive
-        Dim PatternName As String = "Pattern\" & name & ".xml"
+        Dim PatternName As String = "Pattern/" & name & ".xml"
         Dim Pattern As Pattern
 
         Dim myDeSerializer As New Xml.Serialization.XmlSerializer(GetType(Pattern))
@@ -38,7 +47,23 @@ Friend Module PatLib_Module
             Archive = New ZipArchive(fs, ZipArchiveMode.Read)
 
             Dim PatEntry As ZipArchiveEntry = Archive.GetEntry(PatternName)
-            If PatEntry Is Nothing Then Exit Try
+            If PatEntry Is Nothing Then
+                ' try again with previous path separator
+                Dim PatternName2 = PatternName.Replace("/", "\")
+                PatEntry = Archive.GetEntry(PatternName2)
+                If PatEntry IsNot Nothing Then
+                    MessageWindow.Show(OwnerWindow,
+                                       "Path separator in Archive has changed fron '\' to '/'" & vbCrLf &
+                                       "please consider to delete " & PatternLibFullname & vbCrLf &
+                                        "and create new",
+                                        "Loading Pattern from Library", MessageIcon.Information)
+                Else
+                    MessageWindow.Show(OwnerWindow, "Not found: " & PatternName,
+                                                    "Error loading Pattern from Library",
+                                                    MessageIcon.Warning)
+                    Exit Try
+                End If
+            End If
             Dim patstream As Stream
             patstream = PatEntry.Open
             Pattern = CType(myDeSerializer.Deserialize(patstream), Pattern)
@@ -77,7 +102,7 @@ Friend Module PatLib_Module
             Archive = New ZipArchive(fs, ZipArchiveMode.Read)
 
             For Each name In names
-                PatternName = "Pattern\" & CStr(name) & ".xml"
+                PatternName = "Pattern/" & CStr(name) & ".xml"
                 PatEntry = Archive.GetEntry(PatternName)
                 If PatEntry Is Nothing Then Continue For
                 PatStream = PatEntry.Open
@@ -132,7 +157,7 @@ Friend Module PatLib_Module
             Archive = New ZipArchive(fs, ZipArchiveMode.Update)
 
             InsertNameBase = name & ".xml"
-            InsertNameFull = "Pattern\" & InsertNameBase
+            InsertNameFull = "Pattern/" & InsertNameBase
 
             If overwriteExisting = True Then
                 Dim oldentry As ZipArchiveEntry = Archive.GetEntry(InsertNameFull)
@@ -141,7 +166,7 @@ Friend Module PatLib_Module
                 End If
             End If
 
-            InsertNameFull = CreateUniqueEntryName("Pattern\", InsertNameBase, Archive.Entries)
+            InsertNameFull = CreateUniqueEntryName("Pattern/", InsertNameBase, Archive.Entries)
             InsertEntry = Archive.CreateEntry(InsertNameFull)
 
             pattern.Name = InsertNameBase.Replace(".xml", "")     ' make sure the name is not empty and contains _000 enum
@@ -245,8 +270,8 @@ Friend Module PatLib_Module
 
             For Each prepx As ZipArchiveEntry In ArchivePre.Entries
                 InsertNameBase = prepx.Name
-                InsertNameFull = "Pattern\" & prepx.Name
-                InsertNameFull = CreateUniqueEntryName("Pattern\", InsertNameBase, Archive.Entries)
+                InsertNameFull = "Pattern/" & prepx.Name
+                InsertNameFull = CreateUniqueEntryName("Pattern/", InsertNameBase, Archive.Entries)
                 InsertEntry = Archive.CreateEntry(InsertNameFull)
 
                 patxstream = prepx.Open
@@ -333,7 +358,7 @@ Friend Module PatLib_Module
     ''' <summary>
     ''' Test if the given Name is alredy used. Enumerate with '_000' until a unique name is found.
     ''' </summary>
-    ''' <param name="RelativePath">Relative path like 'MyPath\ or empty string'</param>
+    ''' <param name="RelativePath">Relative path like 'MyPath/ or empty string'</param>
     ''' <param name="EntryName">Like 'readme.txt'. The name part may be modified by the function.</param>
     ''' <param name="ArchiveEntries">EntryCollection of the destination ZipArchive </param>
     ''' <returns></returns>
