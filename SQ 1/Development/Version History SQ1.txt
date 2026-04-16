@@ -3,6 +3,7 @@
 
 Date			Version		Changes
 ------------------------------------------------	
+2026 04 16		1.0.8.0		Pattern Library: changed path separator in Archive from \ to /
 2026 04 16		1.0.7.0		targeting .NET Framework 4.8
 2024 11 01		1.0.6.0		integrated DailyUserControls 1.0.8.0
 2023 11 16		1.0.5.2		Started with Help
